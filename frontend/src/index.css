@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply font-sans antialiased transition-colors duration-300;
+        @apply bg-brand-white text-brand-black dark:bg-[#121212] dark:text-[#E5E7EB];
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-display tracking-tight text-brand-black dark:text-[#F3F4F6];
+    }
+}
+
+@layer components {
+    .section-container {
+        @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-24 md:py-32; /* Increased vertical spacing to 96px+ */
+    }
+
+    .btn-base {
+        @apply inline-flex items-center justify-center px-10 py-4 h-[52px] rounded-full font-bold text-xs uppercase tracking-widest transition-all duration-300 active:scale-95;
+    }
+
+    .btn-primary {
+        @apply btn-base bg-brand-black text-brand-white hover:bg-brand-gray-800 dark:bg-brand-white dark:text-brand-black dark:hover:bg-brand-gray-200 shadow-xl shadow-brand-black/10 dark:shadow-none;
+    }
+
+    .btn-outline {
+        @apply btn-base bg-transparent border-2 border-brand-black/10 text-brand-black hover:bg-brand-black hover:text-brand-white dark:border-brand-white/10 dark:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-black;
+    }
+
+    .glass-card {
+        @apply bg-white dark:bg-[#1E1E1E] border border-brand-gray-100 dark:border-brand-gray-800 rounded-[2rem] overflow-hidden transition-all duration-500 hover:translate-y-[-4px];
+    }
+
+    .premium-label {
+        @apply inline-flex items-center space-x-2 bg-brand-gray-50 dark:bg-brand-gray-900 border border-brand-gray-100 dark:border-brand-gray-800 px-5 py-2 rounded-full text-brand-gray-500 dark:text-brand-gray-400 text-[10px] uppercase font-bold tracking-widest mb-10;
+    }
+
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) scale(0.95);
+    }
+
+    50% {
+        transform: translateY(-20px) scale(0.97);
+    }
+
+    100% {
+        transform: translateY(0px) scale(0.95);
+    }
+}
+
+/* Custom scrollbar for premium feel */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-brand-gray-300 dark:bg-brand-gray-800 rounded-full;
+}
