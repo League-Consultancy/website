@@ -12,7 +12,7 @@ export const company = {
         "Founded with the vision to bridge the gap between research and real-world implementation, we partner with startups, enterprises, and research institutions to design, develop, and deploy intelligent technology systems.",
         "From AI-powered analytics platforms and industrial automation solutions to robotics prototyping and IoT ecosystems, we combine engineering excellence with practical execution. Our team blends research-grade thinking with industry-focused delivery, ensuring scalable, future-ready solutions.",
     ],
-    philosophy: "At League Consultancy, we don't just build systems — we engineer impact.",
+    philosophy: "At LEAGUE Consultancy, we don't just build systems — we engineer impact.",
     corePhilosophy: "Research-driven. Innovation-focused. Execution-oriented. We combine academic depth with industrial practicality to deliver measurable results.",
     location: "Ahmedabad, India",
     email: "contact.league@gmail.com",

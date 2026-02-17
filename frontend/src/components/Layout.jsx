@@ -14,25 +14,26 @@ const Navbar = () => {
         { name: 'About', path: '/about', icon: <Info className="w-4 h-4" /> },
         { name: 'Services', path: '/services', icon: <Cpu className="w-4 h-4" /> },
         { name: 'Projects', path: '/projects', icon: <Briefcase className="w-4 h-4" /> },
-        { name: 'Blog', path: '/blog', icon: <Newspaper className="w-4 h-4" /> },
-        { name: 'Pricing', path: '/pricing', icon: <DollarSign className="w-4 h-4" /> },
-        { name: 'Profile', path: '/profile', icon: <User className="w-4 h-4" /> },
         { name: 'Contact', path: '/contact', icon: <Phone className="w-4 h-4" /> },
     ];
 
     return (
-        <nav className="fixed w-full z-50 bg-brand-white/80 dark:bg-brand-black/80 backdrop-blur-xl border-b border-brand-gray-100 dark:border-brand-gray-900 transition-colors duration-300" role="navigation" aria-label="Main navigation">
+        <nav className="fixed w-full z-50 bg-white/80 dark:bg-brand-black/80 backdrop-blur-xl border-b border-brand-gray-200/80 dark:border-brand-gray-900 transition-all duration-500 shadow-soft dark:shadow-none" role="navigation" aria-label="Main navigation">
             <div className="max-w-7xl mx-auto px-6 lg:px-12">
-                <div className="flex justify-between h-20 items-center">
+                <div className="flex justify-between h-20 items-center gap-8">
                     <div className="flex-shrink-0">
-                        <Link to="/" className="flex items-center space-x-3 text-2xl font-bold group" aria-label="LEAGUE Consultancy Home">
-                            <img src="/assets/logo.png" alt="LEAGUE Consultancy Logo" className="h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300" />
-                            <span className="tracking-tighter uppercase font-display hidden sm:block text-brand-black dark:text-brand-white">League Consultancy</span>
+                        <Link to="/" className="flex items-center space-x-2 lg:space-x-4 text-2xl font-bold group" aria-label="LEAGUE Consultancy Home">
+                            <img
+                                src="/assets/logo.png"
+                                alt="LEAGUE Consultancy Logo"
+                                className="h-10 lg:h-11 w-auto object-contain group-hover:scale-105 transition-transform duration-300 dark:brightness-100 brightness-0 opacity-90 group-hover:opacity-100"
+                            />
+                            <span className="tracking-tighter font-display hidden xl:inline-block text-brand-black dark:text-brand-white text-xl lg:text-2xl">LEAGUE Consultancy</span>
                         </Link>
                     </div>
 
-                    <div className="hidden md:flex items-center space-x-8">
-                        <div className="flex space-x-8 border-r border-brand-gray-100 dark:border-brand-gray-900 pr-8">
+                    <div className="hidden md:flex items-center space-x-6 lg:space-x-10">
+                        <div className="flex space-x-5 lg:space-x-8 border-r border-brand-gray-100/60 dark:border-brand-gray-900 pr-6 lg:pr-10">
                             {navLinks.map((link) => (
                                 <NavLink
                                     key={link.name}
@@ -49,8 +50,8 @@ const Navbar = () => {
                             ))}
                         </div>
 
-                        <div className="flex items-center space-x-6">
-                            <Link to="/contact" id="nav-cta-started" className="px-6 py-2.5 bg-brand-black text-brand-white dark:bg-brand-white dark:text-brand-black rounded-lg font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-brand-black/5">
+                        <div className="flex items-center space-x-4 lg:space-x-6">
+                            <Link to="/contact" id="nav-cta-started" className="hidden lg:block px-6 py-2.5 bg-brand-black text-brand-white dark:bg-brand-white dark:text-brand-black rounded-lg font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all shadow-premium hover:shadow-card-hover dark:shadow-none">
                                 Get Started
                             </Link>
                             <button
@@ -141,13 +142,13 @@ const Navbar = () => {
 
 const Footer = () => {
     return (
-        <footer className="bg-brand-gray-50 dark:bg-brand-dark py-20 border-t border-brand-gray-100 dark:border-brand-gray-900" role="contentinfo">
+        <footer className="bg-brand-gray-100 dark:bg-brand-dark py-20 border-t border-brand-gray-200 dark:border-brand-gray-900" role="contentinfo">
             <div className="max-w-7xl mx-auto px-6 lg:px-12">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16">
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-2 space-y-6">
-                        <Link to="/" className="text-2xl font-bold text-brand-black dark:text-brand-white block uppercase tracking-tighter">
-                            League Consultancy
+                        <Link to="/" className="text-2xl font-bold text-brand-black dark:text-brand-white block tracking-tighter">
+                            LEAGUE Consultancy
                         </Link>
                         <p className="text-brand-gray-500 dark:text-brand-gray-400 max-sm leading-relaxed font-light text-sm">
                             {company.shortDescription.substring(0, 180)}...

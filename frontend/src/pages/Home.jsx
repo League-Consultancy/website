@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Zap, Brain, Bot, Wifi, Settings, Code2, ChevronRight, Rocket, Factory, Building2, FlaskConical, Landmark, Shield, Cog, GraduationCap, Award, ShieldCheck, Handshake } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { projects } from '../data/projects';
 import { company, vision, services, targetAudience, credibility, differentiators } from '../data/companyData';
 
@@ -26,43 +26,44 @@ const FadeIn = ({ children, delay = 0, y = 20 }) => (
 const Hero = () => (
     <section className="relative overflow-hidden pt-12 pb-20 sm:pt-16 sm:pb-40 lg:pt-24 lg:pb-60 transition-colors duration-300">
         {/* Background blurs */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 pointer-events-none">
             <motion.div
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.5 }}
-                transition={{ duration: 2 }}
-                className="absolute top-0 -left-1/4 w-1/2 h-full bg-brand-gray-100 dark:bg-brand-gray-900/50 blur-[120px] rounded-full transition-colors duration-700"
+                animate={{ opacity: [0.3, 0.5, 0.3] }}
+                transition={{ duration: 8, repeat: Infinity }}
+                className="absolute top-0 -left-1/4 w-3/4 h-3/4 bg-blue-100/40 dark:bg-brand-gray-900/40 blur-[150px] rounded-full transition-colors duration-700"
             />
-            <div className="absolute bottom-0 -right-1/4 w-1/2 h-full bg-brand-gray-200 dark:bg-brand-dark blur-[120px] rounded-full opacity-30 transition-colors duration-700" />
+            <div className="absolute top-1/4 -right-1/4 w-1/2 h-1/2 bg-indigo-50/40 dark:bg-brand-dark blur-[120px] rounded-full opacity-40 dark:opacity-30 transition-colors duration-700" />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-1/3 bg-gradient-to-t from-white dark:from-brand-black to-transparent" />
         </div>
 
         <div className="section-container relative z-10 px-4 sm:px-8 lg:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
                 <div className="max-w-xl xl:max-w-2xl order-1 text-center lg:text-left flex flex-col items-center lg:items-start">
                     <FadeIn delay={0.1}>
-                        <div className="premium-label inline-flex">
-                            <Zap className="w-3 h-3" />
+                        <div className="premium-label inline-flex shadow-sm">
+                            <Zap className="w-3 h-3 text-brand-black dark:text-brand-white" />
                             <span>AI · Robotics · IoT · Automation</span>
                         </div>
                     </FadeIn>
 
                     <FadeIn delay={0.2} y={30}>
-                        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[4.8rem] font-black leading-[1.05] sm:leading-[1.1] tracking-tighter mb-8 sm:mb-12 uppercase group transition-colors duration-300 max-w-[720px]">
+                        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[4.8rem] font-black leading-[1.05] sm:leading-[1.1] tracking-tighter mb-8 sm:mb-12 uppercase group transition-colors duration-300 max-w-[720px] text-brand-black dark:text-white drop-shadow-sm dark:drop-shadow-none">
                             Building <br />
-                            <span className="text-brand-gray-300 dark:text-brand-gray-600 group-hover:text-brand-black dark:group-hover:text-brand-white transition-all duration-700">Tomorrow's</span> <br />
+                            <span className="text-brand-gray-400 dark:text-brand-gray-600 group-hover:text-brand-black dark:group-hover:text-brand-white transition-all duration-700">Tomorrow's</span> <br />
                             Technology
                         </h1>
                     </FadeIn>
 
                     <FadeIn delay={0.3} y={20}>
-                        <p className="text-lg sm:text-xl text-brand-gray-500 dark:text-[#D1D5DB] leading-relaxed mb-10 sm:mb-16 max-w-xl font-light transition-colors duration-300">
+                        <p className="text-lg sm:text-xl text-brand-gray-600 dark:text-[#D1D5DB] leading-relaxed mb-10 sm:mb-16 max-w-xl font-light transition-colors duration-300">
                             {company.shortDescription}
                         </p>
                     </FadeIn>
 
                     <FadeIn delay={0.4} y={10}>
                         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-8 w-full sm:w-auto">
-                            <Link to="/contact" id="hero-cta-start" className="btn-primary group w-full sm:w-auto">
+                            <Link to="/contact" id="hero-cta-start" className="btn-primary group w-full sm:w-auto shadow-premium hover:shadow-card-hover dark:shadow-none">
                                 <span className="text-xs">Get Started</span>
                                 <ArrowRight className="ml-3 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1.5 transition-transform" />
                             </Link>
@@ -82,18 +83,18 @@ const Hero = () => (
                     <motion.div
                         animate={{ y: [0, -15, 0] }}
                         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                        className="relative p-3 sm:p-6 md:p-8 lg:p-12 bg-brand-white/30 dark:bg-brand-gray-900/30 backdrop-blur-3xl rounded-[2.5rem] sm:rounded-[4rem] border border-brand-gray-200/30 dark:border-brand-gray-800/30 shadow-2xl transition-all duration-700 w-full max-w-[450px] xl:max-w-[600px] group"
+                        className="relative p-3 sm:p-6 md:p-8 lg:p-12 bg-white/60 dark:bg-brand-gray-900/30 backdrop-blur-3xl rounded-[2.5rem] sm:rounded-[4rem] border border-white/50 dark:border-brand-gray-800 shadow-premium transition-all duration-700 w-full max-w-[450px] xl:max-w-[600px] group"
                     >
                         <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[3.5rem] bg-brand-black shadow-inner aspect-square">
                             <img
                                 src="/assets/hero_visual.png"
                                 alt="LEAGUE Consultancy — AI, Robotics, IoT Engineering"
-                                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 dark:opacity-60 dark:group-hover:opacity-100 transition-all duration-1000 grayscale group-hover:grayscale-0 scale-[1.05] group-hover:scale-100"
+                                className="w-full h-full object-cover opacity-90 group-hover:opacity-100 dark:opacity-60 dark:group-hover:opacity-100 transition-all duration-1000 grayscale group-hover:grayscale-0 scale-[1.05] group-hover:scale-100"
                                 loading="eager"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-tr from-brand-black/40 via-transparent to-brand-white/10 pointer-events-none" />
+                            <div className="absolute inset-0 bg-gradient-to-tr from-brand-black/40 via-transparent to-white/10 pointer-events-none" />
                         </div>
-                        <div className="absolute -inset-2 bg-brand-black/5 dark:bg-brand-white/5 blur-3xl -z-10 rounded-[5rem] transition-opacity duration-700" />
+                        <div className="absolute -inset-2 bg-brand-black/5 dark:bg-white/5 blur-3xl -z-10 rounded-[5rem] transition-opacity duration-700 pointer-events-none" />
                     </motion.div>
 
                     <div className="hidden xl:block absolute -top-4 -right-4 w-24 h-24 border-t border-r border-brand-gray-200 dark:border-brand-gray-800 rounded-tr-[3rem] -z-10 opacity-30" />
@@ -104,136 +105,146 @@ const Hero = () => (
     </section>
 );
 
+
 // ─── SERVICES OVERVIEW ──────────────────────────────
 const ServicesOverview = () => {
     const serviceIcons = { Brain, Bot, Wifi, Settings, Code2 };
     const displayServices = services.slice(0, 3);
+    const cardCount = displayServices.length;
 
     return (
-        <section className="py-32 bg-brand-gray-50 dark:bg-brand-dark/50 overflow-hidden" id="services-overview">
-            <div className="section-container">
-                <FadeIn>
-                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
-                        <div className="max-w-2xl">
-                            <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">What We Do</span>
-                            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">Our Services</h2>
+        <>
+            {/* ── DESKTOP & MOBILE: Standard Grid Layout ── */}
+            <section className="bg-brand-white dark:bg-brand-black py-24 sm:py-32 border-t border-brand-gray-100 dark:border-brand-gray-900 transition-colors duration-300" id="services-overview">
+                <div className="section-container">
+                    <FadeIn>
+                        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+                            <div className="max-w-2xl">
+                                <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">What We Do</span>
+                                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-brand-black dark:text-white">Our Services</h2>
+                            </div>
+                            <Link to="/services" className="text-[10px] font-black uppercase tracking-widest text-brand-black dark:text-brand-white hover:opacity-50 transition-opacity pb-2 border-b-2 border-brand-black dark:border-brand-white">
+                                View All Services
+                            </Link>
                         </div>
-                        <Link to="/services" className="hidden sm:flex text-[10px] font-black uppercase tracking-widest text-brand-black dark:text-brand-white hover:opacity-50 transition-opacity pb-2 border-b-2 border-brand-black dark:border-brand-white">
-                            View All Services
-                        </Link>
+                    </FadeIn>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                        {displayServices.map((service, idx) => {
+                            const IconComp = serviceIcons[service.icon] || Brain;
+                            return (
+                                <FadeIn key={service.id} delay={idx * 0.1}>
+                                    <div
+                                        className="p-10 rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 group transition-all duration-500 flex flex-col bg-white dark:bg-brand-gray-900 h-full hover:shadow-2xl hover:-translate-y-2"
+                                    >
+                                        <div className="p-4 bg-brand-gray-50 dark:bg-brand-gray-800 rounded-2xl w-fit mb-8 group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-sm">
+                                            <IconComp className="w-6 h-6" />
+                                        </div>
+                                        <h3 className="text-xl font-bold mb-4 uppercase tracking-tight leading-tight text-brand-black dark:text-[#F3F4F6]">{service.title}</h3>
+                                        <p className="text-brand-gray-500 dark:text-[#D1D5DB] leading-relaxed font-light text-sm flex-grow mb-8">{service.shortDescription}</p>
+                                        <div className="mt-auto flex flex-wrap gap-1.5">
+                                            {service.technologies.slice(0, 3).map(tech => (
+                                                <span key={tech} className="px-2.5 py-1 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-gray-400 dark:text-brand-gray-500 text-[9px] font-bold uppercase tracking-widest rounded-md">
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </FadeIn>
+                            );
+                        })}
                     </div>
-                </FadeIn>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-                    {displayServices.map((service, idx) => {
-                        const IconComp = serviceIcons[service.icon] || Brain;
-                        return (
-                            <FadeIn key={service.id} delay={idx * 0.1}>
-                                <motion.div
-                                    whileHover={{ y: -12 }}
-                                    className="p-10 glass-card group transition-all duration-500 flex flex-col h-full border-brand-gray-100 dark:border-brand-gray-800 bg-white dark:bg-[#1E1E1E]"
-                                >
-                                    <div className="p-4 bg-brand-gray-50 dark:bg-[#2D3748] rounded-2xl w-fit mb-8 group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500">
-                                        <IconComp className="w-6 h-6" />
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-4 uppercase tracking-tight leading-tight text-brand-black dark:text-[#F3F4F6]">{service.title}</h3>
-                                    <p className="text-brand-gray-500 dark:text-[#D1D5DB] leading-relaxed font-light text-sm flex-grow">{service.shortDescription}</p>
-                                    <div className="mt-6 flex flex-wrap gap-1.5">
-                                        {service.technologies.slice(0, 3).map(tech => (
-                                            <span key={tech} className="px-2.5 py-1 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-gray-400 dark:text-brand-gray-500 text-[9px] font-bold uppercase tracking-widest rounded-md">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </motion.div>
-                            </FadeIn>
-                        );
-                    })}
-                </div>
-
-                {/* CTA after services */}
-                <FadeIn delay={0.3}>
-                    <div className="mt-20 text-center">
-                        <Link to="/contact" id="services-cta-consultation" className="btn-primary group inline-flex">
+                    <div className="mt-16 text-center">
+                        <Link to="/contact" className="btn-primary group inline-flex">
                             <span className="text-xs">Request Consultation</span>
                             <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                         </Link>
                     </div>
-                </FadeIn>
-            </div>
-        </section>
+                </div>
+            </section>
+
+        </>
     );
 };
 
 // ─── FEATURED PROJECTS ──────────────────────────────
 const FeaturedProjects = () => {
     const featured = projects.slice(0, 3);
-    return (
-        <section className="bg-brand-white dark:bg-brand-black py-32 transition-colors duration-300" id="featured-projects">
-            <div className="section-container">
-                <FadeIn>
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-20 gap-6">
-                        <div>
-                            <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Case Studies</span>
-                            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">Featured Work</h2>
-                        </div>
-                        <Link to="/projects" className="hidden sm:flex text-[10px] font-black uppercase tracking-widest text-brand-black dark:text-brand-white hover:opacity-50 transition-opacity pb-2 border-b-2 border-brand-black dark:border-brand-white">
-                            View All Cases
-                        </Link>
-                    </div>
-                </FadeIn>
+    const cardCount = featured.length;
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-                    {featured.map((project, idx) => (
-                        <FadeIn key={project.id} delay={idx * 0.1}>
-                            <div className="bg-brand-white dark:bg-brand-gray-900 group flex flex-col h-full rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 overflow-hidden hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-700">
-                                <div className="h-56 bg-brand-black relative overflow-hidden">
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 grayscale group-hover:grayscale-0"
-                                        loading="lazy"
-                                    />
-                                    <div className="absolute top-6 right-6 bg-brand-white/10 backdrop-blur-md text-brand-white px-4 py-2 rounded-full text-[8px] font-black uppercase tracking-widest border border-white/10">
-                                        {project.category}
-                                    </div>
-                                </div>
-                                <div className="p-8 flex-grow flex flex-col">
-                                    <h3 className="text-xl font-bold mb-3 leading-tight">{project.title}</h3>
-                                    <p className="text-brand-gray-500 dark:text-brand-gray-400 text-sm leading-relaxed mb-4 font-light line-clamp-2">{project.challenge}</p>
-                                    <div className="flex flex-wrap gap-1.5 mb-6">
-                                        {project.technologies.slice(0, 3).map(tech => (
-                                            <span key={tech} className="px-2 py-0.5 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-gray-500 dark:text-brand-gray-400 text-[9px] font-bold uppercase tracking-widest rounded-md">{tech}</span>
-                                        ))}
-                                    </div>
-                                    {project.results && (
-                                        <p className="text-xs font-bold text-brand-black dark:text-brand-white uppercase tracking-wider mb-4">
-                                            ↗ {project.results}
-                                        </p>
-                                    )}
-                                    <div className="mt-auto">
-                                        <Link to="/projects" className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-black dark:text-brand-white flex items-center group/link">
-                                            <span>Explore Case Study</span>
-                                            <ArrowRight className="ml-3 w-4 h-4 group-hover/link:translate-x-2 transition-all" />
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </FadeIn>
+    // Shared card renderer (keeps card design identical)
+    const ProjectCard = ({ project }) => (
+        <div className="bg-brand-white dark:bg-brand-gray-900 group flex flex-col h-full rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 overflow-hidden hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-700">
+            <div className="h-56 bg-brand-black relative overflow-hidden">
+                <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 grayscale group-hover:grayscale-0"
+                    loading="lazy"
+                />
+                <div className="absolute top-6 right-6 bg-brand-white/10 backdrop-blur-md text-brand-white px-4 py-2 rounded-full text-[8px] font-black uppercase tracking-widest border border-white/10">
+                    {project.category}
+                </div>
+            </div>
+            <div className="p-8 flex-grow flex flex-col">
+                <h3 className="text-xl font-bold mb-3 leading-tight">{project.title}</h3>
+                <p className="text-brand-gray-500 dark:text-brand-gray-400 text-sm leading-relaxed mb-4 font-light line-clamp-2">{project.challenge}</p>
+                <div className="flex flex-wrap gap-1.5 mb-6">
+                    {project.technologies.slice(0, 3).map(tech => (
+                        <span key={tech} className="px-2 py-0.5 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-gray-500 dark:text-brand-gray-400 text-[9px] font-bold uppercase tracking-widest rounded-md">{tech}</span>
                     ))}
                 </div>
+                {project.results && (
+                    <p className="text-xs font-bold text-brand-black dark:text-brand-white uppercase tracking-wider mb-4">
+                        ↗ {project.results}
+                    </p>
+                )}
+                <div className="mt-auto">
+                    <Link to="/projects" className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-black dark:text-brand-white flex items-center group/link">
+                        <span>Explore Case Study</span>
+                        <ArrowRight className="ml-3 w-4 h-4 group-hover/link:translate-x-2 transition-all" />
+                    </Link>
+                </div>
+            </div>
+        </div>
+    );
 
-                {/* CTA after Projects */}
-                <FadeIn delay={0.3}>
-                    <div className="mt-20 text-center">
-                        <Link to="/contact" id="projects-cta-discuss" className="btn-outline group inline-flex">
+    return (
+        <>
+            {/* ── DESKTOP & MOBILE: Standard Grid Layout ── */}
+            <section className="bg-brand-white dark:bg-brand-black py-24 sm:py-32 border-t border-brand-gray-100 dark:border-brand-gray-900 transition-colors duration-300" id="featured-projects">
+                <div className="section-container">
+                    <FadeIn>
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-16 gap-6">
+                            <div>
+                                <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Case Studies</span>
+                                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">Featured Work</h2>
+                            </div>
+                            <Link to="/projects" className="text-[10px] font-black uppercase tracking-widest text-brand-black dark:text-brand-white hover:opacity-50 transition-opacity pb-2 border-b-2 border-brand-black dark:border-brand-white">
+                                View All Cases
+                            </Link>
+                        </div>
+                    </FadeIn>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+                        {featured.map((project, idx) => (
+                            <FadeIn key={project.id} delay={idx * 0.1}>
+                                <ProjectCard project={project} />
+                            </FadeIn>
+                        ))}
+                    </div>
+
+                    <div className="mt-16 text-center">
+                        <Link to="/contact" className="btn-outline group inline-flex">
                             <span className="text-xs">Discuss Your Project</span>
                             <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                         </Link>
                     </div>
-                </FadeIn>
-            </div>
-        </section>
+                </div>
+            </section>
+
+        </>
     );
 };
 

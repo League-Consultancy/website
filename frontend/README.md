@@ -1,6 +1,6 @@
-# League Consultancy - Professional Website
+`# LEAGUE Consultancy - Professional Website
 
-This is a modern, high-performance website build for **League Consultancy**, an IT & Engineering consultancy specialized in Aerospace, Robotics, and AI.
+This is a modern, high-performance website build for **LEAGUE Consultancy**, an IT & Engineering consultancy specialized in Aerospace, Robotics, and AI.
 
 ## 🚀 Features
 - **Information Rich**: Detailed sections extracted from the company portfolio.
@@ -38,4 +38,4 @@ This is a modern, high-performance website build for **League Consultancy**, an 
    ```
 
 ## 📄 Source Context
-All content is derived from the official Portfolio Book of League Consultancy, featuring work for SAC-ISRO, Robofest, and in-house AI research.
+All content is derived from the official Portfolio Book of LEAGUE Consultancy, featuring work for SAC-ISRO, Robofest, and in-house AI research.

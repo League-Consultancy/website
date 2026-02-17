@@ -1,8 +1,4 @@
-// ════════════════════════════════════════════════════
-// LEAGUE CONSULTANCY — FRONTEND-ONLY API SIMULATION
-// No backend required. All interactions are simulated
-// on the client side for static deployment.
-// ════════════════════════════════════════════════════
+import emailjs from '@emailjs/browser';
 
 /**
  * Simulates an async delay to mimic network latency.
@@ -12,18 +8,37 @@ const simulateDelay = (ms = 1500) =>
     new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
- * Contact form submission — simulated on client side.
- * In production, replace with Formspree, EmailJS, or
- * a serverless function endpoint.
+ * Contact form submission — Integrated with EmailJS.
  */
 export const contactService = {
     submitForm: async (formData) => {
-        await simulateDelay(1500);
-        console.log('[Contact] Form submitted (simulated):', formData);
-        return {
-            success: true,
-            message: 'Inquiry submitted successfully! Our team will respond within 24-48 business hours.',
-        };
+        try {
+            const templateParams = {
+                full_name: formData.name,
+                email: formData.email,
+                inquiry_type: formData.category,
+                message: formData.message,
+            };
+
+            const response = await emailjs.send(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                templateParams,
+                import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+            );
+
+            if (response.status === 200) {
+                return {
+                    success: true,
+                    message: 'Inquiry submitted successfully! Our team will respond within 24-48 business hours.',
+                };
+            } else {
+                throw new Error('Failed to send inquiry.');
+            }
+        } catch (error) {
+            console.error('[EmailJS Error]:', error);
+            throw new Error(error.text || 'Submission failed. Please try again or email us directly.');
+        }
     },
 };
 

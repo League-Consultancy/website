@@ -23,20 +23,45 @@ const About = () => {
             {/* ─── HEADER ─────────────────────────────────── */}
             <section className="bg-brand-gray-50 dark:bg-brand-dark py-32 border-b border-brand-gray-100 dark:border-brand-gray-900 transition-colors duration-300">
                 <div className="section-container">
-                    <div className="max-w-4xl">
-                        <FadeIn>
-                            <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Our Story</span>
-                        </FadeIn>
-                        <FadeIn delay={0.1}>
-                            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none text-brand-black dark:text-[#F3F4F6]">
-                                Innovation-Driven <br />Engineering
-                            </h1>
-                        </FadeIn>
-                        <FadeIn delay={0.2}>
-                            <p className="text-xl text-brand-gray-600 dark:text-[#D1D5DB] max-w-3xl leading-relaxed font-light">
-                                {company.longDescription[0]}
-                            </p>
-                        </FadeIn>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                        <div className="max-w-xl xl:max-w-2xl text-center lg:text-left flex flex-col items-center lg:items-start">
+                            <FadeIn>
+                                <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Our Story</span>
+                            </FadeIn>
+                            <FadeIn delay={0.1}>
+                                <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-[1.1] text-brand-black dark:text-[#F3F4F6]">
+                                    Innovation-Driven <br />Engineering
+                                </h1>
+                            </FadeIn>
+                            <FadeIn delay={0.2}>
+                                <p className="text-xl text-brand-gray-600 dark:text-[#D1D5DB] max-w-3xl leading-relaxed font-light">
+                                    {company.longDescription[0]}
+                                </p>
+                            </FadeIn>
+                        </div>
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 1.2, delay: 0.2, ease: [0.21, 1, 0.36, 1] }}
+                            className="relative flex justify-center lg:justify-end mt-12 lg:mt-0 z-20"
+                        >
+                            <motion.div
+                                animate={{ y: [0, -15, 0] }}
+                                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                                className="relative p-3 sm:p-6 md:p-8 lg:p-10 bg-white/40 dark:bg-brand-gray-900/30 backdrop-blur-3xl rounded-[2.5rem] sm:rounded-[3.5rem] border border-brand-gray-200 dark:border-brand-gray-800 shadow-2xl transition-all duration-700 w-full max-w-[400px] xl:max-w-[500px] group"
+                            >
+                                <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[3rem] bg-brand-black shadow-inner aspect-square">
+                                    <img
+                                        src="/assets/about_hero.png"
+                                        alt="LEAGUE Consultancy About"
+                                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 dark:opacity-60 dark:group-hover:opacity-100 transition-all duration-1000 grayscale group-hover:grayscale-0 scale-[1.05] group-hover:scale-100"
+                                        loading="eager"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-brand-black/40 via-transparent to-white/10 pointer-events-none" />
+                                </div>
+                            </motion.div>
+                        </motion.div>
                     </div>
                 </div>
             </section>

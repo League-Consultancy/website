@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { ArrowRight, Layers, Zap, Cpu, Target, TrendingUp, ChevronDown, ChevronUp } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 
@@ -19,7 +19,7 @@ const ProjectCard = ({ project }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
-        <div className="bg-brand-white dark:bg-brand-gray-900 rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 overflow-hidden hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.4)] transition-all duration-700 flex flex-col group">
+        <div className="bg-brand-white dark:bg-brand-gray-900 rounded-[2.5rem] border border-brand-gray-200 dark:border-brand-gray-800 overflow-hidden shadow-soft hover:shadow-card-hover dark:shadow-none dark:hover:shadow-2xl transition-all duration-700 flex flex-col group">
             {/* Image */}
             <div className="h-64 bg-brand-black relative overflow-hidden">
                 <img
@@ -133,6 +133,68 @@ const ProjectCard = ({ project }) => {
     );
 };
 
+// ─── HORIZONTAL SCROLL SECTION (reusable) ───────────
+const HorizontalScrollSection = ({ children, itemCount, id, className = '' }) => {
+    const sectionRef = useRef(null);
+    const containerRef = useRef(null);
+    const [scrollDistance, setScrollDistance] = useState(0);
+
+    // Measure the actual horizontal distance to scroll
+    React.useEffect(() => {
+        const updateMeasurements = () => {
+            if (containerRef.current) {
+                const totalWidth = containerRef.current.scrollWidth;
+                const viewportWidth = window.innerWidth;
+
+                // Distance = totalWidth - viewportWidth
+                setScrollDistance(Math.max(totalWidth - viewportWidth, 0));
+            }
+        };
+
+        const resizeObserver = new ResizeObserver(updateMeasurements);
+        if (containerRef.current) resizeObserver.observe(containerRef.current);
+
+        updateMeasurements();
+        // Delay to allow layout to settle after filter changes
+        const timer = setTimeout(updateMeasurements, 250);
+
+        window.addEventListener('resize', updateMeasurements);
+        return () => {
+            window.removeEventListener('resize', updateMeasurements);
+            resizeObserver.disconnect();
+            clearTimeout(timer);
+        };
+    }, [itemCount]);
+
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ['start start', 'end end'],
+    });
+
+    // Map vertical scroll progress to horizontal translation
+    // We map to 0.95 to ensure a tiny pause at the end for the CTA to be fully absorbed
+    const x = useTransform(scrollYProgress, [0, 0.95], [0, -scrollDistance]);
+
+    return (
+        <section
+            ref={sectionRef}
+            id={id}
+            className={`relative ${className}`}
+            style={{ height: `calc(100vh + ${scrollDistance}px)` }}
+        >
+            <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
+                <motion.div
+                    ref={containerRef}
+                    className="flex gap-10 items-center px-[10vw] will-change-transform"
+                    style={{ x }}
+                >
+                    {children}
+                </motion.div>
+            </div>
+        </section>
+    );
+};
+
 const Projects = () => {
     const [filter, setFilter] = useState('All');
     const categories = ['All', ...new Set(projects.map(p => p.category))];
@@ -146,20 +208,45 @@ const Projects = () => {
             {/* Header */}
             <section className="relative overflow-hidden pt-32 pb-24 border-b border-brand-gray-100 dark:border-brand-gray-900">
                 <div className="section-container relative z-10">
-                    <div className="max-w-4xl">
-                        <FadeIn>
-                            <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Portfolio Archive</span>
-                        </FadeIn>
-                        <FadeIn delay={0.1}>
-                            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">
-                                Engineering <br />Case Studies
-                            </h1>
-                        </FadeIn>
-                        <FadeIn delay={0.2}>
-                            <p className="text-xl text-brand-gray-500 dark:text-brand-gray-400 max-w-2xl font-light leading-relaxed">
-                                Real-world implementations across AI, Robotics, IoT, and Industrial Automation — each solving a genuine engineering challenge.
-                            </p>
-                        </FadeIn>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                        <div className="max-w-xl xl:max-w-2xl text-center lg:text-left flex flex-col items-center lg:items-start">
+                            <FadeIn>
+                                <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Portfolio Archive</span>
+                            </FadeIn>
+                            <FadeIn delay={0.1}>
+                                <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-[1.1]">
+                                    Engineering <br />Case Studies
+                                </h1>
+                            </FadeIn>
+                            <FadeIn delay={0.2}>
+                                <p className="text-xl text-brand-gray-500 dark:text-brand-gray-400 max-w-2xl font-light leading-relaxed">
+                                    Real-world implementations across AI, Robotics, IoT, and Industrial Automation — each solving a genuine engineering challenge.
+                                </p>
+                            </FadeIn>
+                        </div>
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 1.2, delay: 0.2, ease: [0.21, 1, 0.36, 1] }}
+                            className="relative flex justify-center lg:justify-end mt-12 lg:mt-0 z-20"
+                        >
+                            <motion.div
+                                animate={{ y: [0, -15, 0] }}
+                                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                                className="relative p-3 sm:p-6 md:p-8 lg:p-10 bg-white/40 dark:bg-brand-gray-900/30 backdrop-blur-3xl rounded-[2.5rem] sm:rounded-[3.5rem] border border-brand-gray-200 dark:border-brand-gray-800 shadow-2xl transition-all duration-700 w-full max-w-[400px] xl:max-w-[500px] group"
+                            >
+                                <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[3rem] bg-brand-black shadow-inner aspect-square">
+                                    <img
+                                        src="/assets/projects_hero.png"
+                                        alt="LEAGUE Consultancy Projects"
+                                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 dark:opacity-60 dark:group-hover:opacity-100 transition-all duration-1000 grayscale group-hover:grayscale-0 scale-[1.05] group-hover:scale-100"
+                                        loading="eager"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-brand-black/40 via-transparent to-white/10 pointer-events-none" />
+                                </div>
+                            </motion.div>
+                        </motion.div>
                     </div>
                 </div>
                 <div className="absolute top-0 right-0 w-1/3 h-full bg-brand-gray-50 dark:bg-brand-dark/50 -skew-x-12 translate-x-1/2 opacity-50 transition-colors duration-700" />
@@ -185,21 +272,51 @@ const Projects = () => {
                 </div>
             </section>
 
-            {/* Project Grid */}
-            <section className="py-24 md:py-32">
-                <div className="section-container">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
-                        {filteredProjects.map((project) => (
-                            <FadeIn key={project.id}>
-                                <ProjectCard project={project} />
-                            </FadeIn>
-                        ))}
-                    </div>
+            {/* Project List */}
+            <section className="bg-brand-white dark:bg-brand-black">
+                {/* ── DESKTOP: horizontal pinned carousel ── */}
+                <div className="hidden md:block">
+                    {filteredProjects.length > 0 ? (
+                        <HorizontalScrollSection itemCount={filteredProjects.length} id="projects-horizontal">
+                            {filteredProjects.map((project) => (
+                                <div key={project.id} className="min-w-[420px] w-[32vw] max-w-[500px] flex-shrink-0 py-10">
+                                    <ProjectCard project={project} />
+                                </div>
+                            ))}
 
-                    {filteredProjects.length === 0 && (
+                            {/* Final CTA in the track */}
+                            <div className="min-w-[400px] flex-shrink-0 flex items-center justify-center p-12">
+                                <div className="p-12 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-[3rem] border border-brand-gray-100 dark:border-brand-gray-800 text-center w-full shadow-lg">
+                                    <h3 className="text-2xl font-black uppercase tracking-tighter mb-4 text-brand-black dark:text-white">Have a Challenge?</h3>
+                                    <Link to="/contact" className="btn-primary group inline-flex whitespace-nowrap">
+                                        <span className="text-xs">Discuss Your Project</span>
+                                        <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+                                    </Link>
+                                </div>
+                            </div>
+                        </HorizontalScrollSection>
+                    ) : (
                         <div className="text-center py-40">
                             <Layers className="w-12 h-12 text-brand-gray-200 dark:text-brand-gray-800 mx-auto mb-8 opacity-50" />
                             <p className="text-brand-gray-400 font-bold uppercase tracking-widest text-xs">No projects found for this category.</p>
+                        </div>
+                    )}
+                </div>
+
+                {/* ── MOBILE: natural horizontal snap scroll ── */}
+                <div className="md:hidden py-16 px-6">
+                    {filteredProjects.length > 0 ? (
+                        <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8">
+                            {filteredProjects.map((project) => (
+                                <div key={project.id} className="min-w-[300px] w-[85vw] max-w-[380px] flex-shrink-0 snap-center">
+                                    <ProjectCard project={project} />
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-center py-20">
+                            <Layers className="w-10 h-10 text-brand-gray-200 dark:text-brand-gray-800 mx-auto mb-8 opacity-50" />
+                            <p className="text-brand-gray-400 font-bold uppercase tracking-widest text-[10px]">No projects found.</p>
                         </div>
                     )}
                 </div>
