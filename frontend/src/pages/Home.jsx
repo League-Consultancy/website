@@ -11,12 +11,13 @@ const iconMap = {
     GraduationCap, Award, ShieldCheck, Handshake,
 };
 
-const FadeIn = ({ children, delay = 0, y = 20 }) => (
+const FadeIn = ({ children, delay = 0, y = 20, className = "" }) => (
     <motion.div
         initial={{ opacity: 0, y }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.7, delay, ease: [0.21, 1, 0.36, 1] }}
+        className={className}
     >
         {children}
     </motion.div>
@@ -133,9 +134,9 @@ const ServicesOverview = () => {
                         {displayServices.map((service, idx) => {
                             const IconComp = serviceIcons[service.icon] || Brain;
                             return (
-                                <FadeIn key={service.id} delay={idx * 0.1}>
+                                <FadeIn key={service.id} delay={idx * 0.1} className="h-full">
                                     <div
-                                        className="p-10 rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 group transition-all duration-500 flex flex-col bg-white dark:bg-brand-gray-900 h-full hover:shadow-2xl hover:-translate-y-2"
+                                        className="p-8 lg:p-10 rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 group transition-all duration-500 flex flex-col bg-brand-white dark:bg-[#0A0A0A] h-full hover:shadow-2xl hover:-translate-y-2"
                                     >
                                         <div className="p-4 bg-brand-gray-50 dark:bg-brand-gray-800 rounded-2xl w-fit mb-8 group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-sm">
                                             <IconComp className="w-6 h-6" />
@@ -175,7 +176,7 @@ const FeaturedProjects = () => {
 
     // Shared card renderer (keeps card design identical)
     const ProjectCard = ({ project }) => (
-        <div className="bg-brand-white dark:bg-brand-gray-900 group flex flex-col h-full rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 overflow-hidden hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-700">
+        <div className="bg-brand-white dark:bg-[#0A0A0A] group flex flex-col h-full rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 overflow-hidden hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-700">
             <div className="h-56 bg-brand-black relative overflow-hidden">
                 <img
                     src={project.image}
@@ -229,7 +230,7 @@ const FeaturedProjects = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
                         {featured.map((project, idx) => (
-                            <FadeIn key={project.id} delay={idx * 0.1}>
+                            <FadeIn key={project.id} delay={idx * 0.1} className="h-full">
                                 <ProjectCard project={project} />
                             </FadeIn>
                         ))}
@@ -263,13 +264,13 @@ const CredibilitySection = () => (
                 {credibility.map((item, idx) => {
                     const IconComp = iconMap[item.icon] || Award;
                     return (
-                        <FadeIn key={idx} delay={idx * 0.1}>
-                            <div className="text-center group p-8 rounded-3xl border border-brand-gray-800 hover:border-brand-gray-600 transition-all duration-500">
-                                <div className="p-5 bg-white/5 rounded-2xl w-fit mx-auto mb-6 group-hover:bg-white/10 transition-colors">
+                        <FadeIn key={idx} delay={idx * 0.1} className="h-full">
+                            <div className="text-center group p-8 lg:p-10 rounded-[2.5rem] border border-brand-gray-800 hover:border-brand-gray-600 transition-all duration-500 bg-brand-white/5 dark:bg-white/5 h-full flex flex-col justify-center">
+                                <div className="p-5 bg-white/5 rounded-2xl w-fit mx-auto mb-6 group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-sm">
                                     <IconComp className="w-8 h-8" />
                                 </div>
-                                <h3 className="text-lg font-bold uppercase tracking-tight mb-3">{item.title}</h3>
-                                <p className="text-brand-gray-500 text-sm font-light leading-relaxed">{item.description}</p>
+                                <h3 className="text-lg font-bold uppercase tracking-tight mb-3 text-brand-white">{item.title}</h3>
+                                <p className="text-brand-gray-400 text-sm font-light leading-relaxed">{item.description}</p>
                             </div>
                         </FadeIn>
                     );
@@ -297,12 +298,12 @@ const TargetAudienceSection = () => (
                 {targetAudience.map((audience, idx) => {
                     const IconComp = iconMap[audience.icon] || Landmark;
                     return (
-                        <FadeIn key={idx} delay={idx * 0.05}>
-                            <div className="px-6 py-8 bg-brand-white dark:bg-brand-gray-900 border border-brand-gray-100 dark:border-brand-gray-800 rounded-2xl text-center transition-all duration-300 hover:border-brand-black dark:hover:border-brand-white group hover:-translate-y-1 hover:shadow-lg">
-                                <div className="p-3 bg-brand-gray-50 dark:bg-brand-gray-800 rounded-xl w-fit mx-auto mb-4 group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500">
+                        <FadeIn key={idx} delay={idx * 0.05} className="h-full">
+                            <div className="px-6 py-10 bg-brand-white dark:bg-[#0A0A0A] border border-brand-gray-100 dark:border-brand-gray-800 rounded-[2rem] text-center transition-all duration-300 hover:border-brand-black dark:hover:border-brand-white group hover:-translate-y-1 hover:shadow-xl h-full flex flex-col items-center justify-center">
+                                <div className="p-4 bg-brand-gray-50 dark:bg-brand-gray-800 rounded-2xl w-fit mx-auto mb-6 group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-sm">
                                     <IconComp className="w-5 h-5" />
                                 </div>
-                                <span className="font-bold text-brand-gray-600 dark:text-brand-gray-400 group-hover:text-brand-black dark:group-hover:text-brand-white text-xs uppercase tracking-wider transition-colors leading-tight block">{audience.name}</span>
+                                <span className="font-bold text-brand-gray-600 dark:text-brand-gray-400 group-hover:text-brand-black dark:group-hover:text-brand-white text-[10px] uppercase tracking-[0.2em] transition-colors leading-tight block">{audience.name}</span>
                             </div>
                         </FadeIn>
                     );

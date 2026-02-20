@@ -190,7 +190,7 @@ const Footer = () => {
                             {serviceData.slice(0, 5).map(s => (
                                 <li key={s.id}>
                                     <Link to="/services" className="text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">
-                                        {s.title.length > 25 ? s.title.substring(0, 25) + '…' : s.title}
+                                        {s.title}
                                     </Link>
                                 </li>
                             ))}

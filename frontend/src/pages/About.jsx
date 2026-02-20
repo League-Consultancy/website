@@ -4,12 +4,13 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { company, vision, mission, founder, teamExpertise, differentiators, credibility, techStack } from '../data/companyData';
 
-const FadeIn = ({ children, delay = 0, y = 20 }) => (
+const FadeIn = ({ children, delay = 0, y = 20, className = "" }) => (
     <motion.div
         initial={{ opacity: 0, y }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.7, delay, ease: [0.21, 1, 0.36, 1] }}
+        className={className}
     >
         {children}
     </motion.div>
@@ -185,13 +186,13 @@ const About = () => {
                             <div>
                                 <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Team Expertise</span>
                                 <h3 className="text-3xl font-black uppercase tracking-tighter mb-10">Collective Strengths</h3>
-                                <div className="space-y-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {teamExpertise.map((area, idx) => (
-                                        <div key={idx} className="flex items-center space-x-4 p-5 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-2xl border border-brand-gray-100 dark:border-brand-gray-800 group hover:border-brand-black dark:hover:border-brand-white transition-all duration-300">
-                                            <div className="w-8 h-8 bg-brand-black dark:bg-brand-white rounded-lg flex items-center justify-center text-brand-white dark:text-brand-black text-xs font-black group-hover:scale-110 transition-transform">
+                                        <div key={idx} className="flex items-center space-x-4 p-6 bg-brand-gray-50 dark:bg-[#0A0A0A] rounded-[1.5rem] border border-brand-gray-100 dark:border-brand-gray-800 group hover:border-brand-black dark:hover:border-brand-white transition-all duration-300">
+                                            <div className="w-8 h-8 bg-brand-black dark:bg-brand-white rounded-lg flex items-center justify-center text-brand-white dark:text-brand-black text-[10px] font-black group-hover:scale-110 transition-transform">
                                                 {String(idx + 1).padStart(2, '0')}
                                             </div>
-                                            <span className="font-bold text-sm uppercase tracking-wider text-brand-gray-700 dark:text-brand-gray-300">{area}</span>
+                                            <span className="font-bold text-[10px] uppercase tracking-widest text-brand-gray-700 dark:text-brand-gray-300 group-hover:text-brand-black dark:group-hover:text-brand-white transition-colors">{area}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -215,12 +216,12 @@ const About = () => {
                         {credibility.map((item, idx) => {
                             const IconComp = credIconMap[item.icon] || Award;
                             return (
-                                <FadeIn key={idx} delay={idx * 0.1}>
-                                    <div className="text-center group space-y-6 p-8 rounded-3xl border border-brand-gray-800 hover:border-brand-gray-600 transition-all duration-500">
-                                        <div className="p-5 bg-white/5 rounded-2xl w-fit mx-auto group-hover:bg-white/10 transition-colors">
+                                <FadeIn key={idx} delay={idx * 0.1} className="h-full">
+                                    <div className="text-center group p-8 lg:p-10 rounded-[2.5rem] border border-brand-gray-800 hover:border-brand-gray-600 transition-all duration-500 bg-white/5 h-full flex flex-col justify-center">
+                                        <div className="p-5 bg-white/5 rounded-2xl w-fit mx-auto mb-6 group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-sm">
                                             <IconComp className="w-8 h-8 text-brand-white" />
                                         </div>
-                                        <h3 className="text-lg font-bold uppercase tracking-tight">{item.title}</h3>
+                                        <h3 className="text-lg font-bold uppercase tracking-tight mb-3 text-brand-white">{item.title}</h3>
                                         <p className="text-brand-gray-500 text-sm font-light leading-relaxed">{item.description}</p>
                                     </div>
                                 </FadeIn>
@@ -242,12 +243,12 @@ const About = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {Object.entries(techStack).map(([category, techs], idx) => (
-                            <FadeIn key={category} delay={idx * 0.08}>
-                                <div className="p-8 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-3xl border border-brand-gray-100 dark:border-brand-gray-800 group hover:border-brand-black dark:hover:border-brand-white transition-all duration-500">
-                                    <h3 className="text-xs font-black uppercase tracking-[0.2em] text-brand-gray-400 mb-6">{category}</h3>
-                                    <div className="flex flex-wrap gap-2">
+                            <FadeIn key={category} delay={idx * 0.08} className="h-full">
+                                <div className="p-8 lg:p-10 bg-brand-gray-50 dark:bg-[#0A0A0A] rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 group hover:border-brand-black dark:hover:border-brand-white transition-all duration-500 h-full flex flex-col">
+                                    <h3 className="text-xs font-black uppercase tracking-[0.2em] text-brand-gray-400 mb-8 border-b border-brand-gray-100 dark:border-brand-gray-800 pb-4">{category}</h3>
+                                    <div className="flex flex-wrap gap-2 mt-auto">
                                         {techs.map(tech => (
-                                            <span key={tech} className="px-4 py-2 bg-brand-white dark:bg-brand-gray-800 border border-brand-gray-200 dark:border-brand-gray-700 rounded-xl text-xs font-bold uppercase tracking-wider text-brand-gray-600 dark:text-brand-gray-300 group-hover:border-brand-black/20 dark:group-hover:border-brand-white/20 transition-colors">
+                                            <span key={tech} className="px-4 py-2 bg-brand-white dark:bg-brand-gray-800 border border-brand-gray-200 dark:border-brand-gray-700 rounded-xl text-[10px] font-bold uppercase tracking-wider text-brand-gray-600 dark:text-brand-gray-300 group-hover:border-brand-black/20 dark:group-hover:border-brand-white/20 hover:bg-brand-black hover:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-black transition-all">
                                                 {tech}
                                             </span>
                                         ))}
