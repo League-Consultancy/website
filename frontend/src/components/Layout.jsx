@@ -150,8 +150,8 @@ const Footer = () => {
                         <Link to="/" className="text-2xl font-bold text-brand-black dark:text-brand-white block tracking-tighter">
                             LEAGUE Consultancy
                         </Link>
-                        <p className="text-brand-gray-500 dark:text-brand-gray-400 max-sm leading-relaxed font-light text-sm">
-                            {company.shortDescription.substring(0, 180)}...
+                        <p className="text-brand-gray-500 dark:text-brand-gray-400 max-w-md leading-relaxed font-light text-sm">
+                            {company.shortDescription}
                         </p>
                         <div className="space-y-3">
                             <div className="flex items-center space-x-3 text-brand-gray-500 text-sm">
@@ -177,7 +177,6 @@ const Footer = () => {
                             <li><Link to="/about" className="text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">About Us</Link></li>
                             <li><Link to="/services" className="text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">Services</Link></li>
                             <li><Link to="/projects" className="text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">Case Studies</Link></li>
-                            <li><Link to="/careers" className="text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">Careers</Link></li>
                             <li><Link to="/faq" className="text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">FAQ</Link></li>
                             <li><Link to="/contact" className="text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">Contact Us</Link></li>
                         </ul>

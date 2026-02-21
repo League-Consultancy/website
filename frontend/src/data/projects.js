@@ -30,16 +30,16 @@ export const projects = [
     },
     {
         id: 3,
-        title: "Smart Agriculture Monitoring System",
-        category: "IoT & Smart Systems",
-        problem: "Inefficient irrigation management wasting water and reducing crop yields.",
-        objective: "Real-time soil monitoring to optimize water usage.",
-        approach: "IoT sensors deployed in fields + cloud dashboard for live data analytics and automated alerts.",
-        challenge: "Inefficient irrigation management causing water waste and inconsistent crop yields.",
-        solution: "Designed a smart IoT ecosystem with soil sensors, cloud connectivity, and real-time dashboards for precision irrigation.",
+        title: "Smart Pharma Environment Monitoring System",
+        category: "IoT & Pharma Tech",
+        problem: "Maintaining precise environmental conditions for sensitive pharmaceutical products and lab samples.",
+        objective: "Real-time monitoring of temperature, humidity, and pressure in pharma labs and storage.",
+        approach: "IoT sensors for real-time tracking + cloud-based dashboard with instant alerts for compliance and safety.",
+        challenge: "Manual monitoring leading to potential loss of high-value pharmaceutical assets and regulatory non-compliance.",
+        solution: "Developed an end-to-end IoT platform with industrial sensors, MQTT protocol, and a secure dashboard for continuous pharma asset monitoring.",
         technologies: ["ESP32", "MQTT", "Firebase"],
-        impact: "25% water savings with improved crop health monitoring.",
-        results: "25% water savings",
+        impact: "100% compliance with storage regulations and 30% reduction in asset loss.",
+        results: "Zero storage-related inventory loss",
         image: "/assets/project_3.png"
     },
     {
@@ -126,6 +126,6 @@ export const projects = [
         technologies: ["Arduino", "NX", "Stepper Motors"],
         impact: "Reduced manual effort, saved time and labor costs. Modular design allows for easy scalability.",
         results: "Significant labor cost reduction",
-        image: "/assets/project_3.png"
+        image: "/assets/project_6.png"
     },
 ];

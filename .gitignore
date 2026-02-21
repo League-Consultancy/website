@@ -1,25 +1,19 @@
-# Dependencies
+# Common Dependencies
 node_modules/
-dist/
-dist-ssr/
-*.local
+**/node_modules/
 
-# Environment Variables
+# Environment Variables (CRITICAL: Do not commit these)
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*.local
+**/.env
+**/.env.*
 
-# IDE / Editor
-.vscode/
-.idea/
-*.swp
-*.swo
-*.DS_Store
-
-# Build Output
+# Build and Distribution
 dist/
+dist-ssr/
+**/dist/
+build/
 
 # Logs
 npm-debug.log*
@@ -27,10 +21,24 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# System Files
+# IDE / Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# OS Files
+.DS_Store
 Thumbs.db
 desktop.ini
 
+# Project Specific
 data/*
+!data/README.md
+.playwright-mcp/
+.gemini/
 
-.playwright-mcp/*
+.agents/

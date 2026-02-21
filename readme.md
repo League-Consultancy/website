@@ -1,24 +1,26 @@
 # League Consultancy | AI, Robotics, IoT & Automation
 
-LEAGUE Consultancy is a premium engineering consultancy platform specializing in AI, Robotics, IoT, and Industrial Automation. This is a **static frontend website** built with React, Tailwind CSS, and Framer Motion — ready for deployment on Vercel, Netlify, or GitHub Pages.
+LEAGUE Consultancy is a premium engineering consultancy platform specializing in High-Precision AI, Advanced Robotics, Industrial IoT, and Automation. This platform is built for industrial leaders who require cutting-edge technological integration and strategic consultancy.
 
 ## 🚀 Features
 
-- **Premium UI/UX**: Built with React 18, Vite, Tailwind CSS, and Framer Motion for a state-of-the-art visual experience.
-- **Static Frontend**: Fully self-contained — no backend or database required.
-- **Dark Mode**: Native dark mode support for engineering environments.
-- **Contact Form**: Simulated submission with success confirmation (ready to connect to Formspree/EmailJS).
-- **Responsive Design**: Optimized for all screen sizes.
-- **SEO Optimized**: Proper meta tags, Open Graph, and Twitter Card support.
+- **Premium UI/UX**: Crafted with React 18, Vite, Tailwind CSS, and Framer Motion for a sophisticated, high-performance visual experience.
+- **Architectural Animations**: Smooth, industry-grade transitions and micro-interactions that emphasize precision and quality.
+- **Dark Mode Native**: A curated dark aesthetic designed for high-focus engineering environments, with seamless theme toggle.
+- **Contact Integration**: Fully integrated with a **Custom Node.js Backend** for production-ready inquiry handling via Gmail SMTP.
+- **Case Studies & Services**: Detailed showcases of technical capabilities and past industrial breakthroughs.
+- **Responsive Engineering**: Pixel-perfect responsiveness across all devices, from mobile diagnostics to desktop control centers.
+- **SEO Optimized**: Advanced meta structure with Open Graph support for professional social sharing.
 
 ## 🛠️ Tech Stack
 
-- **React 18** — Component-based UI
-- **Vite** — Lightning-fast dev server & build tool
-- **Tailwind CSS** — Utility-first styling
-- **Framer Motion** — Smooth animations
-- **React Router** — Client-side routing
-- **Lucide React** — Clean icon library
+- **React 18** — Architecture & Component Logic
+- **Vite** — High-speed Build Tooling
+- **Tailwind CSS** — Modern Utility-First Styling
+- **Framer Motion** — Professional Orchestrated Animations
+- **React Router** — High-Precision Routing
+- **Lucide React** — Technical Icon Set
+- **Node.js / Nodemailer** — Secure Email Communication Layer
 
 ## 📦 Getting Started
 
@@ -51,55 +53,36 @@ npm run preview
 
 ```text
 frontend/
-├── public/              # Static assets (logo, images)
+├── public/              # Production assets (Logos, Technical Visuals)
 ├── src/
-│   ├── components/      # Reusable UI components (Layout, UI)
-│   ├── data/            # Static data (company info, projects)
-│   ├── hooks/           # Custom React hooks (theme)
-│   ├── pages/           # Page views (Home, About, Services, Projects, Contact)
-│   ├── services/        # Simulated API layer (no backend needed)
-│   ├── App.jsx          # Main routes & page wrapper
-│   ├── main.jsx         # Entry point
-│   └── index.css        # Global styles & Tailwind config
-├── index.html           # HTML entry with SEO meta tags
-├── tailwind.config.js   # Tailwind configuration
-├── vite.config.js       # Vite configuration
-└── package.json         # Dependencies & scripts
+│   ├── components/      # Global components (Navigation, Layout, UI Library)
+│   ├── data/            # Structured content for Services, Projects, and FAQs
+│   ├── hooks/           # System-level React hooks (Theme management)
+│   ├── pages/           # Core Views (Home, About, Services, Projects, Contact)
+│   ├── services/        # API & Communication layers (EmailJS Integration)
+│   ├── App.jsx          # Route orchestration & animation wrappers
+│   ├── main.jsx         # Application entry point
+│   └── index.css        # Design tokens & Global Tailwind configurations
+├── tailwind.config.js   # Custom design system configuration
+└── vite.config.js       # Build optimization settings
 ```
 
-## 🌐 Deployment
+## 🌐 Deployment & Configuration
 
-This site is ready for static deployment:
+### Environment Setup
+Before deployment, ensure the following keys are configured in your `backend/.env` file:
+- `PORT`: Server port (default: 5000)
+- `GMAIL_USER`: Your Gmail address
+- `GMAIL_PASS`: Your 16-character Gmail App Password
+- `RECEIVER_EMAIL`: Where you want to receive inquiries
 
-### Vercel
-```bash
-npm run build
-# Deploy the `dist/` folder via Vercel CLI or dashboard
-```
-
-### Netlify
-```bash
-npm run build
-# Deploy the `dist/` folder — set publish directory to `dist`
-# Add `_redirects` file in `public/` for SPA routing:
-# /*    /index.html   200
-```
+### Vercel / Netlify
+This platform is optimized for static deployment on Vercel or Netlify. 
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
 
 ### GitHub Pages
-```bash
-npm run build
-# Push the `dist/` folder to a `gh-pages` branch
-```
-
-> **Note**: For SPA routing on static hosts, add a redirect rule so all routes serve `index.html`.
-
-## 📝 Connecting a Real Contact Form
-
-The contact form currently simulates submission. To connect it to a real service:
-
-1. **Formspree**: Replace the `submitForm` function in `src/services/api.js` with a `fetch` call to your Formspree endpoint.
-2. **EmailJS**: Install the EmailJS SDK and update the service layer.
-3. **Serverless Function**: Use Vercel/Netlify serverless functions for custom handling.
+Deploy the contents of the `dist/` folder to your `gh-pages` branch after running the build script.
 
 ---
 

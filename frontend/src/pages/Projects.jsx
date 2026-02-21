@@ -60,101 +60,120 @@ const ProjectSlide = React.forwardRef(({ project, index, total, direction }, ref
             initial="enter"
             animate="center"
             exit="exit"
-            className="absolute inset-0 w-full h-full p-4 pt-16 sm:p-8 sm:pt-20 lg:p-12 lg:pt-24 xl:p-16 xl:pt-32 flex items-center justify-center bg-brand-black overflow-hidden"
+            className="absolute inset-0 w-full h-full p-4 sm:p-6 lg:p-8 flex items-center justify-center bg-brand-black overflow-hidden"
         >
             {/* Background Glow Effect */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-brand-white/5 blur-[120px] rounded-full pointer-events-none z-0" />
 
             <div className="relative z-10 w-full h-full max-w-[1600px] flex flex-col lg:flex-row bg-brand-white dark:bg-[#0A0A0A] rounded-[2rem] sm:rounded-[3rem] overflow-hidden border border-brand-gray-100 dark:border-brand-gray-800 shadow-[0_32px_128px_-16px_rgba(0,0,0,0.8)]">
                 {/* Left: Image Side */}
-                <div className="relative w-full lg:w-[45%] xl:w-[50%] h-[30dvh] sm:h-[40dvh] lg:h-full overflow-hidden bg-brand-gray-100 dark:bg-brand-gray-900 border-b lg:border-b-0 lg:border-r border-brand-gray-100 dark:border-brand-gray-800">
+                <div className="relative w-full lg:w-[45%] xl:w-[48%] h-[35dvh] lg:h-full overflow-hidden bg-brand-gray-900 border-b lg:border-b-0 lg:border-r border-brand-gray-100 dark:border-brand-gray-800 group">
                     <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-full object-cover grayscale-[0.1] hover:grayscale-0 transition-all duration-1000"
+                        className="w-full h-full object-cover transition-all duration-[2000ms] group-hover:scale-110"
                     />
+                    {/* Soft Vignette and Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-black/60 via-transparent to-brand-black/20 pointer-events-none" />
 
-                    {/* Category Badge */}
-                    <div className="absolute top-4 left-4 lg:top-8 lg:left-8 z-20">
-                        <span className="px-4 py-2 bg-brand-black/90 backdrop-blur-md text-brand-white text-[8px] lg:text-[10px] font-black uppercase tracking-[0.2em] rounded-full border border-white/10">
+                    {/* Category Badge - Repositioned for cleaner look */}
+                    <div className="absolute top-6 left-6 z-20">
+                        <span className="px-4 py-2 bg-brand-white/10 backdrop-blur-xl text-brand-white text-[9px] font-black uppercase tracking-[0.2em] rounded-lg border border-white/10 shadow-2xl">
                             {project.category}
                         </span>
                     </div>
 
-                    {/* Big number indicator */}
-                    <div className="absolute bottom-4 right-4 lg:bottom-12 lg:left-12 opacity-[0.05] lg:opacity-[0.12] select-none pointer-events-none">
-                        <span className="text-[7rem] lg:text-[15rem] font-black text-brand-black dark:text-brand-white leading-none">
+                    {/* Big number indicator - subtle but premium */}
+                    <div className="absolute bottom-8 left-8 opacity-[0.1] select-none pointer-events-none">
+                        <span className="text-[10rem] lg:text-[12rem] font-black text-white leading-none">
                             {String(index + 1).padStart(2, '0')}
                         </span>
                     </div>
                 </div>
 
                 {/* Right: Content Side */}
-                <div className="w-full lg:w-[55%] xl:w-[50%] h-full flex flex-col justify-start lg:justify-center p-6 sm:p-10 lg:p-14 xl:p-20 overflow-y-auto overflow-x-hidden bg-brand-white dark:bg-[#0A0A0A] scrollbar-hide">
-                    <div className="max-w-2xl mx-auto lg:mx-0 w-full">
-                        {/* Project Counter */}
-                        <motion.div custom={0} variants={itemVariants} initial="hidden" animate="visible" className="mb-6 flex items-center gap-3">
+                <div className="w-full lg:w-[55%] xl:w-[52%] h-full flex flex-col p-8 sm:p-12 lg:p-14 xl:p-20 overflow-y-auto bg-brand-white dark:bg-[#0A0A0A]">
+                    <div className="max-w-3xl w-full mx-auto">
+                        <motion.div custom={0} variants={itemVariants} className="mb-4 flex items-center gap-4">
                             <span className="text-brand-gray-400 text-[10px] font-black uppercase tracking-[0.4em]">
-                                Project {String(index + 1).padStart(2, '0')} <span className="text-brand-gray-300 dark:text-brand-gray-700 mx-1">/</span> {String(total).padStart(2, '0')}
+                                Project Details
                             </span>
-                            <div className="h-px w-12 bg-brand-gray-200 dark:bg-brand-gray-800" />
+                            <div className="h-px flex-grow bg-brand-gray-100 dark:bg-brand-gray-800" />
                         </motion.div>
 
-                        {/* Title */}
                         <motion.h3
                             custom={1}
                             variants={itemVariants}
-                            initial="hidden"
-                            animate="visible"
-                            className="text-2xl sm:text-3xl lg:text-5xl xl:text-6xl font-black uppercase tracking-tighter leading-[1] lg:leading-[0.95] mb-6 lg:mb-8 text-brand-black dark:text-brand-white"
+                            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black uppercase tracking-tight leading-[1] mb-12 text-brand-black dark:text-brand-white"
                         >
                             {project.title}
                         </motion.h3>
 
-                        {/* Case Study Details */}
-                        <div className="space-y-6 mb-10">
-                            {/* Problem */}
-                            <motion.div custom={2} variants={itemVariants} initial="hidden" animate="visible" className="flex items-start gap-4">
-                                <div className="mt-1 p-2 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-lg text-brand-black dark:text-brand-white flex-shrink-0">
-                                    <Zap className="w-3.5 h-3.5" />
-                                </div>
-                                <div>
-                                    <span className="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.2em] text-brand-gray-400 block mb-1">Problem</span>
-                                    <p className="text-brand-gray-600 dark:text-brand-gray-400 text-xs sm:text-sm lg:text-base leading-relaxed">{project.problem}</p>
-                                </div>
+                        <div className="space-y-10 mb-12">
+                            {/* Detailed Info Blocks */}
+                            <motion.div custom={2} variants={itemVariants} className="relative pl-10">
+                                <span className="absolute left-0 top-1 text-[10px] font-black uppercase tracking-widest text-brand-gray-300 dark:text-brand-gray-700">01</span>
+                                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-400 mb-3">Problem Statement</h4>
+                                <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed">{project.problem}</p>
                             </motion.div>
 
-                            {/* Objective */}
-                            <motion.div custom={3} variants={itemVariants} initial="hidden" animate="visible" className="flex items-start gap-4">
-                                <div className="mt-1 p-2 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-lg text-brand-black dark:text-brand-white flex-shrink-0">
-                                    <Target className="w-3.5 h-3.5" />
-                                </div>
-                                <div>
-                                    <span className="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.2em] text-brand-gray-400 block mb-1">Objective</span>
-                                    <p className="text-brand-gray-600 dark:text-brand-gray-400 text-xs sm:text-sm lg:text-base leading-relaxed">{project.objective}</p>
-                                </div>
+                            {project.challenge && (
+                                <motion.div custom={2.5} variants={itemVariants} className="relative pl-10 border-t border-brand-gray-100 dark:border-brand-gray-900 pt-8">
+                                    <span className="absolute left-0 top-9 text-[10px] font-black uppercase tracking-widest text-brand-gray-300 dark:text-brand-gray-700">02</span>
+                                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-400 mb-3">Engineering Challenge</h4>
+                                    <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed">{project.challenge}</p>
+                                </motion.div>
+                            )}
+
+                            <motion.div custom={3} variants={itemVariants} className="relative pl-10 border-t border-brand-gray-100 dark:border-brand-gray-900 pt-8">
+                                <span className="absolute left-0 top-9 text-[10px] font-black uppercase tracking-widest text-brand-gray-300 dark:text-brand-gray-700">{project.challenge ? '03' : '02'}</span>
+                                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-400 mb-3">Core Objective</h4>
+                                <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed font-bold">{project.objective}</p>
                             </motion.div>
 
-                            {project.results && (
-                                <motion.div custom={4} variants={itemVariants} initial="hidden" animate="visible" className="p-4 lg:p-6 bg-brand-gray-50 dark:bg-brand-gray-900/50 rounded-2xl border border-brand-gray-100 dark:border-brand-gray-800">
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <TrendingUp className="w-3 h-3 text-emerald-500" />
-                                        <span className="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500">Key Outcome</span>
-                                    </div>
-                                    <p className="text-brand-black dark:text-brand-white text-sm lg:text-lg font-bold uppercase tracking-tight italic">"{project.results}"</p>
+                            {project.approach && (
+                                <motion.div custom={3.5} variants={itemVariants} className="relative pl-10 border-t border-brand-gray-100 dark:border-brand-gray-900 pt-8">
+                                    <span className="absolute left-0 top-9 text-[10px] font-black uppercase tracking-widest text-brand-gray-300 dark:text-brand-gray-700">{project.challenge ? '04' : '03'}</span>
+                                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-400 mb-3">Strategic Approach</h4>
+                                    <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed italic">{project.approach}</p>
+                                </motion.div>
+                            )}
+
+                            {project.solution && (
+                                <motion.div custom={3.8} variants={itemVariants} className="p-8 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-3xl border border-brand-gray-100 dark:border-brand-gray-800">
+                                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-400 mb-4 flex items-center gap-2">
+                                        <Cpu className="w-3 h-3" /> Technical Solution
+                                    </h4>
+                                    <p className="text-brand-black dark:text-brand-white text-sm lg:text-base leading-relaxed font-medium">{project.solution}</p>
                                 </motion.div>
                             )}
                         </div>
 
-                        {/* Tech Stack */}
-                        <motion.div custom={5} variants={itemVariants} initial="hidden" animate="visible" className="pt-8 border-t border-brand-gray-100 dark:border-brand-gray-800">
-                            <div className="flex flex-wrap gap-2">
-                                {project.technologies.slice(0, 5).map(tech => (
-                                    <span key={tech} className="px-4 py-2 bg-brand-gray-50 dark:bg-brand-gray-900 text-brand-gray-500 dark:text-brand-gray-400 text-[10px] font-bold uppercase tracking-widest rounded-xl border border-brand-gray-100 dark:border-brand-gray-800">
-                                        {tech}
-                                    </span>
-                                ))}
-                            </div>
+                        {/* Impact Highlight */}
+                        {(project.results || project.impact) && (
+                            <motion.div custom={4} variants={itemVariants} className="mb-12 p-8 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-3xl border border-emerald-500/20">
+                                <div className="flex items-center gap-2 mb-3">
+                                    <TrendingUp className="w-4 h-4 text-emerald-500" />
+                                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-500">Proven Performance</span>
+                                </div>
+                                <h5 className="text-xl lg:text-2xl font-black text-brand-black dark:text-brand-white uppercase mb-2 leading-tight">
+                                    {project.results || project.impact}
+                                </h5>
+                                {project.impact && project.impact !== project.results && (
+                                    <p className="text-brand-gray-500 dark:text-emerald-500/70 text-xs font-medium italic">
+                                        {project.impact}
+                                    </p>
+                                )}
+                            </motion.div>
+                        )}
+
+                        {/* Tech Stack Bar */}
+                        <motion.div custom={5} variants={itemVariants} className="pt-8 border-t border-brand-gray-100 dark:border-brand-gray-800 flex flex-wrap gap-2">
+                            {project.technologies.slice(0, 5).map(tech => (
+                                <span key={tech} className="px-4 py-2 bg-brand-gray-50 dark:bg-brand-gray-900 text-brand-gray-500 dark:text-brand-gray-400 text-[10px] font-bold uppercase tracking-widest rounded-xl border border-brand-gray-100 dark:border-brand-gray-800">
+                                    {tech}
+                                </span>
+                            ))}
                         </motion.div>
                     </div>
                 </div>
@@ -318,16 +337,16 @@ const Projects = () => {
             </section>
 
             {/* Filter Bar — sticky below navbar (80px navbar + ~60px filter = ~140px total) */}
-            <section className="py-3 border-b border-brand-gray-100 dark:border-brand-gray-900 bg-brand-white/80 dark:bg-brand-black/80 backdrop-blur-xl sticky top-20 z-40 transition-colors duration-300">
-                <div className="section-container !py-0">
+            <div className="bg-brand-white dark:bg-brand-black sticky top-[80px] z-40 border-b border-brand-gray-100 dark:border-brand-gray-900">
+                <div className="max-w-7xl mx-auto px-6 py-4 overflow-x-auto scrollbar-hide">
                     <div className="flex items-center space-x-2 overflow-x-auto whitespace-nowrap scrollbar-hide pb-1">
                         {categories.map((cat) => (
                             <button
                                 key={cat}
                                 onClick={() => setFilter(cat)}
-                                className={`px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${filter === cat
-                                    ? 'bg-brand-black text-brand-white dark:bg-brand-white dark:text-brand-black shadow-2xl shadow-brand-black/20'
-                                    : 'text-brand-gray-400 hover:text-brand-black dark:hover:text-brand-white'
+                                className={`px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500 shrink-0 whitespace-nowrap shadow-sm border ${filter === cat
+                                    ? 'bg-brand-black text-brand-white dark:bg-brand-white dark:text-brand-black border-transparent scale-105'
+                                    : 'bg-brand-gray-50/50 text-brand-gray-400 border-brand-gray-100 hover:bg-brand-gray-100 hover:text-brand-black dark:bg-white/5 dark:border-white/5 dark:hover:bg-white/10 dark:hover:text-brand-white'
                                     }`}
                             >
                                 {cat}
@@ -335,14 +354,14 @@ const Projects = () => {
                         ))}
                     </div>
                 </div>
-            </section>
+            </div>
 
             {/* Full-Screen Project Showcase */}
             {filteredProjects.length > 0 ? (
                 <section
                     id="project-fullscreen-section"
                     className="relative w-full overflow-hidden bg-brand-black"
-                    style={{ height: 'calc(100dvh - 180px)' }}
+                    style={{ height: 'calc(100dvh - 120px)' }}
                 >
                     {/* Animated Slides */}
                     <AnimatePresence initial={false} custom={direction} mode="popLayout">
@@ -355,34 +374,34 @@ const Projects = () => {
                         />
                     </AnimatePresence>
 
-                    {/* Navigation: Left Arrow */}
-                    <div className="absolute top-[28dvh] sm:top-[35dvh] lg:inset-y-0 left-6 sm:left-10 lg:left-14 xl:left-20 w-12 flex items-center justify-center z-40 pointer-events-none">
+                    {/* Navigation: Left Arrow - Better Floating Position */}
+                    <div className="absolute top-1/2 -translate-y-1/2 left-4 sm:left-6 lg:left-8 z-50 pointer-events-none">
                         {currentIndex > 0 && (
                             <motion.button
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                whileHover={{ scale: 1.15 }}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,1)', color: '#000' }}
                                 whileTap={{ scale: 0.9 }}
                                 onClick={goPrev}
-                                className="pointer-events-auto w-10 h-10 lg:w-14 lg:h-14 rounded-full bg-brand-white/10 dark:bg-brand-black/40 backdrop-blur-3xl border border-white/20 text-white flex items-center justify-center hover:bg-brand-black dark:hover:bg-brand-white dark:hover:text-brand-black transition-all shadow-2xl"
+                                className="pointer-events-auto w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-brand-white/10 backdrop-blur-2xl border border-white/20 text-white flex items-center justify-center transition-all shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
                             >
-                                <ChevronLeft className="w-5 h-5 lg:w-7 lg:h-7" />
+                                <ChevronLeft className="w-6 h-6 lg:w-8 lg:h-8" />
                             </motion.button>
                         )}
                     </div>
 
-                    {/* Navigation: Right Arrow */}
-                    <div className="absolute top-[28dvh] sm:top-[35dvh] lg:inset-y-0 right-6 sm:right-10 lg:right-14 xl:right-20 w-12 flex items-center justify-center z-40 pointer-events-none">
+                    {/* Navigation: Right Arrow - Better Floating Position */}
+                    <div className="absolute top-1/2 -translate-y-1/2 right-4 sm:right-6 lg:right-8 z-50 pointer-events-none">
                         {currentIndex < filteredProjects.length - 1 && (
                             <motion.button
-                                initial={{ opacity: 0, x: 10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                whileHover={{ scale: 1.15 }}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,1)', color: '#000' }}
                                 whileTap={{ scale: 0.9 }}
                                 onClick={goNext}
-                                className="pointer-events-auto w-10 h-10 lg:w-14 lg:h-14 rounded-full bg-brand-white/10 dark:bg-brand-black/40 backdrop-blur-3xl border border-white/20 text-white flex items-center justify-center hover:bg-brand-black dark:hover:bg-brand-white dark:hover:text-brand-black transition-all shadow-2xl"
+                                className="pointer-events-auto w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-brand-white/10 backdrop-blur-2xl border border-white/20 text-white flex items-center justify-center transition-all shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
                             >
-                                <ChevronRight className="w-5 h-5 lg:w-7 lg:h-7" />
+                                <ChevronRight className="w-6 h-6 lg:w-8 lg:h-8" />
                             </motion.button>
                         )}
                     </div>
