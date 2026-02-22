@@ -5,7 +5,7 @@ export const useTheme = () => {
         if (typeof window !== 'undefined') {
             const saved = localStorage.getItem('theme');
             if (saved) return saved;
-            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            return 'light'; // Always fallback to light mode to prevent system preference from taking over initially
         }
         return 'light';
     });

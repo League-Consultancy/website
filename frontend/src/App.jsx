@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Layout } from './components/Layout';
+import { LoadingScreen } from './components/LoadingScreen';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -34,21 +35,37 @@ const AnimatedRoutes = () => {
 
 const PageWrapper = ({ children }) => (
     <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+        exit={{ opacity: 0, y: -15 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
         {children}
     </motion.div>
 );
 
+const ScrollToTop = () => {
+    const { pathname } = useLocation();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+    return null;
+};
+
 function App() {
+    const [loading, setLoading] = useState(true);
+
     return (
         <Router>
-            <Layout>
-                <AnimatedRoutes />
-            </Layout>
+            <AnimatePresence mode="wait">
+                {loading && <LoadingScreen key="loading" onComplete={() => setLoading(false)} />}
+            </AnimatePresence>
+            {!loading && (
+                <Layout>
+                    <ScrollToTop />
+                    <AnimatedRoutes />
+                </Layout>
+            )}
         </Router>
     );
 }

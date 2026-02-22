@@ -34,7 +34,7 @@
 
 @layer components {
     .section-container {
-        @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-24 md:py-32;
+        @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
     }
 
     .btn-base {

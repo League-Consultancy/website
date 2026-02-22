@@ -95,7 +95,7 @@ const ProjectSlide = React.forwardRef(({ project, index, total, direction }, ref
                 <div className="w-full lg:w-[55%] xl:w-[52%] h-full flex flex-col p-8 sm:p-12 lg:p-14 xl:p-20 overflow-y-auto bg-brand-white dark:bg-[#0A0A0A]">
                     <div className="max-w-3xl w-full mx-auto">
                         <motion.div custom={0} variants={itemVariants} className="mb-4 flex items-center gap-4">
-                            <span className="text-brand-gray-400 text-[10px] font-black uppercase tracking-[0.4em]">
+                            <span className="text-brand-gray-600 dark:text-brand-gray-400 text-[10px] font-black uppercase tracking-[0.4em]">
                                 Project Details
                             </span>
                             <div className="h-px flex-grow bg-brand-gray-100 dark:bg-brand-gray-800" />
@@ -112,36 +112,36 @@ const ProjectSlide = React.forwardRef(({ project, index, total, direction }, ref
                         <div className="space-y-10 mb-12">
                             {/* Detailed Info Blocks */}
                             <motion.div custom={2} variants={itemVariants} className="relative pl-10">
-                                <span className="absolute left-0 top-1 text-[10px] font-black uppercase tracking-widest text-brand-gray-300 dark:text-brand-gray-700">01</span>
-                                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-400 mb-3">Problem Statement</h4>
+                                <span className="absolute left-0 top-1 text-[10px] font-black uppercase tracking-widest text-brand-gray-400 dark:text-brand-gray-700">01</span>
+                                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-3">Problem Statement</h4>
                                 <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed">{project.problem}</p>
                             </motion.div>
 
                             {project.challenge && (
                                 <motion.div custom={2.5} variants={itemVariants} className="relative pl-10 border-t border-brand-gray-100 dark:border-brand-gray-900 pt-8">
-                                    <span className="absolute left-0 top-9 text-[10px] font-black uppercase tracking-widest text-brand-gray-300 dark:text-brand-gray-700">02</span>
-                                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-400 mb-3">Engineering Challenge</h4>
+                                    <span className="absolute left-0 top-9 text-[10px] font-black uppercase tracking-widest text-brand-gray-400 dark:text-brand-gray-700">02</span>
+                                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-3">Engineering Challenge</h4>
                                     <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed">{project.challenge}</p>
                                 </motion.div>
                             )}
 
                             <motion.div custom={3} variants={itemVariants} className="relative pl-10 border-t border-brand-gray-100 dark:border-brand-gray-900 pt-8">
-                                <span className="absolute left-0 top-9 text-[10px] font-black uppercase tracking-widest text-brand-gray-300 dark:text-brand-gray-700">{project.challenge ? '03' : '02'}</span>
-                                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-400 mb-3">Core Objective</h4>
+                                <span className="absolute left-0 top-9 text-[10px] font-black uppercase tracking-widest text-brand-gray-400 dark:text-brand-gray-700">{project.challenge ? '03' : '02'}</span>
+                                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-3">Core Objective</h4>
                                 <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed font-bold">{project.objective}</p>
                             </motion.div>
 
                             {project.approach && (
                                 <motion.div custom={3.5} variants={itemVariants} className="relative pl-10 border-t border-brand-gray-100 dark:border-brand-gray-900 pt-8">
-                                    <span className="absolute left-0 top-9 text-[10px] font-black uppercase tracking-widest text-brand-gray-300 dark:text-brand-gray-700">{project.challenge ? '04' : '03'}</span>
-                                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-400 mb-3">Strategic Approach</h4>
+                                    <span className="absolute left-0 top-9 text-[10px] font-black uppercase tracking-widest text-brand-gray-400 dark:text-brand-gray-700">{project.challenge ? '04' : '03'}</span>
+                                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-3">Strategic Approach</h4>
                                     <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed italic">{project.approach}</p>
                                 </motion.div>
                             )}
 
                             {project.solution && (
                                 <motion.div custom={3.8} variants={itemVariants} className="p-8 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-3xl border border-brand-gray-100 dark:border-brand-gray-800">
-                                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-400 mb-4 flex items-center gap-2">
+                                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-4 flex items-center gap-2">
                                         <Cpu className="w-3 h-3" /> Technical Solution
                                     </h4>
                                     <p className="text-brand-black dark:text-brand-white text-sm lg:text-base leading-relaxed font-medium">{project.solution}</p>
@@ -160,7 +160,7 @@ const ProjectSlide = React.forwardRef(({ project, index, total, direction }, ref
                                     {project.results || project.impact}
                                 </h5>
                                 {project.impact && project.impact !== project.results && (
-                                    <p className="text-brand-gray-500 dark:text-emerald-500/70 text-xs font-medium italic">
+                                    <p className="text-brand-gray-700 dark:text-emerald-500/70 text-xs font-medium italic">
                                         {project.impact}
                                     </p>
                                 )}
@@ -170,7 +170,7 @@ const ProjectSlide = React.forwardRef(({ project, index, total, direction }, ref
                         {/* Tech Stack Bar */}
                         <motion.div custom={5} variants={itemVariants} className="pt-8 border-t border-brand-gray-100 dark:border-brand-gray-800 flex flex-wrap gap-2">
                             {project.technologies.slice(0, 5).map(tech => (
-                                <span key={tech} className="px-4 py-2 bg-brand-gray-50 dark:bg-brand-gray-900 text-brand-gray-500 dark:text-brand-gray-400 text-[10px] font-bold uppercase tracking-widest rounded-xl border border-brand-gray-100 dark:border-brand-gray-800">
+                                <span key={tech} className="px-4 py-2 bg-brand-gray-50 dark:bg-brand-gray-900 text-brand-gray-700 dark:text-brand-gray-400 text-[10px] font-bold uppercase tracking-widest rounded-xl border border-brand-gray-100 dark:border-brand-gray-800">
                                     {tech}
                                 </span>
                             ))}
@@ -297,14 +297,14 @@ const Projects = () => {
                 <div className="section-container relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
                         <div className="max-w-xl xl:max-w-2xl text-center lg:text-left flex flex-col items-center lg:items-start">
-                            <FadeIn><span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Portfolio Archive</span></FadeIn>
+                            <FadeIn><span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Portfolio Archive</span></FadeIn>
                             <FadeIn delay={0.1}>
                                 <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-[1.1]">
                                     Engineering <br />Case Studies
                                 </h1>
                             </FadeIn>
                             <FadeIn delay={0.2}>
-                                <p className="text-lg text-brand-gray-500 dark:text-brand-gray-400 max-w-2xl font-light leading-relaxed">
+                                <p className="text-lg text-brand-gray-700 dark:text-brand-gray-400 max-w-2xl font-light leading-relaxed">
                                     Real-world implementations across AI, Robotics, IoT, and Industrial Automation — each solving a genuine engineering challenge.
                                 </p>
                             </FadeIn>
@@ -346,7 +346,7 @@ const Projects = () => {
                                 onClick={() => setFilter(cat)}
                                 className={`px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500 shrink-0 whitespace-nowrap shadow-sm border ${filter === cat
                                     ? 'bg-brand-black text-brand-white dark:bg-brand-white dark:text-brand-black border-transparent scale-105'
-                                    : 'bg-brand-gray-50/50 text-brand-gray-400 border-brand-gray-100 hover:bg-brand-gray-100 hover:text-brand-black dark:bg-white/5 dark:border-white/5 dark:hover:bg-white/10 dark:hover:text-brand-white'
+                                    : 'bg-brand-gray-50/50 text-brand-gray-600 dark:text-brand-gray-400 border-brand-gray-100 hover:bg-brand-gray-100 hover:text-brand-black dark:bg-white/5 dark:border-white/5 dark:hover:bg-white/10 dark:hover:text-brand-white'
                                     }`}
                             >
                                 {cat}
@@ -412,9 +412,9 @@ const Projects = () => {
                             <button
                                 key={i}
                                 onClick={() => goToSlide(i, i > currentIndex ? 1 : -1)}
-                                className={`w-1.5 h-1.5 rounded-full transition-all duration-700 ${i === currentIndex
-                                    ? 'bg-brand-black dark:bg-brand-white w-8 shadow-lg'
-                                    : 'bg-brand-gray-300 dark:bg-white/20'
+                                className={`w-2.5 h-2.5 rounded-full transition-all duration-700 ${i === currentIndex
+                                    ? 'bg-brand-black dark:bg-brand-white w-12 shadow-lg'
+                                    : 'bg-brand-gray-300 dark:bg-white/20 hover:bg-brand-gray-400'
                                     }`}
                                 aria-label={`Go to project ${i + 1}`}
                             />
@@ -425,7 +425,7 @@ const Projects = () => {
                 <section className="h-[60vh] flex items-center justify-center">
                     <div className="text-center">
                         <Layers className="w-12 h-12 text-brand-gray-200 dark:text-brand-gray-800 mx-auto mb-8 opacity-50" />
-                        <p className="text-brand-gray-400 font-bold uppercase tracking-widest text-xs">No projects found for this category.</p>
+                        <p className="text-brand-gray-600 dark:text-brand-gray-400 font-bold uppercase tracking-widest text-xs">No projects found for this category.</p>
                     </div>
                 </section>
             )}
@@ -436,7 +436,7 @@ const Projects = () => {
                     <FadeIn>
                         <div className="p-12 lg:p-16 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-[3rem] border border-brand-gray-100 dark:border-brand-gray-800 text-center">
                             <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-4 text-brand-black dark:text-brand-white">Have a Similar Challenge?</h2>
-                            <p className="text-brand-gray-500 font-light max-w-xl mx-auto mb-10 leading-relaxed">
+                            <p className="text-brand-gray-700 dark:text-brand-gray-500 font-light max-w-xl mx-auto mb-10 leading-relaxed">
                                 Tell us about your project and we'll design a tailored solution.
                             </p>
                             <Link to="/contact" id="projects-page-cta" className="btn-primary group inline-flex">

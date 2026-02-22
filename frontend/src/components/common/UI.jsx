@@ -16,7 +16,7 @@ export const Button = ({
     const variants = {
         primary: "bg-brand-black text-brand-white hover:bg-brand-gray-800 dark:bg-brand-white dark:text-brand-black dark:hover:bg-brand-secondary shadow-xl shadow-brand-black/10 dark:shadow-none",
         outline: "bg-transparent border-[1.5px] border-brand-black text-brand-black hover:bg-brand-black hover:text-brand-white dark:border-brand-white dark:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-black",
-        ghost: "bg-transparent text-brand-gray-400 hover:text-brand-black dark:hover:text-brand-white",
+        ghost: "bg-transparent text-brand-gray-600 dark:text-brand-gray-400 hover:text-brand-black dark:hover:text-brand-white",
     };
 
     const combinedClassName = `${baseStyles} ${variants[variant]} ${className}`;

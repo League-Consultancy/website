@@ -25,7 +25,7 @@ const NotFound = () => {
                     transition={{ delay: 0.2, duration: 0.8 }}
                 >
                     <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-6">Coordinate Mismatch</h1>
-                    <p className="text-lg text-brand-gray-500 dark:text-brand-gray-400 font-light mb-12 max-w-md mx-auto leading-relaxed">
+                    <p className="text-lg text-brand-gray-700 dark:text-brand-gray-400 font-light mb-12 max-w-md mx-auto leading-relaxed">
                         The resource you requested has been relocated or never existed in this architectural framework.
                     </p>
 

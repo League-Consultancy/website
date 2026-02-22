@@ -41,7 +41,7 @@ const Navbar = () => {
                                     className={({ isActive }) =>
                                         `text-[10px] uppercase tracking-[0.2em] font-black transition-all hover:text-brand-black dark:hover:text-brand-white border-b-2 pb-1 ${isActive
                                             ? 'text-brand-black dark:text-brand-white border-brand-black dark:border-brand-white'
-                                            : 'text-brand-gray-400 border-transparent hover:border-brand-gray-200 dark:hover:border-brand-gray-700'
+                                            : 'text-brand-gray-600 dark:text-brand-gray-400 border-transparent hover:border-brand-gray-200 dark:hover:border-brand-gray-700'
                                         }`
                                     }
                                 >
@@ -150,21 +150,21 @@ const Footer = () => {
                         <Link to="/" className="text-2xl font-bold text-brand-black dark:text-brand-white block tracking-tighter">
                             LEAGUE Consultancy
                         </Link>
-                        <p className="text-brand-gray-500 dark:text-brand-gray-400 max-w-md leading-relaxed font-light text-sm">
+                        <p className="text-brand-gray-700 dark:text-brand-gray-400 max-w-md leading-relaxed font-light text-sm">
                             {company.shortDescription}
                         </p>
                         <div className="space-y-3">
-                            <div className="flex items-center space-x-3 text-brand-gray-500 text-sm">
+                            <div className="flex items-center space-x-3 text-brand-gray-700 dark:text-brand-gray-500 text-sm">
                                 <Mail className="w-4 h-4" />
                                 <a href={`mailto:${company.email}`} className="hover:text-brand-black dark:hover:text-brand-white transition-colors">{company.email}</a>
                             </div>
-                            <div className="flex items-center space-x-3 text-brand-gray-500 text-sm">
+                            <div className="flex items-center space-x-3 text-brand-gray-700 dark:text-brand-gray-500 text-sm">
                                 <MapPin className="w-4 h-4" />
                                 <span>{company.location}</span>
                             </div>
                         </div>
                         {/* Social */}
-                        <a href={company.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center space-x-2 text-brand-gray-400 hover:text-brand-black dark:hover:text-brand-white transition-colors group" aria-label="LinkedIn">
+                        <a href={company.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center space-x-2 text-brand-gray-600 dark:text-brand-gray-400 hover:text-brand-black dark:hover:text-brand-white transition-colors group" aria-label="LinkedIn">
                             <Linkedin className="w-5 h-5 group-hover:scale-110 transition-transform" />
                             <span className="text-[10px] font-black uppercase tracking-widest">LinkedIn</span>
                         </a>
@@ -174,11 +174,11 @@ const Footer = () => {
                     <div>
                         <h3 className="text-brand-black dark:text-brand-white font-bold text-xs uppercase tracking-[0.2em] mb-8">Navigation</h3>
                         <ul className="space-y-4 text-sm font-medium">
-                            <li><Link to="/about" className="text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">About Us</Link></li>
-                            <li><Link to="/services" className="text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">Services</Link></li>
-                            <li><Link to="/projects" className="text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">Case Studies</Link></li>
-                            <li><Link to="/faq" className="text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">FAQ</Link></li>
-                            <li><Link to="/contact" className="text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">Contact Us</Link></li>
+                            <li><Link to="/about" className="text-brand-gray-700 dark:text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">About Us</Link></li>
+                            <li><Link to="/services" className="text-brand-gray-700 dark:text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">Services</Link></li>
+                            <li><Link to="/projects" className="text-brand-gray-700 dark:text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">Case Studies</Link></li>
+                            <li><Link to="/faq" className="text-brand-gray-700 dark:text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">FAQ</Link></li>
+                            <li><Link to="/contact" className="text-brand-gray-700 dark:text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">Contact Us</Link></li>
                         </ul>
                     </div>
 
@@ -188,7 +188,7 @@ const Footer = () => {
                         <ul className="space-y-4 text-sm font-medium">
                             {serviceData.slice(0, 5).map(s => (
                                 <li key={s.id}>
-                                    <Link to="/services" className="text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">
+                                    <Link to="/services" className="text-brand-gray-700 dark:text-brand-gray-500 hover:text-brand-black dark:hover:text-brand-white transition-colors">
                                         {s.title}
                                     </Link>
                                 </li>
@@ -198,7 +198,7 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="border-t border-brand-gray-200 dark:border-brand-gray-900 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-brand-gray-400 uppercase tracking-widest font-bold gap-4">
+                <div className="border-t border-brand-gray-200 dark:border-brand-gray-900 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-brand-gray-600 dark:text-brand-gray-400 uppercase tracking-widest font-bold gap-4">
                     <p>© {new Date().getFullYear()} {company.name}. All rights reserved.</p>
                     <div className="flex items-center space-x-6">
                         <Link to="/privacy" className="hover:text-brand-black dark:hover:text-brand-white transition-colors">Privacy Policy</Link>

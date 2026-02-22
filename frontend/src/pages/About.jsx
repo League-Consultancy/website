@@ -27,7 +27,7 @@ const About = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
                         <div className="max-w-xl xl:max-w-2xl text-center lg:text-left flex flex-col items-center lg:items-start">
                             <FadeIn>
-                                <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Our Story</span>
+                                <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Our Story</span>
                             </FadeIn>
                             <FadeIn delay={0.1}>
                                 <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-[1.1] text-brand-black dark:text-[#F3F4F6]">
@@ -73,7 +73,7 @@ const About = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
                         <FadeIn>
                             <div>
-                                <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">About LEAGUE</span>
+                                <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">About LEAGUE</span>
                                 <div className="space-y-6">
                                     {company.longDescription.map((para, idx) => (
                                         <p key={idx} className="text-[17px] text-brand-gray-600 dark:text-[#D1D5DB] leading-relaxed font-light">
@@ -81,8 +81,8 @@ const About = () => {
                                         </p>
                                     ))}
                                 </div>
-                                <div className="mt-10 p-8 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-2xl border border-brand-gray-100 dark:border-brand-gray-800">
-                                    <p className="text-2xl font-black text-brand-black dark:text-brand-white tracking-tight italic">
+                                <div className="mt-10 p-8 lg:p-12 bg-gradient-to-br from-brand-gray-50 to-white dark:from-brand-gray-900 dark:to-brand-black rounded-3xl border border-brand-gray-100 dark:border-brand-gray-800 shadow-soft">
+                                    <p className="text-2xl md:text-3xl font-display font-black tracking-tight italic text-transparent bg-clip-text bg-gradient-to-r from-brand-black to-brand-gray-500 dark:from-brand-white dark:to-brand-gray-400 leading-tight">
                                         "{company.philosophy}"
                                     </p>
                                 </div>
@@ -92,7 +92,7 @@ const About = () => {
                         {/* What Makes Us Different */}
                         <FadeIn delay={0.2}>
                             <div>
-                                <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Our Advantage</span>
+                                <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Our Advantage</span>
                                 <h3 className="text-3xl font-black uppercase tracking-tighter mb-10">What Makes Us Different</h3>
                                 <div className="space-y-6">
                                     {differentiators.map((diff, idx) => (
@@ -122,7 +122,7 @@ const About = () => {
                                     <Target className="w-8 h-8" />
                                 </div>
                                 <h2 className="text-4xl font-black uppercase mb-8 tracking-tighter">Our Vision</h2>
-                                <p className="text-xl text-brand-gray-500 dark:text-brand-gray-400 leading-relaxed font-light mb-8">
+                                <p className="text-xl text-brand-gray-700 dark:text-brand-gray-400 leading-relaxed font-light mb-8">
                                     {vision.statement}
                                 </p>
                                 <div className="h-1 w-20 bg-brand-black dark:bg-brand-white rounded-full" />
@@ -130,12 +130,12 @@ const About = () => {
                         </FadeIn>
 
                         <FadeIn delay={0.2}>
-                            <div className="p-10 lg:p-14 bg-brand-white dark:bg-[#1A1A1A] rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 shadow-lg">
-                                <div className="inline-flex p-4 bg-brand-gray-100 dark:bg-brand-gray-800 text-brand-black dark:text-brand-white rounded-2xl mb-10 transition-colors duration-300">
+                            <div className="p-10 lg:p-14 bg-brand-white dark:bg-[#1A1A1A] rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 shadow-premium transition-transform duration-500 hover:-translate-y-2 group">
+                                <div className="inline-flex p-4 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-black dark:text-brand-white rounded-2xl mb-10 transition-colors duration-300 group-hover:bg-brand-black group-hover:text-brand-white dark:group-hover:bg-brand-white dark:group-hover:text-brand-black">
                                     <ArrowRight className="w-8 h-8" />
                                 </div>
                                 <h2 className="text-4xl font-black uppercase mb-8 tracking-tighter text-brand-black dark:text-[#F3F4F6]">Our Mission</h2>
-                                <p className="text-xl text-brand-gray-500 dark:text-[#D1D5DB] leading-relaxed font-light">
+                                <p className="text-2xl font-display text-transparent bg-clip-text bg-gradient-to-br from-brand-gray-800 to-brand-gray-500 dark:from-brand-gray-300 dark:to-brand-gray-600 leading-snug font-bold italic">
                                     {mission.statement}
                                 </p>
                             </div>
@@ -165,18 +165,21 @@ const About = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                         <FadeIn>
                             <div>
-                                <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Leadership</span>
+                                <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Leadership</span>
                                 <h2 className="text-4xl font-black uppercase tracking-tighter mb-10">Meet Our Founder</h2>
-                                <div className="flex items-center space-x-6 mb-8">
-                                    <div className="w-20 h-20 bg-brand-gray-100 dark:bg-brand-gray-900 rounded-2xl flex items-center justify-center border border-brand-gray-200 dark:border-brand-gray-800">
-                                        <User className="w-10 h-10 text-brand-gray-400" />
+                                <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-6 sm:space-y-0 sm:space-x-8 mb-10">
+                                    <div className="relative w-32 h-32 rounded-3xl overflow-hidden border border-brand-gray-200 dark:border-brand-gray-800 shadow-premium group">
+                                        <div className="absolute inset-0 bg-brand-gray-100 dark:bg-brand-gray-900 flex items-center justify-center">
+                                            <User className="w-12 h-12 text-brand-gray-400 group-hover:scale-110 transition-transform duration-500" />
+                                        </div>
+                                        <div className="absolute inset-0 bg-gradient-to-tr from-brand-black/20 to-transparent pointer-events-none" />
                                     </div>
                                     <div>
-                                        <h3 className="text-2xl font-black tracking-tight">{founder.name}</h3>
-                                        <p className="text-brand-gray-400 text-sm font-bold uppercase tracking-wider">{founder.title}</p>
+                                        <h3 className="text-3xl font-black tracking-tight mb-2">{founder.name}</h3>
+                                        <p className="inline-flex items-center space-x-2 bg-brand-gray-50 dark:bg-brand-gray-900 px-4 py-2 rounded-lg text-brand-gray-700 dark:text-brand-gray-400 text-xs font-bold uppercase tracking-widest border border-brand-gray-100 dark:border-brand-gray-800">{founder.title}</p>
                                     </div>
                                 </div>
-                                <p className="text-lg text-brand-gray-500 dark:text-brand-gray-400 leading-relaxed font-light">
+                                <p className="text-lg text-brand-gray-700 dark:text-brand-gray-400 leading-relaxed font-light border-l-4 border-brand-gray-200 dark:border-brand-gray-800 pl-6">
                                     {founder.bio}
                                 </p>
                             </div>
@@ -184,7 +187,7 @@ const About = () => {
 
                         <FadeIn delay={0.2}>
                             <div>
-                                <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Team Expertise</span>
+                                <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Team Expertise</span>
                                 <h3 className="text-3xl font-black uppercase tracking-tighter mb-10">Collective Strengths</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {teamExpertise.map((area, idx) => (
@@ -222,7 +225,7 @@ const About = () => {
                                             <IconComp className="w-8 h-8 text-brand-white" />
                                         </div>
                                         <h3 className="text-lg font-bold uppercase tracking-tight mb-3 text-brand-white">{item.title}</h3>
-                                        <p className="text-brand-gray-500 text-sm font-light leading-relaxed">{item.description}</p>
+                                        <p className="text-brand-gray-700 dark:text-brand-gray-500 text-sm font-light leading-relaxed">{item.description}</p>
                                     </div>
                                 </FadeIn>
                             );
@@ -236,7 +239,7 @@ const About = () => {
                 <div className="section-container">
                     <FadeIn>
                         <div className="text-center mb-20">
-                            <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Technical Capabilities</span>
+                            <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Technical Capabilities</span>
                             <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">Technology Stack</h2>
                         </div>
                     </FadeIn>
@@ -245,7 +248,7 @@ const About = () => {
                         {Object.entries(techStack).map(([category, techs], idx) => (
                             <FadeIn key={category} delay={idx * 0.08} className="h-full">
                                 <div className="p-8 lg:p-10 bg-brand-gray-50 dark:bg-[#0A0A0A] rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 group hover:border-brand-black dark:hover:border-brand-white transition-all duration-500 h-full flex flex-col">
-                                    <h3 className="text-xs font-black uppercase tracking-[0.2em] text-brand-gray-400 mb-8 border-b border-brand-gray-100 dark:border-brand-gray-800 pb-4">{category}</h3>
+                                    <h3 className="text-xs font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-8 border-b border-brand-gray-100 dark:border-brand-gray-800 pb-4">{category}</h3>
                                     <div className="flex flex-wrap gap-2 mt-auto">
                                         {techs.map(tech => (
                                             <span key={tech} className="px-4 py-2 bg-brand-white dark:bg-brand-gray-800 border border-brand-gray-200 dark:border-brand-gray-700 rounded-xl text-[10px] font-bold uppercase tracking-wider text-brand-gray-600 dark:text-brand-gray-300 group-hover:border-brand-black/20 dark:group-hover:border-brand-white/20 hover:bg-brand-black hover:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-black transition-all">

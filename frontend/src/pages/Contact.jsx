@@ -2,7 +2,7 @@ import React from 'react';
 import { Mail, Clock, MapPin, Send, Globe, MessageSquare, ChevronRight, Linkedin } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { contactService } from '../services/api';
-import { company, inquiryCategories } from '../data/companyData';
+import { company, inquiryCategories, services } from '../data/companyData';
 
 const FadeIn = ({ children, delay = 0, y = 20 }) => (
     <motion.div
@@ -21,9 +21,9 @@ const ContactInfo = ({ icon: Icon, title, content, subtext }) => (
             <Icon className="w-6 h-6" />
         </div>
         <div>
-            <h4 className="text-xs font-black uppercase tracking-widest text-brand-gray-400 mb-2">{title}</h4>
+            <h4 className="text-xs font-black uppercase tracking-widest text-brand-gray-600 dark:text-brand-gray-400 mb-2">{title}</h4>
             <p className="text-xl font-bold mb-1 text-brand-black dark:text-brand-white">{content}</p>
-            {subtext && <p className="text-sm text-brand-gray-500 font-light">{subtext}</p>}
+            {subtext && <p className="text-sm text-brand-gray-700 dark:text-brand-gray-500 font-light">{subtext}</p>}
         </div>
     </div>
 );
@@ -33,6 +33,7 @@ const Contact = () => {
         name: '',
         email: '',
         category: inquiryCategories[0],
+        service: '',
         message: ''
     });
     const [status, setStatus] = React.useState({ type: '', message: '' });
@@ -53,7 +54,7 @@ const Contact = () => {
         try {
             const result = await contactService.submitForm(formData);
             setStatus({ type: 'success', message: result.message || 'Inquiry submitted successfully! Our team will respond within 24-48 business hours.' });
-            setFormData({ name: '', email: '', category: inquiryCategories[0], message: '' });
+            setFormData({ name: '', email: '', category: inquiryCategories[0], service: '', message: '' });
         } catch (error) {
             setStatus({
                 type: 'error',
@@ -76,7 +77,7 @@ const Contact = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
                         <div className="max-w-xl xl:max-w-2xl text-center lg:text-left flex flex-col items-center lg:items-start">
                             <FadeIn>
-                                <span className="text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Get In Touch</span>
+                                <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Get In Touch</span>
                             </FadeIn>
                             <FadeIn delay={0.1}>
                                 <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-[1.1]">
@@ -131,9 +132,9 @@ const Contact = () => {
                                     />
                                     <ContactInfo
                                         icon={Clock}
-                                        title="Working Hours"
+                                        title="Working Hours & Timezone"
                                         content={company.workingHours.split('|')[0].trim()}
-                                        subtext={company.workingHours.split('|')[1]?.trim()}
+                                        subtext={`${company.workingHours.split('|')[1]?.trim()} (IST / GMT+5:30)`}
                                     />
                                     <ContactInfo
                                         icon={MapPin}
@@ -157,9 +158,9 @@ const Contact = () => {
                                     </div>
                                     <div className="flex-grow">
                                         <p className="text-xs font-black uppercase tracking-widest text-brand-black dark:text-brand-white">Connect on LinkedIn</p>
-                                        <p className="text-[10px] text-brand-gray-400 font-light mt-0.5">Follow our latest projects and updates</p>
+                                        <p className="text-[10px] text-brand-gray-600 dark:text-brand-gray-400 font-light mt-0.5">Follow our latest projects and updates</p>
                                     </div>
-                                    <ChevronRight className="w-4 h-4 text-brand-gray-400 group-hover:translate-x-1 transition-transform" />
+                                    <ChevronRight className="w-4 h-4 text-brand-gray-600 dark:text-brand-gray-400 group-hover:translate-x-1 transition-transform" />
                                 </a>
                             </FadeIn>
 
@@ -174,12 +175,24 @@ const Contact = () => {
                                     </div>
                                     <div className="space-y-3">
                                         {inquiryCategories.map((cat, idx) => (
-                                            <div key={idx} className="flex items-center space-x-3 text-sm text-brand-gray-400 font-light">
+                                            <div key={idx} className="flex items-center space-x-3 text-sm text-brand-gray-300 dark:text-brand-gray-400 font-light">
                                                 <div className="w-1.5 h-1.5 bg-brand-gray-600 rounded-full" />
                                                 <span>{cat}</span>
                                             </div>
                                         ))}
                                     </div>
+                                </div>
+                            </FadeIn>
+
+                            {/* Schedule a Call CTA */}
+                            <FadeIn delay={0.4}>
+                                <div className="p-8 bg-brand-gray-50 dark:bg-brand-black rounded-[2rem] border border-brand-gray-200 dark:border-brand-gray-700 text-center">
+                                    <h3 className="text-xl font-black uppercase tracking-tight text-brand-black dark:text-brand-white mb-2">Prefer a Direct Conversation?</h3>
+                                    <p className="text-sm text-brand-gray-600 dark:text-brand-gray-400 mb-6 font-light">Skip the form and schedule a 30-minute discovery call with our lead engineers.</p>
+                                    <a href="#" className="w-full py-4 bg-brand-black dark:bg-brand-white text-brand-white dark:text-brand-black rounded-xl font-black text-[10px] uppercase tracking-widest inline-flex items-center justify-center space-x-2 hover:scale-[1.02] transition-transform">
+                                        <span>Schedule a Call</span>
+                                        <ChevronRight className="w-4 h-4" />
+                                    </a>
                                 </div>
                             </FadeIn>
                         </div>
@@ -216,7 +229,7 @@ const Contact = () => {
                                                         value={formData.name}
                                                         onChange={handleChange}
                                                         placeholder="Your Full Name"
-                                                        className="w-full bg-brand-gray-50/50 dark:bg-[#1A1A1A] border-[1.5px] border-brand-gray-100 dark:border-brand-gray-800 rounded-2xl p-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-black dark:focus:ring-brand-white focus:border-transparent transition-all duration-300 dark:text-brand-white placeholder:text-[#9CA3AF] dark:placeholder:text-brand-gray-600"
+                                                        className="w-full bg-brand-gray-50/50 dark:bg-brand-black border-[1.5px] border-brand-gray-100 dark:border-brand-gray-700 rounded-2xl p-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-black dark:focus:ring-brand-white focus:border-transparent transition-all duration-300 dark:text-brand-white placeholder:text-[#9CA3AF] dark:placeholder:text-brand-gray-600"
                                                         required
                                                     />
                                                 </div>
@@ -229,25 +242,42 @@ const Contact = () => {
                                                         value={formData.email}
                                                         onChange={handleChange}
                                                         placeholder="your@company.com"
-                                                        className="w-full bg-brand-gray-50/50 dark:bg-[#1A1A1A] border-[1.5px] border-brand-gray-100 dark:border-brand-gray-800 rounded-2xl p-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-black dark:focus:ring-brand-white focus:border-transparent transition-all duration-300 dark:text-brand-white placeholder:text-[#9CA3AF] dark:placeholder:text-brand-gray-600"
+                                                        className="w-full bg-brand-gray-50/50 dark:bg-brand-black border-[1.5px] border-brand-gray-100 dark:border-brand-gray-700 rounded-2xl p-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-black dark:focus:ring-brand-white focus:border-transparent transition-all duration-300 dark:text-brand-white placeholder:text-[#9CA3AF] dark:placeholder:text-brand-gray-600"
                                                         required
                                                     />
                                                 </div>
                                             </div>
 
-                                            <div className="space-y-2">
-                                                <label htmlFor="contact-category" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#374151] dark:text-[#9CA3AF] ml-4">Inquiry Type</label>
-                                                <select
-                                                    id="contact-category"
-                                                    name="category"
-                                                    value={formData.category}
-                                                    onChange={handleChange}
-                                                    className="w-full bg-brand-gray-50/50 dark:bg-[#1A1A1A] border-[1.5px] border-brand-gray-100 dark:border-brand-gray-800 rounded-2xl p-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-black dark:focus:ring-brand-white focus:border-transparent transition-all duration-300 dark:text-brand-white appearance-none"
-                                                >
-                                                    {inquiryCategories.map(cat => (
-                                                        <option key={cat} value={cat}>{cat}</option>
-                                                    ))}
-                                                </select>
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+                                                <div className="space-y-2">
+                                                    <label htmlFor="contact-category" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#374151] dark:text-[#9CA3AF] ml-4">Inquiry Type</label>
+                                                    <select
+                                                        id="contact-category"
+                                                        name="category"
+                                                        value={formData.category}
+                                                        onChange={handleChange}
+                                                        className="w-full bg-brand-gray-50/50 dark:bg-brand-black border-[1.5px] border-brand-gray-100 dark:border-brand-gray-700 rounded-2xl p-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-black dark:focus:ring-brand-white focus:border-transparent transition-all duration-300 dark:text-brand-white appearance-none"
+                                                    >
+                                                        {inquiryCategories.map(cat => (
+                                                            <option key={cat} value={cat}>{cat}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                                <div className="space-y-2">
+                                                    <label htmlFor="contact-service" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#374151] dark:text-[#9CA3AF] ml-4">Service of Interest</label>
+                                                    <select
+                                                        id="contact-service"
+                                                        name="service"
+                                                        value={formData.service}
+                                                        onChange={handleChange}
+                                                        className="w-full bg-brand-gray-50/50 dark:bg-brand-black border-[1.5px] border-brand-gray-100 dark:border-brand-gray-700 rounded-2xl p-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-black dark:focus:ring-brand-white focus:border-transparent transition-all duration-300 dark:text-brand-white appearance-none"
+                                                    >
+                                                        <option value="">General / Not Sure</option>
+                                                        {services.map(s => (
+                                                            <option key={s.id} value={s.title}>{s.title}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
                                             </div>
 
                                             <div className="space-y-2">
