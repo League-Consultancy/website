@@ -84,13 +84,13 @@ const Hero = () => (
                     <motion.div
                         animate={{ y: [0, -15, 0] }}
                         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                        className="relative p-3 sm:p-6 md:p-8 lg:p-12 bg-white/60 dark:bg-brand-gray-900/30 backdrop-blur-3xl rounded-[2.5rem] sm:rounded-[4rem] border border-white/50 dark:border-brand-gray-800 shadow-premium transition-all duration-700 w-full max-w-[450px] xl:max-w-[600px] group"
+                        className="relative p-3 sm:p-6 md:p-8 lg:p-12 bg-brand-black dark:bg-brand-gray-900/30 backdrop-blur-3xl rounded-[2.5rem] sm:rounded-[4rem] border border-brand-gray-800 dark:border-brand-gray-800 shadow-premium transition-all duration-700 w-full max-w-[450px] xl:max-w-[600px] group"
                     >
                         <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[3.5rem] bg-brand-black shadow-inner aspect-square">
                             <img
                                 src="/assets/hero_visual.png"
                                 alt="LEAGUE Consultancy — AI, Robotics, IoT Engineering"
-                                className="w-full h-full object-cover opacity-90 group-hover:opacity-100 dark:opacity-60 dark:group-hover:opacity-100 transition-all duration-1000 grayscale group-hover:grayscale-0 scale-[1.05] group-hover:scale-100"
+                                className="w-full h-full object-cover transition-all duration-1000 contrast-[1.1] brightness-[1.05] saturate-[0.8] group-hover:saturate-100 group-hover:scale-100 scale-[1.05] dark:grayscale dark:group-hover:grayscale-0 dark:opacity-60 dark:group-hover:opacity-100"
                                 loading="eager"
                             />
                             <div className="absolute inset-0 bg-gradient-to-tr from-brand-black/40 via-transparent to-white/10 pointer-events-none" />
@@ -213,7 +213,7 @@ const FeaturedProjects = () => {
                 <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 grayscale group-hover:grayscale-0"
+                    className="w-full h-full object-cover transition-all duration-1000 contrast-[1.1] saturate-[0.9] group-hover:saturate-100 group-hover:scale-105 dark:opacity-60 dark:group-hover:opacity-100 dark:grayscale dark:group-hover:grayscale-0"
                     loading="lazy"
                 />
                 <div className="absolute top-6 right-6 bg-brand-white/10 backdrop-blur-md text-brand-white px-4 py-2 rounded-full text-[8px] font-black uppercase tracking-widest border border-white/10">
@@ -289,7 +289,7 @@ const FeaturedProjects = () => {
 
 // ─── CREDIBILITY SECTION ────────────────────────────
 const CredibilitySection = () => (
-    <section className="bg-brand-black dark:bg-brand-gray-900 py-16 sm:py-24 text-brand-white transition-colors duration-700" id="credibility">
+    <section className="dark bg-brand-black dark:bg-brand-gray-900 py-16 sm:py-24 text-brand-white transition-colors duration-700" id="credibility">
         <div className="section-container">
             <FadeIn>
                 <div className="text-center mb-20">

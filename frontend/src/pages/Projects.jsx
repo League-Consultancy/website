@@ -318,13 +318,13 @@ const Projects = () => {
                             <motion.div
                                 animate={{ y: [0, -12, 0] }}
                                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                                className="relative p-3 sm:p-5 md:p-6 lg:p-8 bg-white/40 dark:bg-brand-gray-900/30 backdrop-blur-3xl rounded-[2rem] sm:rounded-[3rem] border border-brand-gray-200 dark:border-brand-gray-800 shadow-2xl transition-all duration-700 w-full max-w-[320px] xl:max-w-[400px] group"
+                                className="relative p-3 sm:p-5 md:p-6 lg:p-8 bg-brand-black dark:bg-brand-gray-900/30 backdrop-blur-3xl rounded-[2rem] sm:rounded-[3rem] border border-brand-gray-800 dark:border-brand-gray-800 shadow-2xl transition-all duration-700 w-full max-w-[320px] xl:max-w-[400px] group"
                             >
                                 <div className="relative overflow-hidden rounded-[1.5rem] sm:rounded-[2.5rem] bg-brand-black shadow-inner aspect-square">
                                     <img
                                         src="/assets/projects_hero.png"
                                         alt="LEAGUE Consultancy Projects"
-                                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 dark:opacity-60 dark:group-hover:opacity-100 transition-all duration-1000 grayscale group-hover:grayscale-0 scale-[1.05] group-hover:scale-100"
+                                        className="w-full h-full object-cover transition-all duration-1000 contrast-[1.1] brightness-[1.05] saturate-[0.8] group-hover:saturate-100 group-hover:scale-100 scale-[1.05] dark:grayscale dark:group-hover:grayscale-0 dark:opacity-60 dark:group-hover:opacity-100"
                                         loading="eager"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-tr from-brand-black/40 via-transparent to-white/10 pointer-events-none" />

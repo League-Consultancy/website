@@ -117,9 +117,9 @@ const FAQ = () => {
                                         </button>
                                     ))}
 
-                                    <div className="mt-12 p-8 bg-brand-black dark:bg-[#1E1E1E] rounded-[2rem] text-brand-white">
+                                    <div className="dark mt-12 p-8 bg-brand-black dark:bg-[#1E1E1E] rounded-[2rem] text-brand-white">
                                         <HelpCircle className="w-8 h-8 mb-6 opacity-50" />
-                                        <h4 className="text-lg font-bold uppercase tracking-tight mb-4">Still have questions?</h4>
+                                        <h4 className="text-lg font-bold uppercase tracking-tight mb-4 text-brand-white">Still have questions?</h4>
                                         <p className="text-sm text-brand-gray-700 dark:text-brand-gray-500 font-light leading-relaxed mb-6">Our solutions engineers are available for technical consultations.</p>
                                         <Link to="/contact" className="inline-flex items-center space-x-2 text-[10px] font-black uppercase tracking-widest group">
                                             <span>Get in touch</span>

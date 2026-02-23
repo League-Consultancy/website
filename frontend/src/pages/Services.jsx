@@ -78,7 +78,7 @@ const ServiceSlide = ({ service, index, total }) => {
 
                 {/* Middle: Title + Description (vertically centered) */}
                 <div className="flex-1 flex flex-col justify-center max-w-4xl py-4 scrollbar-hide overflow-y-auto max-h-[50dvh] pb-8 pr-4">
-                    <motion.h3 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-4 leading-[0.9]">
+                    <motion.h3 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-4 leading-[0.9] text-brand-white">
                         {service.title}
                     </motion.h3>
                     <motion.p variants={itemVariants} className="text-sm sm:text-base md:text-lg text-white/70 leading-relaxed font-light max-w-2xl mb-4">
@@ -172,7 +172,7 @@ const Services = () => {
                         <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
                             <FadeIn><span className="premium-label">Our Expertise</span></FadeIn>
                             <FadeIn delay={0.1}>
-                                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-8 leading-[0.85]">
+                                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-8 leading-[0.85] text-brand-black dark:text-brand-white">
                                     Engineering <br />Solutions
                                 </h1>
                             </FadeIn>
@@ -183,9 +183,9 @@ const Services = () => {
                             </FadeIn>
                         </div>
                         <FadeIn delay={0.3} className="relative flex justify-center lg:justify-end">
-                            <div className="relative p-6 md:p-8 bg-white/40 dark:bg-brand-gray-900/40 backdrop-blur-3xl rounded-[3rem] border border-brand-gray-200 dark:border-brand-gray-800 shadow-2xl animate-float">
+                            <div className="relative p-6 md:p-8 bg-brand-black dark:bg-brand-gray-900/40 backdrop-blur-3xl rounded-[3rem] border border-brand-gray-800 dark:border-brand-gray-800 shadow-2xl animate-float">
                                 <div className="relative overflow-hidden rounded-[2.5rem] bg-brand-black aspect-square w-full max-w-[350px] lg:max-w-[400px]">
-                                    <img src="/assets/services_hero.png" alt="Engineering Portfolio" className="w-full h-full object-cover grayscale opacity-80" />
+                                    <img src="/assets/services_hero.png" alt="Engineering Portfolio" className="w-full h-full object-cover contrast-[1.15] brightness-[1.1] saturate-[0.8] transition-all duration-700 dark:grayscale dark:opacity-70" />
                                     <div className="absolute inset-0 bg-gradient-to-tr from-brand-black/60 to-transparent" />
                                 </div>
                             </div>
@@ -220,7 +220,7 @@ const Services = () => {
                         <FadeIn>
                             <div className="text-center mb-24">
                                 <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.4em] text-[11px] mb-6 block">Our Process</span>
-                                <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none">The Engineering Loop</h2>
+                                <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none text-brand-black dark:text-brand-white">The Engineering Loop</h2>
                             </div>
                         </FadeIn>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -247,12 +247,12 @@ const Services = () => {
 
                 {/* CTA */}
                 <section className="pb-32 px-6">
-                    <div className="max-w-7xl mx-auto">
+                    <div className="max-w-7xl auto">
                         <FadeIn>
-                            <div className="p-16 sm:p-24 lg:p-32 bg-brand-black dark:bg-brand-gray-900 rounded-[4rem] text-center text-brand-white shadow-2xl relative overflow-hidden group">
+                            <div className="dark p-16 sm:p-24 lg:p-32 bg-brand-black dark:bg-brand-gray-900 rounded-[4rem] text-center text-brand-white shadow-2xl relative overflow-hidden group">
                                 <div className="absolute inset-0 bg-gradient-to-br from-brand-gray-800 to-brand-black opacity-50 group-hover:scale-110 transition-transform duration-[3000ms]" />
                                 <div className="relative z-10">
-                                    <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-10 leading-[0.85]">Ready to Build <br />Impactful Tech?</h2>
+                                    <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-10 leading-[0.85] text-brand-white">Ready to Build <br />Impactful Tech?</h2>
                                     <p className="text-brand-gray-600 dark:text-brand-gray-400 text-lg md:text-2xl font-light max-w-2xl mx-auto mb-14 leading-relaxed">
                                         Align your project with our engineering expertise. Let's build something that matters.
                                     </p>

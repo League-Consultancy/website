@@ -226,29 +226,29 @@ html:not(.dark) .glass-card:hover {
 }
 
 /* ── 4. TEXT CONTRAST HIERARCHY ────────────────────────────────── */
-/* Headings: near-black for maximum punch */
-html:not(.dark) h1,
-html:not(.dark) h2,
-html:not(.dark) h3,
-html:not(.dark) h4 {
+/* Headings: near-black for maximum punch, but only if not explicitly white (important for dark sections) */
+html:not(.dark) h1:not([class*="text-white"]):not([class*="text-brand-white"]),
+html:not(.dark) h2:not([class*="text-white"]):not([class*="text-brand-white"]),
+html:not(.dark) h3:not([class*="text-white"]):not([class*="text-brand-white"]),
+html:not(.dark) h4:not([class*="text-white"]):not([class*="text-brand-white"]) {
     color: #0F172A;
 }
 
-/* Body text: solid readable gray */
-html:not(.dark) .text-brand-gray-600 {
+/* Body text: solid readable gray, but respect white text in dark sections */
+html:not(.dark) .text-brand-gray-600:not([class*="text-white"]):not([class*="text-brand-white"]):not(.text-brand-white):not(.text-white) {
     color: #475569 !important;
 }
 
-html:not(.dark) .text-brand-gray-700 {
+html:not(.dark) .text-brand-gray-700:not([class*="text-white"]):not([class*="text-brand-white"]):not(.text-brand-white):not(.text-white) {
     color: #334155 !important;
 }
 
 /* Muted labels/captions */
-html:not(.dark) .text-brand-gray-500 {
+html:not(.dark) .text-brand-gray-500:not([class*="text-white"]):not([class*="text-brand-white"]):not(.text-brand-white):not(.text-white) {
     color: #64748B !important;
 }
 
-html:not(.dark) .text-brand-gray-400 {
+html:not(.dark) .text-brand-gray-400:not([class*="text-white"]):not([class*="text-brand-white"]):not(.text-brand-white):not(.text-white) {
     color: #94A3B8 !important;
 }
 
@@ -307,7 +307,7 @@ html:not(.dark) footer[role="contentinfo"] {
 }
 
 /* ── 9. FORM INPUTS — crisper borders, better focus ring ──────── */
-html:not(.dark) input,
+html:not(.dark) input:not([type="checkbox"]):not([type="radio"]),
 html:not(.dark) textarea,
 html:not(.dark) select {
     border-color: rgba(15, 23, 42, 0.10) !important;
@@ -337,8 +337,9 @@ html:not(.dark) [class*="backdrop-blur-3xl"][class*="shadow-2xl"] {
 }
 
 /* ── 12. ICON BOXES — slightly visible bg in light mode ───────── */
-html:not(.dark) .bg-brand-gray-50 [class*="bg-brand-gray-50"],
-html:not(.dark) .bg-brand-white [class*="bg-brand-gray-50"] {
+/* Target specifically icon boxes in light sections, avoid those in dark sections with bg-white/5 etc */
+html:not(.dark) .bg-brand-gray-50 [class*="bg-brand-gray-50"]:not([class*="/"]):not([class*="white"]),
+html:not(.dark) .bg-brand-white [class*="bg-brand-gray-50"]:not([class*="/"]):not([class*="white"]) {
     background-color: #EFF1F5;
 }
 
@@ -368,8 +369,8 @@ html:not(.dark) #nav-cta-started:hover {
 }
 
 /* FAQ / Contact Search & Inputs Polish */
-html:not(.dark) input[placeholder*="Search"],
-html:not(.dark) .shadow-sm {
+html:not(.dark) input[placeholder*="Search"].shadow-sm,
+html:not(.dark) .faq-search-wrapper .shadow-sm {
     background-color: #FFFFFF !important;
     border-color: rgba(15, 23, 42, 0.10) !important;
     box-shadow:
