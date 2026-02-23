@@ -9,11 +9,12 @@
 
     body {
         @apply font-sans antialiased transition-colors duration-500;
-        @apply bg-[#Fcfcfd] text-brand-black dark:bg-[#0A0A0A] dark:text-[#E5E7EB];
-        /* Premium Light Mode Gradient */
+        /* Slightly cooler white for premium light base */
+        @apply bg-[#F8F9FB] text-brand-black dark:bg-[#0A0A0A] dark:text-[#E5E7EB];
+        /* Softer, wider ambient glow for depth layering */
         background-image:
-            radial-gradient(circle at 15% 50%, rgba(240, 242, 245, 0.5) 0%, transparent 25%),
-            radial-gradient(circle at 85% 30%, rgba(235, 238, 241, 0.4) 0%, transparent 25%);
+            radial-gradient(circle at 15% 50%, rgba(235, 238, 244, 0.6) 0%, transparent 30%),
+            radial-gradient(circle at 85% 30%, rgba(230, 234, 240, 0.5) 0%, transparent 30%);
     }
 
     html.dark body {
@@ -146,4 +147,287 @@
 .service-swiper .swiper-button-next:hover,
 .service-swiper .swiper-button-prev:hover {
     @apply scale-110 shadow-lg;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   LIGHT THEME VISUAL QUALITY OVERRIDES
+   Scoped to html:not(.dark) — zero impact on dark mode.
+   Target: Stripe / Linear / Vercel-level depth and clarity.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── 1. NAVBAR — sharper bottom edge + slightly warmer glass ───── */
+html:not(.dark) nav[role="navigation"] {
+    background: rgba(255, 255, 255, 0.88);
+    border-bottom-color: rgba(15, 23, 42, 0.06);
+    box-shadow:
+        0 1px 0 rgba(15, 23, 42, 0.04),
+        0 4px 16px rgba(15, 23, 42, 0.03);
+}
+
+/* ── 2. SECTION BACKGROUND LAYERING — alternating tones ────────── */
+/* Sections using bg-brand-gray-50 get a slightly cooler tint */
+html:not(.dark) .bg-brand-gray-50 {
+    background-color: #F1F3F7 !important;
+}
+
+/* Sections using bg-brand-white remain true white for contrast  */
+html:not(.dark) .bg-brand-white {
+    background-color: #FFFFFF !important;
+}
+
+/* ── 3. CARD DIFFERENTIATION — lift cards off the page ─────────── */
+/* Standard cards: service cards, project cards, audience cards, tech stack cards  */
+html:not(.dark) [class*="rounded-[2.5rem]"][class*="border"][class*="border-brand-gray-100"] {
+    background-color: #FFFFFF;
+    border-color: rgba(15, 23, 42, 0.06);
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.04),
+        0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+html:not(.dark) [class*="rounded-[2.5rem]"][class*="border"][class*="border-brand-gray-100"]:hover {
+    border-color: rgba(15, 23, 42, 0.10);
+    box-shadow:
+        0 4px 8px rgba(15, 23, 42, 0.06),
+        0 16px 40px rgba(15, 23, 42, 0.07);
+}
+
+/* Cards with 1.5rem or 2rem radius (FAQ sidebar, team expertise, contact info, accordion, etc.) */
+html:not(.dark) [class*="rounded-[1.5rem]"][class*="border"][class*="border-brand-gray-100"],
+html:not(.dark) [class*="rounded-[2rem]"][class*="border"][class*="border-brand-gray-100"],
+html:not(.dark) [class*="rounded-[2rem]"][class*="border"][class*="border-brand-gray-200"] {
+    border-color: rgba(15, 23, 42, 0.06);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+/* Contact form card — strong elevation */
+html:not(.dark) [class*="rounded-[3rem]"][class*="border"][class*="border-brand-gray-100"][class*="shadow-2xl"] {
+    border-color: rgba(15, 23, 42, 0.07);
+    box-shadow:
+        0 2px 4px rgba(15, 23, 42, 0.04),
+        0 12px 32px rgba(15, 23, 42, 0.06),
+        0 32px 64px rgba(15, 23, 42, 0.04);
+}
+
+/* Glass card component overrides */
+html:not(.dark) .glass-card {
+    background-color: #FFFFFF;
+    border-color: rgba(15, 23, 42, 0.06);
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.04),
+        0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+html:not(.dark) .glass-card:hover {
+    border-color: rgba(15, 23, 42, 0.10);
+    box-shadow:
+        0 4px 8px rgba(15, 23, 42, 0.06),
+        0 20px 48px rgba(15, 23, 42, 0.08);
+}
+
+/* ── 4. TEXT CONTRAST HIERARCHY ────────────────────────────────── */
+/* Headings: near-black for maximum punch */
+html:not(.dark) h1,
+html:not(.dark) h2,
+html:not(.dark) h3,
+html:not(.dark) h4 {
+    color: #0F172A;
+}
+
+/* Body text: solid readable gray */
+html:not(.dark) .text-brand-gray-600 {
+    color: #475569 !important;
+}
+
+html:not(.dark) .text-brand-gray-700 {
+    color: #334155 !important;
+}
+
+/* Muted labels/captions */
+html:not(.dark) .text-brand-gray-500 {
+    color: #64748B !important;
+}
+
+html:not(.dark) .text-brand-gray-400 {
+    color: #94A3B8 !important;
+}
+
+/* ── 5. BUTTON VISIBILITY — deeper shadow on primary CTA ──────── */
+html:not(.dark) .btn-primary {
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.12),
+        0 8px 20px rgba(15, 23, 42, 0.10),
+        0 0 0 1px rgba(15, 23, 42, 0.04);
+}
+
+html:not(.dark) .btn-primary:hover {
+    box-shadow:
+        0 2px 4px rgba(15, 23, 42, 0.14),
+        0 16px 40px rgba(15, 23, 42, 0.14),
+        0 0 0 1px rgba(15, 23, 42, 0.06);
+}
+
+/* Outline button: crisper border in light mode */
+html:not(.dark) .btn-outline {
+    border-color: rgba(15, 23, 42, 0.14);
+}
+
+html:not(.dark) .btn-outline:hover {
+    border-color: rgba(15, 23, 42, 0.25);
+    background-color: rgba(15, 23, 42, 0.02);
+}
+
+/* ── 6. LOGO / TECH ROW — reduce washed-out feeling ───────────── */
+html:not(.dark) .border-brand-gray-100.bg-brand-gray-50\/50 {
+    background-color: #EFF1F5;
+}
+
+/* Darken icon tints on the tech row */
+html:not(.dark) .grayscale {
+    filter: grayscale(1) contrast(1.1);
+}
+
+/* ── 7. SECTION DIVIDERS — subtle top/bottom separator lines ──── */
+html:not(.dark) .border-brand-gray-100 {
+    border-color: rgba(15, 23, 42, 0.06);
+}
+
+html:not(.dark) .border-brand-gray-200 {
+    border-color: rgba(15, 23, 42, 0.08);
+}
+
+html:not(.dark) .border-brand-gray-200\/50 {
+    border-color: rgba(15, 23, 42, 0.05);
+}
+
+/* ── 8. FOOTER — slightly deeper bg for clear page-end signal ── */
+html:not(.dark) footer[role="contentinfo"] {
+    background-color: #ECEEF3;
+    border-top-color: rgba(15, 23, 42, 0.07);
+}
+
+/* ── 9. FORM INPUTS — crisper borders, better focus ring ──────── */
+html:not(.dark) input,
+html:not(.dark) textarea,
+html:not(.dark) select {
+    border-color: rgba(15, 23, 42, 0.10) !important;
+    background-color: #FAFBFC !important;
+}
+
+html:not(.dark) input:focus,
+html:not(.dark) textarea:focus,
+html:not(.dark) select:focus {
+    border-color: transparent !important;
+    box-shadow: 0 0 0 2px #0F172A;
+}
+
+/* ── 10. PREMIUM LABEL — slightly more visible chip ───────────── */
+html:not(.dark) .premium-label {
+    background-color: #EFF1F5;
+    border-color: rgba(15, 23, 42, 0.07);
+    color: #475569;
+}
+
+/* ── 11. HERO IMAGE FRAME — stronger shadow for depth ─────────── */
+html:not(.dark) [class*="backdrop-blur-3xl"][class*="shadow-2xl"] {
+    box-shadow:
+        0 4px 12px rgba(15, 23, 42, 0.06),
+        0 20px 48px rgba(15, 23, 42, 0.08);
+    border-color: rgba(15, 23, 42, 0.06);
+}
+
+/* ── 12. ICON BOXES — slightly visible bg in light mode ───────── */
+html:not(.dark) .bg-brand-gray-50 [class*="bg-brand-gray-50"],
+html:not(.dark) .bg-brand-white [class*="bg-brand-gray-50"] {
+    background-color: #EFF1F5;
+}
+
+/* ── 13. SCROLLBAR — slightly more visible track ──────────────── */
+html:not(.dark) ::-webkit-scrollbar-thumb {
+    background-color: #C1C8D4;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PHASE 2 FINISHING TOUCHES (High-End SaaS Polish)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Navbar CTA enhancement */
+html:not(.dark) #nav-cta-started {
+    background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%) !important;
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.12),
+        0 8px 16px rgba(15, 23, 42, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+html:not(.dark) #nav-cta-started:hover {
+    box-shadow:
+        0 4px 8px rgba(15, 23, 42, 0.12),
+        0 20px 48px rgba(15, 23, 42, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+/* FAQ / Contact Search & Inputs Polish */
+html:not(.dark) input[placeholder*="Search"],
+html:not(.dark) .shadow-sm {
+    background-color: #FFFFFF !important;
+    border-color: rgba(15, 23, 42, 0.10) !important;
+    box-shadow:
+        0 1px 1px rgba(0, 0, 0, 0.02),
+        0 4px 8px rgba(0, 0, 0, 0.03) !important;
+}
+
+html:not(.dark) input:focus,
+html:not(.dark) textarea:focus {
+    box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Swiper Navigation Polish */
+html:not(.dark) .swiper-button-next,
+html:not(.dark) .swiper-button-prev {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(15, 23, 42, 0.08) !important;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.10) !important;
+}
+
+/* Logo Row Visibility & Contrast */
+html:not(.dark) .grayscale {
+    filter: grayscale(1) contrast(1.15) brightness(0.85) !important;
+    opacity: 0.85 !important;
+}
+
+html:not(.dark) .grayscale:hover {
+    opacity: 1 !important;
+    filter: grayscale(0) !important;
+}
+
+/* Premium Focus Visibility */
+html:not(.dark) a:focus-visible,
+html:not(.dark) button:focus-visible {
+    outline: 2px solid #0F172A !important;
+    outline-offset: 2px !important;
+}
+
+/* FAQ Active State */
+html:not(.dark) .bg-brand-gray-100 {
+    background-color: #E2E8F0 !important;
+}
+
+.prose-premium {
+    max-width: 70ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Sidebar / Footer Link Polish */
+html:not(.dark) footer a:hover,
+html:not(.dark) .lg\:col-span-4 a:hover {
+    color: #0F172A !important;
+}
+
+/* Selection Polish */
+html:not(.dark) ::selection {
+    background-color: #0F172A;
+    color: #FFFFFF;
 }

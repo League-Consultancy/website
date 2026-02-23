@@ -16,20 +16,6 @@ export const projects = [
     },
     {
         id: 2,
-        title: "Autonomous Warehouse Robot",
-        category: "Robotics",
-        problem: "Manual material handling inefficiency leading to delays and high labor costs in warehouse operations.",
-        objective: "Automate warehouse transport with autonomous navigation.",
-        approach: "SLAM-based navigation + obstacle detection using LiDAR and computer vision.",
-        challenge: "Manual material handling inefficiency leading to high labor costs and delays.",
-        solution: "Developed an autonomous warehouse robot using SLAM-based navigation and real-time obstacle detection for seamless material transport.",
-        technologies: ["ROS", "LiDAR", "OpenCV"],
-        impact: "40% operational efficiency improvement with reduced labor dependency.",
-        results: "40% operational efficiency improvement",
-        image: "/assets/project_1.png"
-    },
-    {
-        id: 3,
         title: "Smart Pharma Environment Monitoring System",
         category: "IoT & Pharma Tech",
         problem: "Maintaining precise environmental conditions for sensitive pharmaceutical products and lab samples.",
@@ -43,7 +29,7 @@ export const projects = [
         image: "/assets/project_3.png"
     },
     {
-        id: 4,
+        id: 3,
         title: "Autonomous Under-Water Drone",
         category: "Robotics",
         challenge: "Designing a waterproof and pressure-resistant underwater drone capable of maintaining stability in low-visibility and dynamic underwater conditions.",
@@ -57,7 +43,7 @@ export const projects = [
         image: "/assets/project_4.png"
     },
     {
-        id: 5,
+        id: 4,
         title: "Closed-Loop 6-DOF Antenna Feed",
         category: "Aerospace",
         challenge: "Need for highly accurate systems for satellite orientation and antenna positioning where small deviations lead to mission failure.",
@@ -71,7 +57,7 @@ export const projects = [
         image: "/assets/project_5.png"
     },
     {
-        id: 6,
+        id: 5,
         title: "HTV Silicone Rubber Insulator Simulation",
         category: "Simulation",
         challenge: "High risk of electrical tracking and erosion in polymer insulators due to environmental contamination, leading to fast degradation.",
@@ -86,7 +72,7 @@ export const projects = [
         highlightMetric: "Optimized Designs"
     },
     {
-        id: 7,
+        id: 6,
         title: "Predictive Maintenance using CNN",
         category: "Artificial Intelligence",
         challenge: "Unplanned downtime and high maintenance costs due to difficulty in detecting early failure signs in roller bearings.",
@@ -101,7 +87,7 @@ export const projects = [
         highlightMetric: "30% Downtime Reduction"
     },
     {
-        id: 8,
+        id: 7,
         title: "Heat Dissipation Optimization using AI",
         category: "Artificial Intelligence",
         challenge: "Managing heat dissipation in modern electronic systems while balancing manufacturing complexity and material costs.",
@@ -115,7 +101,7 @@ export const projects = [
         image: "/assets/project_8.png"
     },
     {
-        id: 9,
+        id: 8,
         title: "Tabletop Gantry Automation",
         category: "Industrial Automation",
         challenge: "Requirement for a precise, automated 3-axis motion machine for ultrasonic cleaning with limited workspace.",

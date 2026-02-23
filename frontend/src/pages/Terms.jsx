@@ -42,7 +42,7 @@ const Terms = () => {
                         </div>
                     </FadeIn>
 
-                    <div className="space-y-12">
+                    <div className="space-y-12 prose-premium">
                         <FadeIn delay={0.1}>
                             <section className="pb-12 border-b border-brand-gray-100 dark:border-brand-gray-900">
                                 <h2 className="text-xl font-bold uppercase tracking-tight mb-6 text-brand-black dark:text-brand-white">1. Engineering Consultations</h2>
