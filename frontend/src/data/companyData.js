@@ -8,7 +8,7 @@ export const company = {
     tagline: "Building Tomorrow's Tech: AI, Software, Robotics, IoT & Automation at Your Service",
     shortDescription: "LEAGUE Consultancy is a next-generation engineering consultancy delivering intelligent AI systems, advanced robotics, industrial automation, and scalable software solutions. We help startups, enterprises, and research labs turn complex ideas into real-world technology products.",
     longDescription: [
-        "LEAGUE Consultancy is an innovation-driven engineering services company specializing in Artificial Intelligence, Robotics, IoT systems, Automation, and advanced software development.",
+        "LEAGUE Consultancy is an innovation driven engineering services company specializing in Artificial Intelligence, Robotics, IoT systems, Automation, and advanced software development.",
         "Founded with the vision to bridge the gap between research and real-world implementation, we partner with startups, enterprises, and research institutions to design, develop, and deploy intelligent technology systems.",
         "From AI-powered analytics platforms and industrial automation solutions to robotics prototyping and IoT ecosystems, we combine engineering excellence with practical execution. Our team blends research-grade thinking with industry-focused delivery, ensuring scalable, future-ready solutions.",
     ],

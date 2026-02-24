@@ -44,7 +44,7 @@ const Hero = () => (
                     <FadeIn delay={0.1}>
                         <div className="premium-label inline-flex shadow-sm">
                             <Zap className="w-3 h-3 text-brand-black dark:text-brand-white" />
-                            <span>AI · Robotics · IoT · Automation</span>
+                            <span><strong>AI</strong> · <strong>Robotics</strong> · <strong>IoT</strong> · <strong>Automation</strong></span>
                         </div>
                     </FadeIn>
 
@@ -57,8 +57,8 @@ const Hero = () => (
                     </FadeIn>
 
                     <FadeIn delay={0.3} y={20}>
-                        <p className="text-lg sm:text-xl text-brand-gray-600 dark:text-[#D1D5DB] leading-relaxed mb-10 sm:mb-16 max-w-xl font-light transition-colors duration-300">
-                            {company.shortDescription}
+                        <p className="text-lg sm:text-xl text-brand-gray-600 dark:text-[#D1D5DB] leading-relaxed mb-10 sm:mb-16 max-w-xl font-light transition-colors duration-300 text-justify">
+                            <strong>LEAGUE Consultancy</strong> is a next-generation engineering consultancy delivering <strong>intelligent AI systems</strong>, advanced robotics, <strong>industrial automation</strong>, and scalable software solutions.
                         </p>
                     </FadeIn>
 
@@ -154,7 +154,7 @@ const ServicesOverview = () => {
                         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
                             <div className="max-w-2xl">
                                 <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">What We Do</span>
-                                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-brand-black dark:text-white">Our Services</h2>
+                                <h2 className="text-3xl md:text-4xl font-bold text-brand-black dark:text-white">Our Services</h2>
                             </div>
                             <Link to="/services" className="text-[10px] font-black uppercase tracking-widest text-brand-black dark:text-brand-white hover:opacity-50 transition-opacity pb-2 border-b-2 border-brand-black dark:border-brand-white">
                                 View All Services
@@ -168,13 +168,21 @@ const ServicesOverview = () => {
                             return (
                                 <FadeIn key={service.id} delay={idx * 0.1} className="h-full">
                                     <div
-                                        className="p-8 lg:p-10 rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 group transition-all duration-500 flex flex-col bg-brand-white dark:bg-[#0A0A0A] h-full shadow-soft hover:shadow-premium hover:-translate-y-2"
+                                        className="p-8 lg:p-10 rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 group transition-all duration-500 flex flex-col bg-brand-white dark:bg-brand-dark h-full shadow-soft hover:shadow-premium hover:-translate-y-2"
                                     >
-                                        <div className="p-4 bg-brand-gray-50 dark:bg-brand-gray-800 rounded-2xl w-fit mb-8 group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-sm">
+                                        <div className="p-4 bg-brand-gray-50 dark:bg-brand-gray-800 rounded-2xl w-fit mb-8 group-hover:bg-brand-black dark:group-hover:bg-brand-white text-brand-black dark:text-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-md">
                                             <IconComp className="w-6 h-6" />
                                         </div>
                                         <h3 className="text-xl font-bold mb-4 uppercase tracking-tight leading-tight text-brand-black dark:text-[#F3F4F6]">{service.title}</h3>
-                                        <p className="text-brand-gray-700 dark:text-[#D1D5DB] leading-relaxed font-light text-sm flex-grow mb-8">{service.shortDescription}</p>
+                                        <p className="text-brand-gray-700 dark:text-[#D1D5DB] leading-relaxed font-light text-sm flex-grow mb-8 text-justify">
+                                            {service.id === 'ai' ? (
+                                                <>Custom <strong>AI models</strong> and <strong>intelligent systems</strong> tailored for real-world business applications.</>
+                                            ) : service.id === 'robotics' ? (
+                                                <>Custom <strong>robotics system</strong> design, simulation, and <strong>physical prototyping</strong>.</>
+                                            ) : service.id === 'iot' ? (
+                                                <>Connected <strong>device ecosystems</strong> for real-time monitoring and <strong>automation</strong>.</>
+                                            ) : service.shortDescription}
+                                        </p>
                                         <div className="mt-auto flex flex-wrap gap-1.5">
                                             {service.technologies.slice(0, 3).map(tech => (
                                                 <span key={tech} className="px-2.5 py-1 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-gray-600 dark:text-brand-gray-500 text-[9px] font-bold uppercase tracking-widest rounded-md">
@@ -208,19 +216,19 @@ const FeaturedProjects = () => {
 
     // Shared card renderer (keeps card design identical)
     const ProjectCard = ({ project }) => (
-        <div className="bg-brand-white dark:bg-[#0A0A0A] group flex flex-col h-full rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 overflow-hidden hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-700">
+        <div className="bg-brand-white dark:bg-brand-dark group flex flex-col h-full rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 overflow-hidden hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-700">
             <div className="h-56 bg-brand-black relative overflow-hidden">
                 <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-all duration-1000 contrast-[1.1] saturate-[0.9] group-hover:saturate-100 group-hover:scale-105 dark:opacity-60 dark:group-hover:opacity-100 dark:grayscale dark:group-hover:grayscale-0"
+                    className="w-full h-full object-cover transition-all duration-1000 contrast-[1.1] saturate-[0.9] group-hover:saturate-100 group-hover:scale-105 dark:opacity-70 dark:group-hover:opacity-100 dark:grayscale dark:group-hover:grayscale-0"
                     loading="lazy"
                 />
                 <div className="absolute top-6 right-6 bg-brand-white/10 backdrop-blur-md text-brand-white px-4 py-2 rounded-full text-[8px] font-black uppercase tracking-widest border border-white/10">
                     {project.category}
                 </div>
             </div>
-            <div className="p-8 flex-grow flex flex-col relative z-20 bg-brand-white dark:bg-[#0A0A0A] transition-transform duration-500 group-hover:-translate-y-2">
+            <div className="p-8 flex-grow flex flex-col relative z-20 bg-brand-white dark:bg-brand-dark transition-transform duration-500 group-hover:-translate-y-2">
                 <h3 className="text-xl font-bold mb-3 leading-tight">{project.title}</h3>
                 <p className="text-brand-gray-700 dark:text-brand-gray-500 text-sm leading-relaxed mb-4 font-light line-clamp-2 transition-all duration-500 group-hover:line-clamp-none">{project.challenge}</p>
 
@@ -231,7 +239,7 @@ const FeaturedProjects = () => {
 
                 <div className="flex flex-wrap gap-1.5 mb-6">
                     {project.technologies.slice(0, 3).map(tech => (
-                        <span key={tech} className="px-2 py-0.5 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-gray-700 dark:text-brand-gray-500 text-[9px] font-bold uppercase tracking-widest rounded-md">{tech}</span>
+                        <span key={tech} className="px-2.5 py-1 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-gray-700 dark:text-brand-gray-400 text-[10px] font-bold uppercase tracking-widest rounded-lg border border-transparent group-hover:bg-brand-gray-100 dark:group-hover:bg-brand-gray-700 group-hover:border-brand-gray-200 dark:group-hover:border-brand-gray-600 transition-all duration-500">{tech}</span>
                     ))}
                 </div>
                 {project.results && (
@@ -258,7 +266,7 @@ const FeaturedProjects = () => {
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-16 gap-6">
                             <div>
                                 <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Case Studies</span>
-                                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">Featured Work</h2>
+                                <h2 className="text-3xl md:text-4xl font-bold">Featured Work</h2>
                             </div>
                             <Link to="/projects" className="text-[10px] font-black uppercase tracking-widest text-brand-black dark:text-brand-white hover:opacity-50 transition-opacity pb-2 border-b-2 border-brand-black dark:border-brand-white">
                                 View All Cases
@@ -294,7 +302,7 @@ const CredibilitySection = () => (
             <FadeIn>
                 <div className="text-center mb-20">
                     <span className="text-brand-gray-600 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Why Trust Us</span>
-                    <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none text-brand-white">Proof & Credibility</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-brand-white">Proof & Credibility</h2>
                 </div>
             </FadeIn>
 
@@ -337,11 +345,11 @@ const TargetAudienceSection = () => (
                     const IconComp = iconMap[audience.icon] || Landmark;
                     return (
                         <FadeIn key={idx} delay={idx * 0.05} className="h-full">
-                            <div className="px-6 py-10 bg-brand-white dark:bg-[#0A0A0A] border border-brand-gray-100 dark:border-brand-gray-800 rounded-[2rem] text-center transition-all duration-300 hover:border-brand-black dark:hover:border-brand-white group hover:-translate-y-1 shadow-soft hover:shadow-premium h-full flex flex-col items-center justify-center">
-                                <div className="p-4 bg-brand-gray-50 dark:bg-brand-gray-800 rounded-2xl w-fit mx-auto mb-6 group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-sm">
+                            <div className="px-6 py-10 bg-brand-white dark:bg-brand-dark border border-brand-gray-100 dark:border-brand-gray-800 rounded-[2rem] text-center transition-all duration-300 hover:border-brand-gray-300 dark:hover:border-brand-gray-700 group hover:-translate-y-1 shadow-soft hover:shadow-premium h-full flex flex-col items-center justify-center">
+                                <div className="p-4 bg-brand-gray-50 dark:bg-brand-gray-800 rounded-2xl w-fit mx-auto mb-6 group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-md">
                                     <IconComp className="w-5 h-5" />
                                 </div>
-                                <span className="font-bold text-brand-gray-600 dark:text-brand-gray-400 group-hover:text-brand-black dark:group-hover:text-brand-white text-[10px] uppercase tracking-[0.2em] transition-colors leading-tight block">{audience.name}</span>
+                                <span className="font-bold text-brand-gray-600 dark:text-brand-gray-400 group-hover:text-brand-black dark:group-hover:text-brand-white text-[10px] uppercase tracking-[0.2em] transition-colors leading-tight block uppercase">{audience.name}</span>
                             </div>
                         </FadeIn>
                     );
@@ -359,11 +367,11 @@ const VisionMissionStrip = () => (
                 <FadeIn>
                     <div>
                         <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Our Vision</span>
-                        <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 leading-tight">{vision.statement}</h3>
+                        <h3 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">{vision.statement}</h3>
                         <div className="space-y-4">
                             {differentiators.slice(0, 3).map((diff, idx) => (
                                 <div key={idx} className="flex items-start space-x-4 group">
-                                    <div className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-brand-black dark:bg-brand-white flex items-center justify-center text-brand-white dark:text-brand-black text-[9px] font-black group-hover:scale-110 transition-transform">✓</div>
+                                    <div className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-lg bg-brand-gray-100 dark:bg-brand-gray-800 flex items-center justify-center text-brand-black dark:text-brand-white text-[9px] font-black group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-sm">✓</div>
                                     <p className="text-sm text-brand-gray-700 dark:text-brand-gray-400 font-light">{diff}</p>
                                 </div>
                             ))}
@@ -379,7 +387,7 @@ const VisionMissionStrip = () => (
                         </p>
                         <div className="pt-8 border-t border-brand-gray-200 dark:border-brand-gray-800">
                             <p className="text-sm text-brand-gray-700 dark:text-brand-gray-400 font-light italic leading-relaxed">
-                                {company.philosophy}
+                                At <span className="font-bold text-brand-black dark:text-brand-white">LEAGUE Consultancy</span>, we don't just build systems — we <span className="font-bold text-brand-black dark:text-brand-white">engineer impact</span>.
                             </p>
                         </div>
                     </div>

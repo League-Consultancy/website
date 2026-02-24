@@ -22,7 +22,7 @@ const ContactInfo = ({ icon: Icon, title, content, subtext }) => (
         </div>
         <div>
             <h4 className="text-xs font-black uppercase tracking-widest text-brand-gray-600 dark:text-brand-gray-400 mb-2">{title}</h4>
-            <p className="text-xl font-bold mb-1 text-brand-black dark:text-brand-white">{content}</p>
+            <p className="text-xl font-bold mb-1 text-brand-black dark:text-brand-white"><strong>{content}</strong></p>
             {subtext && <p className="text-sm text-brand-gray-700 dark:text-brand-gray-500 font-light">{subtext}</p>}
         </div>
     </div>
@@ -151,7 +151,7 @@ const Contact = () => {
                                     href={company.linkedin}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center space-x-4 p-6 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-2xl border border-brand-gray-100 dark:border-brand-gray-800 hover:border-brand-black dark:hover:border-brand-white transition-all duration-300 group"
+                                    className="flex items-center space-x-4 p-6 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-2xl border border-brand-gray-100 dark:border-brand-gray-800 hover:border-brand-gray-300 dark:hover:border-brand-gray-700 transition-all duration-300 group"
                                 >
                                     <div className="p-3 bg-brand-black dark:bg-brand-white rounded-xl text-brand-white dark:text-brand-black group-hover:scale-110 transition-transform">
                                         <Linkedin className="w-5 h-5" />
@@ -160,23 +160,23 @@ const Contact = () => {
                                         <p className="text-xs font-black uppercase tracking-widest text-brand-black dark:text-brand-white">Connect on LinkedIn</p>
                                         <p className="text-[10px] text-brand-gray-600 dark:text-brand-gray-400 font-light mt-0.5">Follow our latest projects and updates</p>
                                     </div>
-                                    <ChevronRight className="w-4 h-4 text-brand-gray-600 dark:text-brand-gray-400 group-hover:translate-x-1 transition-transform" />
+                                    <ChevronRight className="w-4 h-4 text-brand-black dark:text-brand-white group-hover:translate-x-1 transition-transform" />
                                 </a>
                             </FadeIn>
 
                             {/* Inquiry Types Card */}
                             <FadeIn delay={0.3}>
-                                <div className="p-8 bg-brand-black dark:bg-brand-gray-900 rounded-[2rem] text-brand-white space-y-6">
+                                <div className="p-8 bg-brand-black dark:bg-brand-dark rounded-[2rem] text-brand-white space-y-6 group hover:shadow-2xl transition-all duration-500 border border-brand-gray-800 hover:border-brand-gray-700">
                                     <div className="flex items-center space-x-4">
-                                        <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
-                                            <Globe className="w-5 h-5" />
+                                        <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center group-hover:bg-brand-white group-hover:text-brand-black transition-all duration-500 shadow-md">
+                                            <Globe className="w-6 h-6" />
                                         </div>
                                         <h3 className="text-lg font-bold uppercase tracking-tight">Inquiry Types</h3>
                                     </div>
                                     <div className="space-y-3">
                                         {inquiryCategories.map((cat, idx) => (
-                                            <div key={idx} className="flex items-center space-x-3 text-sm text-brand-gray-300 dark:text-brand-gray-400 font-light">
-                                                <div className="w-1.5 h-1.5 bg-brand-gray-600 rounded-full" />
+                                            <div key={idx} className="flex items-center space-x-3 text-sm text-brand-gray-400 font-light group-hover:text-brand-white transition-colors">
+                                                <div className="w-1.5 h-1.5 bg-brand-gray-700 group-hover:bg-brand-white rounded-full transition-colors" />
                                                 <span>{cat}</span>
                                             </div>
                                         ))}
@@ -184,23 +184,13 @@ const Contact = () => {
                                 </div>
                             </FadeIn>
 
-                            {/* Schedule a Call CTA */}
-                            <FadeIn delay={0.4}>
-                                <div className="p-8 bg-brand-gray-50 dark:bg-brand-black rounded-[2rem] border border-brand-gray-200 dark:border-brand-gray-700 text-center">
-                                    <h3 className="text-xl font-black uppercase tracking-tight text-brand-black dark:text-brand-white mb-2">Prefer a Direct Conversation?</h3>
-                                    <p className="text-sm text-brand-gray-600 dark:text-brand-gray-400 mb-6 font-light">Skip the form and schedule a 30-minute discovery call with our lead engineers.</p>
-                                    <a href="#" className="w-full py-4 bg-brand-black dark:bg-brand-white text-brand-white dark:text-brand-black rounded-xl font-black text-[10px] uppercase tracking-widest inline-flex items-center justify-center space-x-2 hover:scale-[1.02] transition-transform">
-                                        <span>Schedule a Call</span>
-                                        <ChevronRight className="w-4 h-4" />
-                                    </a>
-                                </div>
-                            </FadeIn>
+
                         </div>
 
                         {/* Contact Form */}
                         <div className="lg:col-span-7">
                             <FadeIn>
-                                <div className="bg-brand-white dark:bg-brand-gray-900 p-10 lg:p-14 rounded-[3rem] border border-brand-gray-100 dark:border-brand-gray-800 shadow-2xl overflow-hidden relative group">
+                                <div className="bg-brand-white dark:bg-brand-dark p-10 lg:p-14 rounded-[3rem] border border-brand-gray-100 dark:border-brand-gray-800 shadow-2xl overflow-hidden relative group">
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gray-50 dark:bg-brand-gray-800 rounded-full -translate-y-1/2 translate-x-1/2 opacity-20" />
 
                                     <div className="relative z-10">

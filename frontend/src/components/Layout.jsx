@@ -150,7 +150,7 @@ const Footer = () => {
                         <Link to="/" className="text-2xl font-bold text-brand-black dark:text-brand-white block tracking-tighter">
                             LEAGUE Consultancy
                         </Link>
-                        <p className="text-brand-gray-700 dark:text-brand-gray-400 max-w-md leading-relaxed font-light text-sm">
+                        <p className="text-brand-gray-700 dark:text-brand-gray-400 max-w-md leading-relaxed font-light text-sm text-justify">
                             {company.shortDescription}
                         </p>
                         <div className="space-y-3">

@@ -31,11 +31,11 @@ const About = () => {
                             </FadeIn>
                             <FadeIn delay={0.1}>
                                 <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-[1.1] text-brand-black dark:text-[#F3F4F6]">
-                                    Innovation-Driven <br />Engineering
+                                    Innovation Driven <br />Engineering
                                 </h1>
                             </FadeIn>
                             <FadeIn delay={0.2}>
-                                <p className="text-xl text-brand-gray-600 dark:text-[#D1D5DB] max-w-3xl leading-relaxed font-light">
+                                <p className="text-xl text-brand-gray-600 dark:text-[#D1D5DB] max-w-3xl leading-relaxed font-light text-justify">
                                     {company.longDescription[0]}
                                 </p>
                             </FadeIn>
@@ -76,8 +76,10 @@ const About = () => {
                                 <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">About LEAGUE</span>
                                 <div className="space-y-6">
                                     {company.longDescription.map((para, idx) => (
-                                        <p key={idx} className="text-[17px] text-brand-gray-600 dark:text-[#D1D5DB] leading-relaxed font-light">
-                                            {para}
+                                        <p key={idx} className="text-[17px] text-brand-gray-600 dark:text-[#D1D5DB] leading-relaxed font-light text-justify">
+                                            {idx === 0 ? (
+                                                <><strong>LEAGUE Consultancy</strong> is an <strong>innovation driven engineering</strong> services company specializing in <strong>Artificial Intelligence</strong>, Robotics, <strong>IoT systems</strong>, Automation, and advanced software development.</>
+                                            ) : para}
                                         </p>
                                     ))}
                                 </div>
@@ -93,16 +95,14 @@ const About = () => {
                         <FadeIn delay={0.2}>
                             <div>
                                 <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Our Advantage</span>
-                                <h3 className="text-3xl font-black uppercase tracking-tighter mb-10">What Makes Us Different</h3>
+                                <h3 className="text-3xl font-black uppercase tracking-tighter mb-10">What Makes Us <strong>Different</strong></h3>
                                 <div className="space-y-6">
                                     {differentiators.map((diff, idx) => (
-                                        <div key={idx} className="flex space-x-5 group">
-                                            <div className="mt-1 flex-shrink-0 w-8 h-8 rounded-xl bg-brand-black dark:bg-brand-white flex items-center justify-center text-brand-white dark:text-brand-black text-xs font-black group-hover:scale-110 transition-transform">
+                                        <div key={idx} className="flex space-x-5 group hover:-translate-x-1 transition-transform duration-500">
+                                            <div className="mt-1 flex-shrink-0 w-10 h-10 rounded-xl bg-brand-gray-100 dark:bg-brand-gray-800 flex items-center justify-center text-brand-black dark:text-brand-white text-xs font-black group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-md">
                                                 {String(idx + 1).padStart(2, '0')}
                                             </div>
-                                            <div>
-                                                <p className="text-brand-gray-700 dark:text-brand-gray-300 font-medium leading-relaxed">{diff}</p>
-                                            </div>
+                                            <p className="text-brand-gray-700 dark:text-brand-gray-400 font-light leading-relaxed text-justify">{diff}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -121,7 +121,7 @@ const About = () => {
                                 <div className="inline-flex p-4 bg-brand-gray-100 dark:bg-brand-gray-900 text-brand-black dark:text-brand-white rounded-2xl mb-10 transition-colors duration-300">
                                     <Target className="w-8 h-8" />
                                 </div>
-                                <h2 className="text-4xl font-black uppercase mb-8 tracking-tighter">Our Vision</h2>
+                                <h2 className="text-4xl font-black uppercase mb-8 tracking-tighter">Our <strong>Vision</strong></h2>
                                 <p className="text-xl text-brand-gray-700 dark:text-brand-gray-400 leading-relaxed font-light mb-8">
                                     {vision.statement}
                                 </p>
@@ -130,11 +130,11 @@ const About = () => {
                         </FadeIn>
 
                         <FadeIn delay={0.2}>
-                            <div className="p-10 lg:p-14 bg-brand-white dark:bg-[#1A1A1A] rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 shadow-premium transition-transform duration-500 hover:-translate-y-2 group">
+                            <div className="p-10 lg:p-14 bg-brand-white dark:bg-brand-dark rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 shadow-premium transition-transform duration-500 hover:-translate-y-2 group">
                                 <div className="inline-flex p-4 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-black dark:text-brand-white rounded-2xl mb-10 transition-colors duration-300 group-hover:bg-brand-black group-hover:text-brand-white dark:group-hover:bg-brand-white dark:group-hover:text-brand-black">
                                     <ArrowRight className="w-8 h-8" />
                                 </div>
-                                <h2 className="text-4xl font-black uppercase mb-8 tracking-tighter text-brand-black dark:text-[#F3F4F6]">Our Mission</h2>
+                                <h2 className="text-4xl font-black uppercase mb-8 tracking-tighter text-brand-black dark:text-[#F3F4F6]">Our <strong>Mission</strong></h2>
                                 <p className="text-2xl font-display text-transparent bg-clip-text bg-gradient-to-br from-brand-gray-800 to-brand-gray-500 dark:from-brand-gray-300 dark:to-brand-gray-600 leading-snug font-bold italic">
                                     {mission.statement}
                                 </p>
@@ -179,7 +179,7 @@ const About = () => {
                                         <p className="inline-flex items-center space-x-2 bg-brand-gray-50 dark:bg-brand-gray-900 px-4 py-2 rounded-lg text-brand-gray-700 dark:text-brand-gray-400 text-xs font-bold uppercase tracking-widest border border-brand-gray-100 dark:border-brand-gray-800">{founder.title}</p>
                                     </div>
                                 </div>
-                                <p className="text-lg text-brand-gray-700 dark:text-brand-gray-400 leading-relaxed font-light border-l-4 border-brand-gray-200 dark:border-brand-gray-800 pl-6">
+                                <p className="text-lg text-brand-gray-700 dark:text-brand-gray-400 leading-relaxed font-light border-l-4 border-brand-gray-200 dark:border-brand-gray-800 pl-6 text-justify">
                                     {founder.bio}
                                 </p>
                             </div>
@@ -191,8 +191,8 @@ const About = () => {
                                 <h3 className="text-3xl font-black uppercase tracking-tighter mb-10">Collective Strengths</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {teamExpertise.map((area, idx) => (
-                                        <div key={idx} className="flex items-center space-x-4 p-6 bg-brand-gray-50 dark:bg-[#0A0A0A] rounded-[1.5rem] border border-brand-gray-100 dark:border-brand-gray-800 group hover:border-brand-black dark:hover:border-brand-white transition-all duration-300">
-                                            <div className="w-8 h-8 bg-brand-black dark:bg-brand-white rounded-lg flex items-center justify-center text-brand-white dark:text-brand-black text-[10px] font-black group-hover:scale-110 transition-transform">
+                                        <div key={idx} className="flex items-center space-x-4 p-6 bg-brand-gray-50/50 dark:bg-brand-dark rounded-[1.5rem] border border-brand-gray-100 dark:border-brand-gray-800 group hover:border-brand-gray-300 dark:hover:border-brand-gray-700 hover:shadow-premium transition-all duration-300">
+                                            <div className="w-10 h-10 bg-white dark:bg-brand-gray-800 rounded-xl flex items-center justify-center text-brand-black dark:text-brand-white text-[10px] font-black group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-md">
                                                 {String(idx + 1).padStart(2, '0')}
                                             </div>
                                             <span className="font-bold text-[10px] uppercase tracking-widest text-brand-gray-700 dark:text-brand-gray-300 group-hover:text-brand-black dark:group-hover:text-brand-white transition-colors">{area}</span>
@@ -221,8 +221,8 @@ const About = () => {
                             return (
                                 <FadeIn key={idx} delay={idx * 0.1} className="h-full">
                                     <div className="text-center group p-8 lg:p-10 rounded-[2.5rem] border border-brand-gray-800 hover:border-brand-gray-600 transition-all duration-500 bg-white/5 h-full flex flex-col justify-center">
-                                        <div className="p-5 bg-white/5 rounded-2xl w-fit mx-auto mb-6 group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-sm">
-                                            <IconComp className="w-8 h-8 text-brand-white" />
+                                        <div className="p-5 bg-white/5 rounded-2xl w-fit mx-auto mb-6 group-hover:bg-brand-white group-hover:text-brand-black transition-all duration-500 shadow-md">
+                                            <IconComp className="w-8 h-8" />
                                         </div>
                                         <h3 className="text-lg font-bold uppercase tracking-tight mb-3 text-brand-white">{item.title}</h3>
                                         <p className="text-brand-gray-700 dark:text-brand-gray-500 text-sm font-light leading-relaxed">{item.description}</p>
@@ -247,11 +247,11 @@ const About = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {Object.entries(techStack).map(([category, techs], idx) => (
                             <FadeIn key={category} delay={idx * 0.08} className="h-full">
-                                <div className="p-8 lg:p-10 bg-brand-gray-50 dark:bg-[#0A0A0A] rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 group hover:border-brand-black dark:hover:border-brand-white transition-all duration-500 h-full flex flex-col">
+                                <div className="p-8 lg:p-10 bg-brand-gray-50 dark:bg-brand-dark rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 group hover:border-brand-gray-300 dark:hover:border-brand-gray-700 transition-all duration-500 h-full flex flex-col hover:shadow-premium">
                                     <h3 className="text-xs font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-8 border-b border-brand-gray-100 dark:border-brand-gray-800 pb-4">{category}</h3>
                                     <div className="flex flex-wrap gap-2 mt-auto">
                                         {techs.map(tech => (
-                                            <span key={tech} className="px-4 py-2 bg-brand-white dark:bg-brand-gray-800 border border-brand-gray-200 dark:border-brand-gray-700 rounded-xl text-[10px] font-bold uppercase tracking-wider text-brand-gray-600 dark:text-brand-gray-300 group-hover:border-brand-black/20 dark:group-hover:border-brand-white/20 hover:bg-brand-black hover:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-black transition-all">
+                                            <span key={tech} className="px-4 py-2 bg-brand-white dark:bg-brand-gray-800 border border-brand-gray-200 dark:border-brand-gray-700 rounded-xl text-[10px] font-bold uppercase tracking-wider text-brand-gray-600 dark:text-brand-gray-300 group-hover:bg-brand-gray-50 dark:group-hover:bg-brand-gray-900 group-hover:border-brand-gray-300 dark:group-hover:border-brand-gray-600 hover:!bg-brand-black hover:!text-brand-white dark:hover:!bg-brand-white dark:hover:!text-brand-black transition-all cursor-default">
                                                 {tech}
                                             </span>
                                         ))}

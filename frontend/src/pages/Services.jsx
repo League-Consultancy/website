@@ -123,7 +123,7 @@ const ServiceSlide = ({ service, index, total }) => {
                         <motion.div variants={itemVariants} className="pt-4 border-t border-white/10">
                             <div className="flex flex-wrap gap-1.5 md:gap-2">
                                 {service.technologies.map(tech => (
-                                    <span key={tech} className="px-3 py-1.5 bg-white/5 text-white/60 text-[9px] md:text-[10px] font-bold uppercase tracking-widest rounded-lg border border-white/5 hover:border-white/20 transition-all cursor-default">{tech}</span>
+                                    <span key={tech} className="px-3 py-1.5 bg-white/5 text-white/60 text-[9px] md:text-[10px] font-bold uppercase tracking-widest rounded-lg border border-white/5 hover:border-brand-gray-700 transition-all cursor-default">{tech}</span>
                                 ))}
                             </div>
                         </motion.div>
@@ -177,8 +177,8 @@ const Services = () => {
                                 </h1>
                             </FadeIn>
                             <FadeIn delay={0.2}>
-                                <p className="text-lg md:text-xl text-brand-gray-600 dark:text-brand-gray-400 font-light max-w-2xl leading-relaxed">
-                                    We architect future-ready systems across AI, Robotics, and IoT — bridging the gap between high-level theory and industrial reality.
+                                <p className="text-lg md:text-xl text-brand-gray-600 dark:text-brand-gray-400 font-light max-w-2xl leading-relaxed text-justify">
+                                    We architect <strong>future-ready systems</strong> across <strong>AI</strong>, <strong>Robotics</strong>, and <strong>IoT</strong> — bridging the gap between high-level theory and industrial reality.
                                 </p>
                             </FadeIn>
                         </div>
@@ -232,8 +232,8 @@ const Services = () => {
                                 { step: '04', title: 'Operation', desc: 'Deployment, scaling, and lifecycle support.' }
                             ].map((item, idx) => (
                                 <FadeIn key={idx} delay={idx * 0.1} className="h-full">
-                                    <div className="p-8 lg:p-10 rounded-[2.5rem] bg-brand-gray-50 dark:bg-[#0A0A0A] border border-brand-gray-100 dark:border-brand-gray-900 shadow-soft hover:shadow-premium transition-all duration-500 hover:-translate-y-2 text-center group h-full flex flex-col justify-center">
-                                        <div className="w-16 h-16 rounded-2xl border-2 border-brand-gray-200 dark:border-brand-gray-800 flex items-center justify-center text-brand-black dark:text-brand-white mx-auto mb-8 text-xl font-black group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-sm">
+                                    <div className="p-8 lg:p-10 rounded-[2.5rem] bg-brand-gray-50 dark:bg-brand-dark border border-brand-gray-100 dark:border-brand-gray-900 shadow-soft hover:shadow-premium transition-all duration-500 hover:-translate-y-2 text-center group h-full flex flex-col justify-center">
+                                        <div className="w-16 h-16 rounded-2xl border-2 border-brand-gray-200 dark:border-brand-gray-800 flex items-center justify-center text-brand-black dark:text-brand-white mx-auto mb-8 text-xl font-black group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-md">
                                             {item.step}
                                         </div>
                                         <h4 className="font-bold mb-4 uppercase text-[10px] tracking-widest text-brand-black dark:text-brand-white">{item.title}</h4>
@@ -247,7 +247,7 @@ const Services = () => {
 
                 {/* CTA */}
                 <section className="pb-32 px-6">
-                    <div className="max-w-7xl auto">
+                    <div className="max-w-7xl mx-auto">
                         <FadeIn>
                             <div className="dark p-16 sm:p-24 lg:p-32 bg-brand-black dark:bg-brand-gray-900 rounded-[4rem] text-center text-brand-white shadow-2xl relative overflow-hidden group">
                                 <div className="absolute inset-0 bg-gradient-to-br from-brand-gray-800 to-brand-black opacity-50 group-hover:scale-110 transition-transform duration-[3000ms]" />

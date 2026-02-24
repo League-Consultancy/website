@@ -65,7 +65,7 @@ const ProjectSlide = React.forwardRef(({ project, index, total, direction }, ref
             {/* Background Glow Effect */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-brand-white/5 blur-[120px] rounded-full pointer-events-none z-0" />
 
-            <div className="relative z-10 w-full h-full max-w-[1600px] flex flex-col lg:flex-row bg-brand-white dark:bg-[#0A0A0A] rounded-[2rem] sm:rounded-[3rem] overflow-hidden border border-brand-gray-100 dark:border-brand-gray-800 shadow-[0_32px_128px_-16px_rgba(0,0,0,0.8)]">
+            <div className="relative z-10 w-full h-full max-w-[1600px] flex flex-col lg:flex-row bg-brand-white dark:bg-brand-dark rounded-[2rem] sm:rounded-[3rem] overflow-hidden border border-brand-gray-100 dark:border-brand-gray-800 shadow-[0_32px_128px_-16px_rgba(0,0,0,0.8)]">
                 {/* Left: Image Side */}
                 <div className="relative w-full lg:w-[45%] xl:w-[48%] h-[35dvh] lg:h-full overflow-hidden bg-brand-gray-900 border-b lg:border-b-0 lg:border-r border-brand-gray-100 dark:border-brand-gray-800 group">
                     <img
@@ -92,7 +92,7 @@ const ProjectSlide = React.forwardRef(({ project, index, total, direction }, ref
                 </div>
 
                 {/* Right: Content Side */}
-                <div className="w-full lg:w-[55%] xl:w-[52%] h-full flex flex-col p-8 sm:p-12 lg:p-14 xl:p-20 overflow-y-auto bg-brand-white dark:bg-[#0A0A0A]">
+                <div className="w-full lg:w-[55%] xl:w-[52%] h-full flex flex-col p-8 sm:p-12 lg:p-14 xl:p-20 overflow-y-auto bg-brand-white dark:bg-brand-dark">
                     <div className="max-w-3xl w-full mx-auto">
                         <motion.div custom={0} variants={itemVariants} className="mb-4 flex items-center gap-4">
                             <span className="text-brand-gray-600 dark:text-brand-gray-400 text-[10px] font-black uppercase tracking-[0.4em]">
@@ -114,46 +114,51 @@ const ProjectSlide = React.forwardRef(({ project, index, total, direction }, ref
                             <motion.div custom={2} variants={itemVariants} className="relative pl-10">
                                 <span className="absolute left-0 top-1 text-[10px] font-black uppercase tracking-widest text-brand-gray-400 dark:text-brand-gray-700">01</span>
                                 <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-3">Problem Statement</h4>
-                                <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed">{project.problem}</p>
+                                <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed text-justify">{project.problem}</p>
                             </motion.div>
 
                             {project.challenge && (
                                 <motion.div custom={2.5} variants={itemVariants} className="relative pl-10 border-t border-brand-gray-100 dark:border-brand-gray-900 pt-8">
                                     <span className="absolute left-0 top-9 text-[10px] font-black uppercase tracking-widest text-brand-gray-400 dark:text-brand-gray-700">02</span>
                                     <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-3">Engineering Challenge</h4>
-                                    <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed">{project.challenge}</p>
+                                    <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed text-justify">{project.challenge}</p>
                                 </motion.div>
                             )}
 
                             <motion.div custom={3} variants={itemVariants} className="relative pl-10 border-t border-brand-gray-100 dark:border-brand-gray-900 pt-8">
                                 <span className="absolute left-0 top-9 text-[10px] font-black uppercase tracking-widest text-brand-gray-400 dark:text-brand-gray-700">{project.challenge ? '03' : '02'}</span>
                                 <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-3">Core Objective</h4>
-                                <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed font-bold">{project.objective}</p>
+                                <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed font-bold text-justify">{project.objective}</p>
                             </motion.div>
 
                             {project.approach && (
                                 <motion.div custom={3.5} variants={itemVariants} className="relative pl-10 border-t border-brand-gray-100 dark:border-brand-gray-900 pt-8">
                                     <span className="absolute left-0 top-9 text-[10px] font-black uppercase tracking-widest text-brand-gray-400 dark:text-brand-gray-700">{project.challenge ? '04' : '03'}</span>
                                     <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-3">Strategic Approach</h4>
-                                    <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed italic">{project.approach}</p>
+                                    <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed italic text-justify">{project.approach}</p>
                                 </motion.div>
                             )}
 
                             {project.solution && (
-                                <motion.div custom={3.8} variants={itemVariants} className="p-8 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-3xl border border-brand-gray-100 dark:border-brand-gray-800">
-                                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-4 flex items-center gap-2">
-                                        <Cpu className="w-3 h-3" /> Technical Solution
+                                <motion.div custom={3.8} variants={itemVariants} className="p-8 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-3xl border border-brand-gray-100 dark:border-brand-gray-800 group hover:border-brand-gray-300 dark:hover:border-brand-gray-700 transition-all duration-500 shadow-soft hover:shadow-premium">
+                                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-6 flex items-center gap-4">
+                                        <div className="w-8 h-8 rounded-lg bg-brand-gray-100 dark:bg-brand-gray-800 flex items-center justify-center text-brand-black dark:text-brand-white group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-sm">
+                                            <Cpu className="w-4 h-4" />
+                                        </div>
+                                        <span>Technical Solution</span>
                                     </h4>
-                                    <p className="text-brand-black dark:text-brand-white text-sm lg:text-base leading-relaxed font-medium">{project.solution}</p>
+                                    <p className="text-brand-black dark:text-brand-white text-sm lg:text-base leading-relaxed font-medium text-justify">{project.solution}</p>
                                 </motion.div>
                             )}
                         </div>
 
                         {/* Impact Highlight */}
                         {(project.results || project.impact) && (
-                            <motion.div custom={4} variants={itemVariants} className="mb-12 p-8 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-3xl border border-emerald-500/20">
-                                <div className="flex items-center gap-2 mb-3">
-                                    <TrendingUp className="w-4 h-4 text-emerald-500" />
+                            <motion.div custom={4} variants={itemVariants} className="mb-12 p-8 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-3xl border border-emerald-500/20 group hover:border-emerald-500/40 transition-all duration-500 hover:shadow-lg">
+                                <div className="flex items-center gap-4 mb-6">
+                                    <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500 shadow-sm">
+                                        <TrendingUp className="w-4 h-4" />
+                                    </div>
                                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-500">Proven Performance</span>
                                 </div>
                                 <h5 className="text-xl lg:text-2xl font-black text-brand-black dark:text-brand-white uppercase mb-2 leading-tight">
@@ -216,77 +221,7 @@ const Projects = () => {
     const goNext = useCallback(() => goToSlide(currentIndex + 1, 1), [currentIndex, goToSlide]);
     const goPrev = useCallback(() => goToSlide(currentIndex - 1, -1), [currentIndex, goToSlide]);
 
-    // Wheel listener
-    useEffect(() => {
-        const handleWheel = (e) => {
-            const section = document.getElementById('project-fullscreen-section');
-            if (!section) return;
-            const rect = section.getBoundingClientRect();
-            // We want to be strict: only trigger if section is prominently in view
-            if (rect.top > 120 || rect.bottom < window.innerHeight * 0.4) return;
 
-            const isFirst = currentIndex === 0;
-            const isLast = currentIndex === filteredProjects.length - 1;
-
-            if (e.deltaY > 30 && !isLast) {
-                e.preventDefault();
-                goNext();
-            } else if (e.deltaY < -30 && !isFirst) {
-                e.preventDefault();
-                goPrev();
-            }
-        };
-
-        window.addEventListener('wheel', handleWheel, { passive: false });
-        return () => window.removeEventListener('wheel', handleWheel);
-    }, [currentIndex, filteredProjects.length, goNext, goPrev]);
-
-    // Touch support
-    useEffect(() => {
-        const handleTouchStart = (e) => {
-            touchStartRef.current = e.touches[0].clientY;
-        };
-        const handleTouchEnd = (e) => {
-            if (touchStartRef.current === null) return;
-            const section = document.getElementById('project-fullscreen-section');
-            if (!section) return;
-            const rect = section.getBoundingClientRect();
-            if (rect.top > 120 || rect.bottom < window.innerHeight * 0.4) return;
-
-            const deltaY = touchStartRef.current - e.changedTouches[0].clientY;
-            const isFirst = currentIndex === 0;
-            const isLast = currentIndex === filteredProjects.length - 1;
-
-            if (deltaY > 50 && !isLast) {
-                goNext();
-            } else if (deltaY < -50 && !isFirst) {
-                goPrev();
-            }
-            touchStartRef.current = null;
-        };
-
-        window.addEventListener('touchstart', handleTouchStart, { passive: true });
-        window.addEventListener('touchend', handleTouchEnd, { passive: true });
-        return () => {
-            window.removeEventListener('touchstart', handleTouchStart);
-            window.removeEventListener('touchend', handleTouchEnd);
-        };
-    }, [currentIndex, filteredProjects.length, goNext, goPrev]);
-
-    // Keyboard navigation
-    useEffect(() => {
-        const handleKeyDown = (e) => {
-            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-                e.preventDefault();
-                goNext();
-            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-                e.preventDefault();
-                goPrev();
-            }
-        };
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [goNext, goPrev]);
 
     const currentProject = filteredProjects[currentIndex];
 

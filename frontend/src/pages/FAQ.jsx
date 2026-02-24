@@ -86,7 +86,7 @@ const FAQ = () => {
                                     placeholder="Search for answers..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="w-full bg-white dark:bg-[#1A1A1A] border border-brand-gray-100 dark:border-brand-gray-800 rounded-full py-5 pl-14 pr-8 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-black dark:focus:ring-brand-white focus:border-transparent transition-all shadow-sm dark:text-brand-white placeholder:text-brand-gray-500 dark:placeholder:text-brand-gray-400"
+                                    className="w-full bg-white dark:bg-brand-dark border border-brand-gray-100 dark:border-brand-gray-800 rounded-full py-5 pl-14 pr-8 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-black dark:focus:ring-brand-white focus:border-transparent transition-all shadow-sm dark:text-brand-white placeholder:text-brand-gray-500 dark:placeholder:text-brand-gray-400"
                                 />
                             </div>
                         </FadeIn>
@@ -117,10 +117,12 @@ const FAQ = () => {
                                         </button>
                                     ))}
 
-                                    <div className="dark mt-12 p-8 bg-brand-black dark:bg-[#1E1E1E] rounded-[2rem] text-brand-white">
-                                        <HelpCircle className="w-8 h-8 mb-6 opacity-50" />
+                                    <div className="dark mt-12 p-8 bg-brand-black dark:bg-brand-dark rounded-[2rem] text-brand-white group hover:shadow-2xl transition-all duration-500 border border-brand-gray-900">
+                                        <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-white group-hover:text-brand-black transition-all duration-500 shadow-md">
+                                            <HelpCircle className="w-6 h-6" />
+                                        </div>
                                         <h4 className="text-lg font-bold uppercase tracking-tight mb-4 text-brand-white">Still have questions?</h4>
-                                        <p className="text-sm text-brand-gray-700 dark:text-brand-gray-500 font-light leading-relaxed mb-6">Our solutions engineers are available for technical consultations.</p>
+                                        <p className="text-sm text-brand-gray-700 dark:text-brand-gray-500 font-light leading-relaxed mb-6">Our <strong>solutions engineers</strong> are available for <strong>technical consultations</strong>.</p>
                                         <Link to="/contact" className="inline-flex items-center space-x-2 text-[10px] font-black uppercase tracking-widest group">
                                             <span>Get in touch</span>
                                             <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
