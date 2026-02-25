@@ -376,10 +376,8 @@ const VisionMissionStrip = () => (
                             OUR MISSION
                         </h2>
 
-                        <p className="text-xl sm:text-2xl lg:text-3xl text-brand-gray-700 dark:text-brand-gray-200 leading-[1.3] font-black italic max-w-sm">
-                            At LEAGUE Consultancy,<br />
-                            we don't just build systems —<br />
-                            we engineer impact.
+                        <p className="text-brand-gray-600 dark:text-brand-gray-400 text-sm md:text-base font-medium leading-relaxed max-w-sm">
+                            {mission.statement}
                         </p>
                     </div>
                 </FadeIn>

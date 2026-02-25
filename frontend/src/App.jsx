@@ -8,7 +8,7 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
-import FAQ from './pages/FAQ';
+
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import NotFound from './pages/NotFound';
@@ -23,7 +23,7 @@ const AnimatedRoutes = () => {
                 <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
                 <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
                 <Route path="/projects" element={<PageWrapper><Projects /></PageWrapper>} />
-                <Route path="/faq" element={<PageWrapper><FAQ /></PageWrapper>} />
+
                 <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
                 <Route path="/terms" element={<PageWrapper><Terms /></PageWrapper>} />
                 <Route path="/privacy" element={<PageWrapper><Privacy /></PageWrapper>} />

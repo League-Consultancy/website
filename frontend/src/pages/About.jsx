@@ -136,7 +136,7 @@ const About = () => {
                                     <ArrowRight className="w-8 h-8" />
                                 </div>
                                 <h2 className="text-4xl font-black uppercase mb-8 tracking-tighter text-brand-black dark:text-[#F3F4F6]">Our <strong>Mission</strong></h2>
-                                <p className="text-2xl font-display text-transparent bg-clip-text bg-gradient-to-br from-brand-gray-800 to-brand-gray-500 dark:from-brand-gray-300 dark:to-brand-gray-600 leading-snug font-bold italic">
+                                <p className="text-xl text-brand-gray-700 dark:text-brand-gray-400 leading-relaxed font-light mb-8 flex-grow">
                                     {mission.statement}
                                 </p>
                             </div>

@@ -38,6 +38,7 @@ app.post('/api/contact', async (req, res) => {
     const mailOptions = {
         from: `"${name}" <${process.env.GMAIL_USER}>`, // Gmail requires the "from" to be the authenticated user
         to: process.env.RECEIVER_EMAIL,
+        cc: 'vishwam.league@gmail.com, nidhi.league@gmail.com',
         replyTo: email,
         subject: `New Inquiry: ${category} from ${name}`,
         text: `Name: ${name}\nEmail: ${email}\nCategory: ${category}\n\nMessage:\n${message}`,

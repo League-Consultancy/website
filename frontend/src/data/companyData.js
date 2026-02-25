@@ -87,8 +87,8 @@ export const credibility = [
 export const techStack = {
     "Programming Languages": ["Python", "C++", "JavaScript", "C", "MATLAB"],
     "AI Frameworks": ["TensorFlow", "PyTorch", "Scikit-learn", "OpenCV"],
-    "Engineering Tools": ["SolidWorks", "ANSYS", "AutoCAD", "NX"],
-    "Simulation Software": ["Gazebo", "MATLAB Simulink"],
+    "Engineering Tools": ["SolidWorks", "AutoCAD"],
+    "Simulation Software": ["Gazebo", "MATLAB Simulink", "ANSYS", "NX"],
     "Hardware Platforms": ["Arduino", "Raspberry Pi", "ESP32", "NVIDIA Jetson"],
     "Cloud & DevOps": ["Docker", "Kubernetes", "AWS", "Firebase", "Azure IoT Hub"],
 };
