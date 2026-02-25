@@ -147,8 +147,15 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16">
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-2 space-y-6">
-                        <Link to="/" className="text-2xl font-bold text-brand-black dark:text-brand-white block tracking-tighter">
-                            LEAGUE Consultancy
+                        <Link to="/" className="flex flex-col items-start space-y-4 group">
+                            <img
+                                src="/assets/logo.png"
+                                alt="LEAGUE Consultancy Logo"
+                                className="h-10 lg:h-12 w-auto object-contain dark:brightness-100 brightness-0 opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
+                            />
+                            <span className="text-2xl font-bold text-brand-black dark:text-brand-white block tracking-tighter">
+                                LEAGUE Consultancy
+                            </span>
                         </Link>
                         <p className="text-brand-gray-700 dark:text-brand-gray-400 max-w-md leading-relaxed font-light text-sm text-justify">
                             {company.shortDescription}

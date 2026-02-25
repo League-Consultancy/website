@@ -367,7 +367,7 @@ const VisionMissionStrip = () => (
                 <FadeIn>
                     <div>
                         <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Our Vision</span>
-                        <h3 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">{vision.statement}</h3>
+                        <h3 className="text-3xl md:text-4xl font-bold mb-8 leading-tight text-justify">{vision.statement}</h3>
                         <div className="space-y-4">
                             {differentiators.slice(0, 3).map((diff, idx) => (
                                 <div key={idx} className="flex items-start space-x-4 group">
@@ -382,11 +382,11 @@ const VisionMissionStrip = () => (
                 <FadeIn delay={0.2}>
                     <div className="p-10 lg:p-14 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800">
                         <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Our Mission</span>
-                        <p className="text-xl text-brand-gray-700 dark:text-brand-gray-300 leading-relaxed font-light mb-8">
+                        <p className="text-xl text-brand-gray-700 dark:text-brand-gray-300 leading-relaxed font-light mb-8 text-justify">
                             "{company.corePhilosophy}"
                         </p>
                         <div className="pt-8 border-t border-brand-gray-200 dark:border-brand-gray-800">
-                            <p className="text-sm text-brand-gray-700 dark:text-brand-gray-400 font-light italic leading-relaxed">
+                            <p className="text-sm text-brand-gray-700 dark:text-brand-gray-400 font-light italic leading-relaxed text-justify">
                                 At <span className="font-bold text-brand-black dark:text-brand-white">LEAGUE Consultancy</span>, we don't just build systems — we <span className="font-bold text-brand-black dark:text-brand-white">engineer impact</span>.
                             </p>
                         </div>

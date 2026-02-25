@@ -338,9 +338,17 @@ html:not(.dark) [class*="backdrop-blur-3xl"][class*="shadow-2xl"] {
 
 /* ── 12. ICON BOXES — slightly visible bg in light mode ───────── */
 /* Target specifically icon boxes in light sections, avoid those in dark sections with bg-white/5 etc */
-html:not(.dark) .bg-brand-gray-50 [class*="bg-brand-gray-50"]:not([class*="/"]):not([class*="white"]),
-html:not(.dark) .bg-brand-white [class*="bg-brand-gray-50"]:not([class*="/"]):not([class*="white"]) {
+html:not(.dark) .bg-brand-gray-50 [class*="bg-brand-gray-50"]:not([class*="/"]):not([class*="white"]):not(.group-hover\:bg-brand-black),
+html:not(.dark) .bg-brand-white [class*="bg-brand-gray-50"]:not([class*="/"]):not([class*="white"]):not(.group-hover\:bg-brand-black) {
     background-color: #EFF1F5;
+}
+
+html:not(.dark) .group:hover .group-hover\:bg-brand-black {
+    background-color: #0F172A !important;
+}
+
+html:not(.dark) .group:hover .group-hover\:text-brand-white {
+    color: #FFFFFF !important;
 }
 
 /* ── 13. SCROLLBAR — slightly more visible track ──────────────── */

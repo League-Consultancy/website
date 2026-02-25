@@ -171,7 +171,7 @@ const Contact = () => {
                                         <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center group-hover:bg-brand-white group-hover:text-brand-black transition-all duration-500 shadow-md">
                                             <Globe className="w-6 h-6" />
                                         </div>
-                                        <h3 className="text-lg font-bold uppercase tracking-tight">Inquiry Types</h3>
+                                        <h3 className="text-lg font-bold uppercase tracking-tight text-brand-white">Inquiry Types</h3>
                                     </div>
                                     <div className="space-y-3">
                                         {inquiryCategories.map((cat, idx) => (

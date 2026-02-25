@@ -17,151 +17,107 @@ const FadeIn = ({ children, delay = 0, y = 20, className = "" }) => (
     </motion.div>
 );
 
-// ─── FULL-SCREEN PROJECT SLIDE ──────────────────────────────────
-const ProjectSlide = React.forwardRef(({ project, index, total, direction }, ref) => {
-    const slideVariants = {
-        enter: (dir) => ({
-            x: dir > 0 ? '100%' : '-100%',
-            opacity: 0,
-        }),
-        center: {
-            x: 0,
-            opacity: 1,
-            transition: {
-                x: { type: 'spring', stiffness: 300, damping: 32 },
-                opacity: { duration: 0.4 },
-            }
-        },
-        exit: (dir) => ({
-            x: dir > 0 ? '-100%' : '100%',
-            opacity: 0,
-            transition: {
-                x: { type: 'spring', stiffness: 300, damping: 32 },
-                opacity: { duration: 0.3 },
-            }
-        }),
-    };
+// ─── PROJECT MODAL ──────────────────────────────────────────────
+const ProjectModal = ({ project, onClose }) => {
+    // Add event listener correctly, ignoring missing dependencies
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') onClose();
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        document.body.style.overflow = 'hidden';
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = 'auto';
+        };
+    }, [onClose]);
 
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: (i) => ({
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.5, delay: 0.2 + i * 0.08, ease: [0.22, 1, 0.36, 1] }
-        }),
-    };
+    if (!project) return null;
 
     return (
         <motion.div
-            ref={ref}
-            key={project.id}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            className="absolute inset-0 w-full h-full p-4 sm:p-6 lg:p-8 flex items-center justify-center bg-brand-black overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-12 overflow-y-auto"
         >
-            {/* Background Glow Effect */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-brand-white/5 blur-[120px] rounded-full pointer-events-none z-0" />
+            <div className="absolute inset-0 bg-brand-black/80 backdrop-blur-md" onClick={onClose} />
+            <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 50, scale: 0.95 }}
+                transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                className="relative w-full max-w-5xl bg-brand-white dark:bg-brand-dark rounded-[2rem] border border-brand-gray-100 dark:border-brand-gray-800 shadow-2xl overflow-hidden z-20 flex flex-col md:flex-row max-h-[90vh]"
+                onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+            >
+                {/* Close Button */}
+                <button
+                    onClick={onClose}
+                    className="absolute top-4 right-4 sm:top-6 sm:right-6 z-30 p-2 bg-brand-black/50 text-white hover:bg-brand-black rounded-full backdrop-blur-md transition-colors"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
 
-            <div className="relative z-10 w-full h-full max-w-[1600px] flex flex-col lg:flex-row bg-brand-white dark:bg-brand-dark rounded-[2rem] sm:rounded-[3rem] overflow-hidden border border-brand-gray-100 dark:border-brand-gray-800 shadow-[0_32px_128px_-16px_rgba(0,0,0,0.8)]">
-                {/* Left: Image Side */}
-                <div className="relative w-full lg:w-[45%] xl:w-[48%] h-[35dvh] lg:h-full overflow-hidden bg-brand-gray-900 border-b lg:border-b-0 lg:border-r border-brand-gray-100 dark:border-brand-gray-800 group">
-                    <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover transition-all duration-[2000ms] group-hover:scale-110"
-                    />
-                    {/* Soft Vignette and Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-brand-black/60 via-transparent to-brand-black/20 pointer-events-none" />
+                {/* Left side: Image */}
+                <div className="w-full md:w-2/5 h-64 md:h-auto relative bg-brand-black">
+                    <img src={project.image} alt={project.title} className="w-full h-full object-cover dark:opacity-70 dark:grayscale dark:hover:grayscale-0 dark:hover:opacity-100 transition-all duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-brand-black/60 to-transparent pointer-events-none" />
 
-                    {/* Category Badge - Repositioned for cleaner look */}
                     <div className="absolute top-6 left-6 z-20">
-                        <span className="px-4 py-2 bg-brand-white/10 backdrop-blur-xl text-brand-white text-[9px] font-black uppercase tracking-[0.2em] rounded-lg border border-white/10 shadow-2xl">
+                        <span className="px-4 py-2 bg-brand-white/10 backdrop-blur-xl text-brand-white text-[9px] font-black uppercase tracking-[0.2em] rounded-lg border border-white/10 shadow-lg">
                             {project.category}
-                        </span>
-                    </div>
-
-                    {/* Big number indicator - subtle but premium */}
-                    <div className="absolute bottom-8 left-8 opacity-[0.1] select-none pointer-events-none">
-                        <span className="text-[10rem] lg:text-[12rem] font-black text-white leading-none">
-                            {String(index + 1).padStart(2, '0')}
                         </span>
                     </div>
                 </div>
 
-                {/* Right: Content Side */}
-                <div className="w-full lg:w-[55%] xl:w-[52%] h-full flex flex-col p-8 sm:p-12 lg:p-14 xl:p-20 overflow-y-auto bg-brand-white dark:bg-brand-dark">
-                    <div className="max-w-3xl w-full mx-auto">
-                        <motion.div custom={0} variants={itemVariants} className="mb-4 flex items-center gap-4">
-                            <span className="text-brand-gray-600 dark:text-brand-gray-400 text-[10px] font-black uppercase tracking-[0.4em]">
-                                Project Details
-                            </span>
-                            <div className="h-px flex-grow bg-brand-gray-100 dark:bg-brand-gray-800" />
-                        </motion.div>
+                {/* Right side: Content */}
+                <div className="w-full md:w-3/5 p-8 sm:p-12 overflow-y-auto">
+                    <h3 className="text-3xl font-black uppercase tracking-tight leading-[1] mb-8 text-brand-black dark:text-brand-white">
+                        {project.title}
+                    </h3>
 
-                        <motion.h3
-                            custom={1}
-                            variants={itemVariants}
-                            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black uppercase tracking-tight leading-[1] mb-12 text-brand-black dark:text-brand-white"
-                        >
-                            {project.title}
-                        </motion.h3>
-
-                        <div className="space-y-10 mb-12">
-                            {/* Detailed Info Blocks */}
-                            <motion.div custom={2} variants={itemVariants} className="relative pl-10">
-                                <span className="absolute left-0 top-1 text-[10px] font-black uppercase tracking-widest text-brand-gray-400 dark:text-brand-gray-700">01</span>
-                                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-3">Problem Statement</h4>
-                                <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed text-justify">{project.problem}</p>
-                            </motion.div>
-
-                            {project.challenge && (
-                                <motion.div custom={2.5} variants={itemVariants} className="relative pl-10 border-t border-brand-gray-100 dark:border-brand-gray-900 pt-8">
-                                    <span className="absolute left-0 top-9 text-[10px] font-black uppercase tracking-widest text-brand-gray-400 dark:text-brand-gray-700">02</span>
-                                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-3">Engineering Challenge</h4>
-                                    <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed text-justify">{project.challenge}</p>
-                                </motion.div>
-                            )}
-
-                            <motion.div custom={3} variants={itemVariants} className="relative pl-10 border-t border-brand-gray-100 dark:border-brand-gray-900 pt-8">
-                                <span className="absolute left-0 top-9 text-[10px] font-black uppercase tracking-widest text-brand-gray-400 dark:text-brand-gray-700">{project.challenge ? '03' : '02'}</span>
-                                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-3">Core Objective</h4>
-                                <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed font-bold text-justify">{project.objective}</p>
-                            </motion.div>
-
-                            {project.approach && (
-                                <motion.div custom={3.5} variants={itemVariants} className="relative pl-10 border-t border-brand-gray-100 dark:border-brand-gray-900 pt-8">
-                                    <span className="absolute left-0 top-9 text-[10px] font-black uppercase tracking-widest text-brand-gray-400 dark:text-brand-gray-700">{project.challenge ? '04' : '03'}</span>
-                                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-3">Strategic Approach</h4>
-                                    <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm lg:text-base leading-relaxed italic text-justify">{project.approach}</p>
-                                </motion.div>
-                            )}
-
-                            {project.solution && (
-                                <motion.div custom={3.8} variants={itemVariants} className="p-8 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-3xl border border-brand-gray-100 dark:border-brand-gray-800 group hover:border-brand-gray-300 dark:hover:border-brand-gray-700 transition-all duration-500 shadow-soft hover:shadow-premium">
-                                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-6 flex items-center gap-4">
-                                        <div className="w-8 h-8 rounded-lg bg-brand-gray-100 dark:bg-brand-gray-800 flex items-center justify-center text-brand-black dark:text-brand-white group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-sm">
-                                            <Cpu className="w-4 h-4" />
-                                        </div>
-                                        <span>Technical Solution</span>
-                                    </h4>
-                                    <p className="text-brand-black dark:text-brand-white text-sm lg:text-base leading-relaxed font-medium text-justify">{project.solution}</p>
-                                </motion.div>
-                            )}
+                    <div className="space-y-8 mb-8">
+                        <div>
+                            <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-2">Problem Statement</h4>
+                            <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm leading-relaxed text-justify">{project.problem}</p>
                         </div>
 
-                        {/* Impact Highlight */}
+                        {project.challenge && (
+                            <div>
+                                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-2">Engineering Challenge</h4>
+                                <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm leading-relaxed text-justify">{project.challenge}</p>
+                            </div>
+                        )}
+
+                        <div>
+                            <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-2">Core Objective</h4>
+                            <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm leading-relaxed font-bold text-justify">{project.objective}</p>
+                        </div>
+
+                        {project.approach && (
+                            <div>
+                                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-2">Strategic Approach</h4>
+                                <p className="text-brand-gray-600 dark:text-brand-gray-300 text-sm leading-relaxed italic text-justify">{project.approach}</p>
+                            </div>
+                        )}
+
+                        {project.solution && (
+                            <div className="p-6 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-2xl border border-brand-gray-100 dark:border-brand-gray-800">
+                                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-4 flex items-center gap-3">
+                                    <Cpu className="w-4 h-4" />
+                                    <span>Technical Solution</span>
+                                </h4>
+                                <p className="text-brand-black dark:text-brand-white text-sm leading-relaxed font-medium text-justify">{project.solution}</p>
+                            </div>
+                        )}
+
                         {(project.results || project.impact) && (
-                            <motion.div custom={4} variants={itemVariants} className="mb-12 p-8 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-3xl border border-emerald-500/20 group hover:border-emerald-500/40 transition-all duration-500 hover:shadow-lg">
-                                <div className="flex items-center gap-4 mb-6">
-                                    <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500 shadow-sm">
-                                        <TrendingUp className="w-4 h-4" />
-                                    </div>
+                            <div className="p-6 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-2xl border border-emerald-500/20">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <TrendingUp className="w-4 h-4 text-emerald-500" />
                                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-500">Proven Performance</span>
                                 </div>
-                                <h5 className="text-xl lg:text-2xl font-black text-brand-black dark:text-brand-white uppercase mb-2 leading-tight">
+                                <h5 className="text-xl font-black text-brand-black dark:text-brand-white uppercase mb-1 leading-tight">
                                     {project.results || project.impact}
                                 </h5>
                                 {project.impact && project.impact !== project.results && (
@@ -169,61 +125,74 @@ const ProjectSlide = React.forwardRef(({ project, index, total, direction }, ref
                                         {project.impact}
                                     </p>
                                 )}
-                            </motion.div>
+                            </div>
                         )}
+                    </div>
 
-                        {/* Tech Stack Bar */}
-                        <motion.div custom={5} variants={itemVariants} className="pt-8 border-t border-brand-gray-100 dark:border-brand-gray-800 flex flex-wrap gap-2">
-                            {project.technologies.slice(0, 5).map(tech => (
-                                <span key={tech} className="px-4 py-2 bg-brand-gray-50 dark:bg-brand-gray-900 text-brand-gray-700 dark:text-brand-gray-400 text-[10px] font-bold uppercase tracking-widest rounded-xl border border-brand-gray-100 dark:border-brand-gray-800">
-                                    {tech}
-                                </span>
-                            ))}
-                        </motion.div>
+                    <div className="pt-6 border-t border-brand-gray-100 dark:border-brand-gray-800 flex flex-wrap gap-2">
+                        {project.technologies.slice(0, 5).map(tech => (
+                            <span key={tech} className="px-3 py-1.5 bg-brand-gray-50 dark:bg-brand-gray-900 text-brand-gray-700 dark:text-brand-gray-400 text-[9px] font-bold uppercase tracking-widest rounded-lg border border-brand-gray-100 dark:border-brand-gray-800">
+                                {tech}
+                            </span>
+                        ))}
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </motion.div>
     );
-});
-ProjectSlide.displayName = 'ProjectSlide';
+};
+
+// ─── PROJECT CARD ───────────────────────────────────────────────
+const ProjectCard = ({ project, onClick }) => (
+    <div
+        className="bg-brand-white dark:bg-brand-dark group flex flex-col h-full rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 overflow-hidden hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-700 cursor-pointer"
+        onClick={() => onClick(project)}
+    >
+        <div className="h-56 bg-brand-black relative overflow-hidden">
+            <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover transition-all duration-1000 contrast-[1.1] saturate-[0.9] group-hover:saturate-100 group-hover:scale-105 dark:opacity-70 dark:group-hover:opacity-100 dark:grayscale dark:group-hover:grayscale-0"
+                loading="lazy"
+            />
+            <div className="absolute top-6 right-6 bg-brand-white/10 backdrop-blur-md text-brand-white px-4 py-2 rounded-full text-[8px] font-black uppercase tracking-widest border border-white/10">
+                {project.category}
+            </div>
+        </div>
+        <div className="p-8 flex-grow flex flex-col relative z-20 bg-brand-white dark:bg-brand-dark transition-transform duration-500 group-hover:-translate-y-2">
+            <h3 className="text-xl font-bold mb-3 leading-tight">{project.title}</h3>
+            <p className="text-brand-gray-700 dark:text-brand-gray-500 text-sm leading-relaxed mb-4 font-light line-clamp-2 transition-all duration-500">{project.challenge}</p>
+
+            <div className="flex flex-wrap gap-1.5 mb-6">
+                {project.technologies.slice(0, 3).map(tech => (
+                    <span key={tech} className="px-2.5 py-1 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-gray-700 dark:text-brand-gray-400 text-[10px] font-bold uppercase tracking-widest rounded-lg border border-transparent group-hover:bg-brand-gray-100 dark:group-hover:bg-brand-gray-700 group-hover:border-brand-gray-200 dark:group-hover:border-brand-gray-600 transition-all duration-500">{tech}</span>
+                ))}
+            </div>
+            {project.results && (
+                <p className="text-xs font-bold text-brand-black dark:text-brand-white uppercase tracking-wider mb-4">
+                    ↗ {project.results}
+                </p>
+            )}
+            <div className="mt-auto">
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-black dark:text-brand-white flex items-center group/link">
+                    <span>Explore Case Study</span>
+                    <ArrowRight className="ml-3 w-4 h-4 group-hover/link:translate-x-2 transition-all" />
+                </span>
+            </div>
+        </div>
+    </div>
+);
+
 
 // ─── MAIN PROJECTS PAGE ─────────────────────────────────────────
 const Projects = () => {
     const [filter, setFilter] = useState('All');
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [direction, setDirection] = useState(0);
-    const [isScrollLocked, setIsScrollLocked] = useState(false);
-    const scrollCooldownRef = useRef(null);
-    const touchStartRef = useRef(null);
+    const [selectedProject, setSelectedProject] = useState(null);
     const categories = ['All', ...new Set(projects.map(p => p.category))];
 
     const filteredProjects = filter === 'All'
         ? projects
         : projects.filter(p => p.category === filter);
-
-    // Reset index when filter changes
-    useEffect(() => {
-        setCurrentIndex(0);
-        setDirection(0);
-    }, [filter]);
-
-    const goToSlide = useCallback((newIndex, dir) => {
-        if (isScrollLocked) return;
-        if (newIndex < 0 || newIndex >= filteredProjects.length) return;
-        setIsScrollLocked(true);
-        setDirection(dir);
-        setCurrentIndex(newIndex);
-        clearTimeout(scrollCooldownRef.current);
-        scrollCooldownRef.current = setTimeout(() => setIsScrollLocked(false), 800);
-    }, [isScrollLocked, filteredProjects.length]);
-
-    const goNext = useCallback(() => goToSlide(currentIndex + 1, 1), [currentIndex, goToSlide]);
-    const goPrev = useCallback(() => goToSlide(currentIndex - 1, -1), [currentIndex, goToSlide]);
-
-
-
-    const currentProject = filteredProjects[currentIndex];
 
     return (
         <div className="bg-brand-white dark:bg-brand-black min-h-screen transition-colors duration-300">
@@ -291,82 +260,31 @@ const Projects = () => {
                 </div>
             </div>
 
-            {/* Full-Screen Project Showcase */}
-            {filteredProjects.length > 0 ? (
-                <section
-                    id="project-fullscreen-section"
-                    className="relative w-full overflow-hidden bg-brand-black"
-                    style={{ height: 'calc(100dvh - 120px)' }}
-                >
-                    {/* Animated Slides */}
-                    <AnimatePresence initial={false} custom={direction} mode="popLayout">
-                        <ProjectSlide
-                            key={currentProject.id}
-                            project={currentProject}
-                            index={currentIndex}
-                            total={filteredProjects.length}
-                            direction={direction}
-                        />
-                    </AnimatePresence>
-
-                    {/* Navigation: Left Arrow - Better Floating Position */}
-                    <div className="absolute top-1/2 -translate-y-1/2 left-4 sm:left-6 lg:left-8 z-50 pointer-events-none">
-                        {currentIndex > 0 && (
-                            <motion.button
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,1)', color: '#000' }}
-                                whileTap={{ scale: 0.9 }}
-                                onClick={goPrev}
-                                className="pointer-events-auto w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-brand-white/10 backdrop-blur-2xl border border-white/20 text-white flex items-center justify-center transition-all shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-                            >
-                                <ChevronLeft className="w-6 h-6 lg:w-8 lg:h-8" />
-                            </motion.button>
-                        )}
-                    </div>
-
-                    {/* Navigation: Right Arrow - Better Floating Position */}
-                    <div className="absolute top-1/2 -translate-y-1/2 right-4 sm:right-6 lg:right-8 z-50 pointer-events-none">
-                        {currentIndex < filteredProjects.length - 1 && (
-                            <motion.button
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,1)', color: '#000' }}
-                                whileTap={{ scale: 0.9 }}
-                                onClick={goNext}
-                                className="pointer-events-auto w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-brand-white/10 backdrop-blur-2xl border border-white/20 text-white flex items-center justify-center transition-all shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-                            >
-                                <ChevronRight className="w-6 h-6 lg:w-8 lg:h-8" />
-                            </motion.button>
-                        )}
-                    </div>
-
-                    {/* Dot Indicators */}
-                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex gap-3">
-                        {filteredProjects.map((_, i) => (
-                            <button
-                                key={i}
-                                onClick={() => goToSlide(i, i > currentIndex ? 1 : -1)}
-                                className={`w-2.5 h-2.5 rounded-full transition-all duration-700 ${i === currentIndex
-                                    ? 'bg-brand-black dark:bg-brand-white w-12 shadow-lg'
-                                    : 'bg-brand-gray-300 dark:bg-white/20 hover:bg-brand-gray-400'
-                                    }`}
-                                aria-label={`Go to project ${i + 1}`}
-                            />
-                        ))}
-                    </div>
-                </section>
-            ) : (
-                <section className="h-[60vh] flex items-center justify-center">
-                    <div className="text-center">
-                        <Layers className="w-12 h-12 text-brand-gray-200 dark:text-brand-gray-800 mx-auto mb-8 opacity-50" />
-                        <p className="text-brand-gray-600 dark:text-brand-gray-400 font-bold uppercase tracking-widest text-xs">No projects found for this category.</p>
-                    </div>
-                </section>
-            )}
+            {/* Grid Project Showcase */}
+            <section className="py-16 sm:py-24 transition-colors duration-300">
+                <div className="section-container">
+                    {filteredProjects.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+                            {filteredProjects.map((project, idx) => (
+                                <FadeIn key={project.id} delay={idx * 0.1} className="h-full">
+                                    <ProjectCard
+                                        project={project}
+                                        onClick={(p) => setSelectedProject(p)}
+                                    />
+                                </FadeIn>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="flex flex-col items-center justify-center p-12 text-center border border-brand-gray-100 dark:border-brand-gray-800 rounded-3xl bg-brand-gray-50 dark:bg-brand-gray-900">
+                            <Layers className="w-12 h-12 text-brand-gray-300 dark:text-brand-gray-700 mb-6" />
+                            <p className="text-brand-gray-600 dark:text-brand-gray-400 font-bold uppercase tracking-widest text-xs">No projects found for this category.</p>
+                        </div>
+                    )}
+                </div>
+            </section>
 
             {/* CTA Section */}
-            <section className="py-32 bg-brand-white dark:bg-brand-black">
+            <section className="py-20 sm:py-32 bg-brand-white dark:bg-brand-black">
                 <div className="section-container">
                     <FadeIn>
                         <div className="p-12 lg:p-16 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-[3rem] border border-brand-gray-100 dark:border-brand-gray-800 text-center">
@@ -382,6 +300,16 @@ const Projects = () => {
                     </FadeIn>
                 </div>
             </section>
+
+            {/* Modal */}
+            <AnimatePresence>
+                {selectedProject && (
+                    <ProjectModal
+                        project={selectedProject}
+                        onClose={() => setSelectedProject(null)}
+                    />
+                )}
+            </AnimatePresence>
         </div>
     );
 };
