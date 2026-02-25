@@ -5,7 +5,9 @@
 export const contactService = {
     submitForm: async (formData) => {
         try {
-            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            // For Vercel Serverless Functions, the API is on the same domain (/api/contact)
+            // If running locally, you can set VITE_API_URL or default to localhost:5000
+            const API_URL = import.meta.env.VITE_API_URL || (window.location.hostname === 'localhost' ? 'http://localhost:5000' : '');
             const response = await fetch(`${API_URL}/api/contact`, {
                 method: 'POST',
                 headers: {
