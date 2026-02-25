@@ -71,10 +71,10 @@ const ServiceModal = ({ service, onClose }) => {
 
                 {/* Left side: Image */}
                 <div className="w-full md:w-2/5 h-64 md:h-auto relative bg-brand-black">
-                    <img src={bgImage} alt={service.title} className="w-full h-full object-cover dark:opacity-70 dark:grayscale dark:hover:grayscale-0 dark:hover:opacity-100 transition-all duration-700" />
+                    <img src={bgImage} alt={service.title} className="w-full h-full object-cover transition-all duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-brand-black/60 to-transparent pointer-events-none" />
 
-                    <div className="absolute top-6 left-6 z-20">
+                    <div className="absolute top-6 right-6 z-20">
                         <div className="w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-2xl rounded-xl border border-white/20 shadow-xl text-brand-white">
                             <IconComp className="w-6 h-6" />
                         </div>
@@ -157,12 +157,12 @@ const ServiceCard = ({ service, onClick }) => {
                 <img
                     src={bgImage}
                     alt={service.title}
-                    className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-brand-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
 
                 {/* Icon Badge */}
-                <div className="absolute top-4 left-4">
+                <div className="absolute top-4 right-4">
                     <div className="w-10 h-10 flex items-center justify-center bg-brand-white dark:bg-brand-black/50 backdrop-blur-md rounded-xl text-brand-black dark:text-brand-white border border-brand-gray-100 dark:border-white/10 shadow-sm transition-colors group-hover:bg-brand-black group-hover:text-brand-white dark:group-hover:bg-brand-white dark:group-hover:text-brand-black">
                         <IconComp className="w-5 h-5" />
                     </div>
@@ -221,7 +221,7 @@ const Services = () => {
                         <FadeIn delay={0.3} className="relative flex justify-center lg:justify-end">
                             <div className="relative p-6 md:p-8 bg-brand-black dark:bg-brand-gray-900/40 backdrop-blur-3xl rounded-[3rem] border border-brand-gray-800 dark:border-brand-gray-800 shadow-2xl animate-float">
                                 <div className="relative overflow-hidden rounded-[2.5rem] bg-brand-black aspect-square w-full max-w-[350px] lg:max-w-[400px]">
-                                    <img src="/assets/services_hero.png" alt="Engineering Portfolio" className="w-full h-full object-cover contrast-[1.15] brightness-[1.1] saturate-[0.8] transition-all duration-700 dark:grayscale dark:opacity-70" />
+                                    <img src="/assets/services_hero.png" alt="Engineering Portfolio" className="w-full h-full object-cover contrast-[1.15] brightness-[1.1] transition-all duration-700" />
                                     <div className="absolute inset-0 bg-gradient-to-tr from-brand-black/60 to-transparent" />
                                 </div>
                             </div>

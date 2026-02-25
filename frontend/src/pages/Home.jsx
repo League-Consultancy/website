@@ -349,20 +349,20 @@ const VisionMissionStrip = () => (
         <div className="section-container">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
                 {/* Vision Left */}
-                <FadeIn className="px-4 lg:px-8 py-8 flex flex-col justify-center">
-                    <div className="w-12 h-12 rounded-xl bg-brand-gray-200/50 dark:bg-brand-gray-800 flex items-center justify-center mb-8">
-                        <Target className="w-6 h-6 text-brand-black dark:text-brand-white" />
+                <FadeIn className="h-full">
+                    <div className="h-full p-10 lg:p-14 bg-brand-white dark:bg-brand-dark rounded-[2.5rem] shadow-premium dark:shadow-none dark:border border-brand-gray-800 flex flex-col justify-center">
+                        <div className="w-12 h-12 rounded-xl bg-brand-gray-50 dark:bg-brand-gray-800 flex items-center justify-center mb-8 border border-brand-gray-100 dark:border-brand-gray-700 transition-colors">
+                            <Target className="w-5 h-5 text-brand-black dark:text-brand-white" />
+                        </div>
+
+                        <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-brand-black dark:text-brand-white mb-6">
+                            OUR VISION
+                        </h2>
+
+                        <p className="text-brand-gray-600 dark:text-brand-gray-400 text-sm md:text-base font-medium leading-relaxed max-w-sm">
+                            {vision.statement}
+                        </p>
                     </div>
-
-                    <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-brand-black dark:text-brand-white mb-6">
-                        OUR VISION
-                    </h2>
-
-                    <p className="text-brand-gray-600 dark:text-brand-gray-400 text-sm md:text-base font-medium leading-relaxed max-w-sm">
-                        {vision.statement}
-                    </p>
-
-                    <div className="w-14 h-[3px] bg-brand-black dark:bg-brand-white mt-10 rounded-sm" />
                 </FadeIn>
 
                 {/* Mission Right */}

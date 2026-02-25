@@ -85,7 +85,9 @@ const About = () => {
                                 </div>
                                 <div className="mt-10 p-8 lg:p-12 bg-gradient-to-br from-brand-gray-50 to-white dark:from-brand-gray-900 dark:to-brand-black rounded-3xl border border-brand-gray-100 dark:border-brand-gray-800 shadow-soft">
                                     <p className="text-2xl md:text-3xl font-display font-black tracking-tight italic text-transparent bg-clip-text bg-gradient-to-r from-brand-black to-brand-gray-500 dark:from-brand-white dark:to-brand-gray-400 leading-tight">
-                                        "{company.philosophy}"
+                                        "At LEAGUE Consultancy, <br />
+                                        we don't just build systems <br />
+                                        we engineer impact."
                                     </p>
                                 </div>
                             </div>
@@ -116,22 +118,21 @@ const About = () => {
             <section className="py-32 bg-brand-gray-50 dark:bg-brand-dark/50">
                 <div className="section-container">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-                        <FadeIn>
-                            <div>
-                                <div className="inline-flex p-4 bg-brand-gray-100 dark:bg-brand-gray-900 text-brand-black dark:text-brand-white rounded-2xl mb-10 transition-colors duration-300">
+                        <FadeIn className="h-full">
+                            <div className="h-full p-10 lg:p-14 bg-brand-white dark:bg-brand-dark rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 shadow-premium transition-transform duration-500 hover:-translate-y-2 group flex flex-col justify-center">
+                                <div className="inline-flex p-4 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-black dark:text-brand-white rounded-2xl mb-10 transition-colors duration-300 group-hover:bg-brand-black group-hover:text-brand-white dark:group-hover:bg-brand-white dark:group-hover:text-brand-black w-fit">
                                     <Target className="w-8 h-8" />
                                 </div>
-                                <h2 className="text-4xl font-black uppercase mb-8 tracking-tighter">Our <strong>Vision</strong></h2>
-                                <p className="text-xl text-brand-gray-700 dark:text-brand-gray-400 leading-relaxed font-light mb-8">
+                                <h2 className="text-4xl font-black uppercase mb-8 tracking-tighter text-brand-black dark:text-[#F3F4F6]">Our <strong>Vision</strong></h2>
+                                <p className="text-xl text-brand-gray-700 dark:text-brand-gray-400 leading-relaxed font-light mb-8 flex-grow">
                                     {vision.statement}
                                 </p>
-                                <div className="h-1 w-20 bg-brand-black dark:bg-brand-white rounded-full" />
                             </div>
                         </FadeIn>
 
-                        <FadeIn delay={0.2}>
-                            <div className="p-10 lg:p-14 bg-brand-white dark:bg-brand-dark rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 shadow-premium transition-transform duration-500 hover:-translate-y-2 group">
-                                <div className="inline-flex p-4 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-black dark:text-brand-white rounded-2xl mb-10 transition-colors duration-300 group-hover:bg-brand-black group-hover:text-brand-white dark:group-hover:bg-brand-white dark:group-hover:text-brand-black">
+                        <FadeIn delay={0.2} className="h-full">
+                            <div className="h-full p-10 lg:p-14 bg-brand-white dark:bg-brand-dark rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 shadow-premium transition-transform duration-500 hover:-translate-y-2 group flex flex-col justify-center">
+                                <div className="inline-flex p-4 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-black dark:text-brand-white rounded-2xl mb-10 transition-colors duration-300 group-hover:bg-brand-black group-hover:text-brand-white dark:group-hover:bg-brand-white dark:group-hover:text-brand-black w-fit">
                                     <ArrowRight className="w-8 h-8" />
                                 </div>
                                 <h2 className="text-4xl font-black uppercase mb-8 tracking-tighter text-brand-black dark:text-[#F3F4F6]">Our <strong>Mission</strong></h2>
