@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Clock, MapPin, Send, Globe, MessageSquare, ChevronRight, Linkedin } from 'lucide-react';
+import { Mail, Clock, MapPin, Send, Globe, MessageSquare, ChevronRight, Linkedin, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { contactService } from '../services/api';
 import { company, inquiryCategories, services } from '../data/companyData';
@@ -14,6 +14,56 @@ const FadeIn = ({ children, delay = 0, y = 20 }) => (
         {children}
     </motion.div>
 );
+
+const CustomSelect = ({ name, value, onChange, options, placeholder }) => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const selectRef = React.useRef(null);
+
+    React.useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (selectRef.current && !selectRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
+    const selectedOption = options.find(opt => opt.value === value) || options[0];
+
+    return (
+        <div className="relative w-full" ref={selectRef}>
+            <div
+                className={`w-full bg-brand-gray-50/50 dark:bg-brand-black border-[1.5px] ${isOpen ? 'border-brand-black dark:border-brand-white ring-2 ring-brand-black dark:ring-brand-white' : 'border-brand-gray-100 dark:border-brand-gray-700'} rounded-2xl p-4 text-sm font-medium transition-all duration-300 dark:text-brand-white cursor-pointer flex justify-between items-center group`}
+                onClick={() => setIsOpen(!isOpen)}
+            >
+                <span className={!value && placeholder ? "text-[#9CA3AF] dark:text-brand-gray-600" : ""}>
+                    {selectedOption ? selectedOption.label : placeholder}
+                </span>
+                <ChevronDown className={`w-4 h-4 text-brand-gray-400 group-hover:text-brand-black dark:group-hover:text-brand-white transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+            </div>
+
+            {isOpen && (
+                <div className="absolute z-50 w-full mt-2 bg-brand-white dark:bg-[#1A1A1A] border border-brand-gray-100 dark:border-brand-gray-800 rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.12)] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="max-h-60 overflow-y-auto scrollbar-hide py-2">
+                        {options.map((option) => (
+                            <div
+                                key={option.value}
+                                className={`px-5 py-3 text-sm font-medium cursor-pointer transition-colors ${value === option.value ? 'bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-black dark:text-brand-white' : 'text-brand-gray-600 dark:text-brand-gray-400 hover:bg-brand-gray-50 hover:text-brand-black dark:hover:bg-brand-gray-800 dark:hover:text-brand-white'}`}
+                                onClick={() => {
+                                    onChange({ target: { name, value: option.value } });
+                                    setIsOpen(false);
+                                }}
+                            >
+                                {option.label}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
 
 const ContactInfo = ({ icon: Icon, title, content, subtext }) => (
     <div className="flex items-start space-x-6 group">
@@ -241,32 +291,26 @@ const Contact = () => {
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
                                                 <div className="space-y-2">
                                                     <label htmlFor="contact-category" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#374151] dark:text-[#9CA3AF] ml-4">Inquiry Type</label>
-                                                    <select
-                                                        id="contact-category"
+                                                    <CustomSelect
                                                         name="category"
                                                         value={formData.category}
                                                         onChange={handleChange}
-                                                        className="w-full bg-brand-gray-50/50 dark:bg-brand-black border-[1.5px] border-brand-gray-100 dark:border-brand-gray-700 rounded-2xl p-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-black dark:focus:ring-brand-white focus:border-transparent transition-all duration-300 dark:text-brand-white appearance-none"
-                                                    >
-                                                        {inquiryCategories.map(cat => (
-                                                            <option key={cat} value={cat}>{cat}</option>
-                                                        ))}
-                                                    </select>
+                                                        options={inquiryCategories.map(cat => ({ value: cat, label: cat }))}
+                                                        placeholder="Select Inquiry Type"
+                                                    />
                                                 </div>
                                                 <div className="space-y-2">
                                                     <label htmlFor="contact-service" className="text-[10px] font-black uppercase tracking-[0.2em] text-[#374151] dark:text-[#9CA3AF] ml-4">Service of Interest</label>
-                                                    <select
-                                                        id="contact-service"
+                                                    <CustomSelect
                                                         name="service"
                                                         value={formData.service}
                                                         onChange={handleChange}
-                                                        className="w-full bg-brand-gray-50/50 dark:bg-brand-black border-[1.5px] border-brand-gray-100 dark:border-brand-gray-700 rounded-2xl p-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-black dark:focus:ring-brand-white focus:border-transparent transition-all duration-300 dark:text-brand-white appearance-none"
-                                                    >
-                                                        <option value="">General / Not Sure</option>
-                                                        {services.map(s => (
-                                                            <option key={s.id} value={s.title}>{s.title}</option>
-                                                        ))}
-                                                    </select>
+                                                        options={[
+                                                            { value: "", label: "General / Not Sure" },
+                                                            ...services.map(s => ({ value: s.title, label: s.title }))
+                                                        ]}
+                                                        placeholder="Select Service"
+                                                    />
                                                 </div>
                                             </div>
 

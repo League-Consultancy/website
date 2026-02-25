@@ -211,7 +211,7 @@ const About = () => {
                     <FadeIn>
                         <div className="text-center mb-20">
                             <span className="text-brand-gray-600 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Trust & Recognition</span>
-                            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none">Proof & Credibility</h2>
+                            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none text-brand-white">Proof & Credibility</h2>
                         </div>
                     </FadeIn>
 
@@ -251,7 +251,7 @@ const About = () => {
                                     <h3 className="text-xs font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-8 border-b border-brand-gray-100 dark:border-brand-gray-800 pb-4">{category}</h3>
                                     <div className="flex flex-wrap gap-2 mt-auto">
                                         {techs.map(tech => (
-                                            <span key={tech} className="px-4 py-2 bg-brand-white dark:bg-brand-gray-800 border border-brand-gray-200 dark:border-brand-gray-700 rounded-xl text-[10px] font-bold uppercase tracking-wider text-brand-gray-600 dark:text-brand-gray-300 group-hover:bg-brand-gray-50 dark:group-hover:bg-brand-gray-900 group-hover:border-brand-gray-300 dark:group-hover:border-brand-gray-600 hover:!bg-brand-black hover:!text-brand-white dark:hover:!bg-brand-white dark:hover:!text-brand-black transition-all cursor-default">
+                                            <span key={tech} className="px-4 py-2 bg-brand-white dark:bg-brand-gray-800 border border-brand-gray-200 dark:border-brand-gray-700 rounded-xl text-[10px] font-bold uppercase tracking-wider text-brand-black dark:text-brand-gray-300 group-hover:bg-brand-gray-50 dark:group-hover:bg-brand-gray-900 group-hover:border-brand-gray-300 dark:group-hover:border-brand-gray-600 hover:!bg-brand-black hover:!text-brand-white dark:hover:!bg-brand-white dark:hover:!text-brand-black transition-all cursor-default">
                                                 {tech}
                                             </span>
                                         ))}

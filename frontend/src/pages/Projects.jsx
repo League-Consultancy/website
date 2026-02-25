@@ -64,7 +64,7 @@ const ProjectModal = ({ project, onClose }) => {
                     <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-brand-black/60 to-transparent pointer-events-none" />
 
                     <div className="absolute top-6 left-6 z-20">
-                        <span className="px-4 py-2 bg-brand-white/10 backdrop-blur-xl text-brand-white text-[9px] font-black uppercase tracking-[0.2em] rounded-lg border border-white/10 shadow-lg">
+                        <span className="px-4 py-2 bg-brand-black text-brand-white dark:bg-brand-white dark:text-brand-black text-[9px] font-black uppercase tracking-[0.2em] rounded-lg shadow-xl border border-transparent">
                             {project.category}
                         </span>
                     </div>
@@ -155,7 +155,7 @@ const ProjectCard = ({ project, onClick }) => (
                 className="w-full h-full object-cover transition-all duration-1000 contrast-[1.1] saturate-[0.9] group-hover:saturate-100 group-hover:scale-105 dark:opacity-70 dark:group-hover:opacity-100 dark:grayscale dark:group-hover:grayscale-0"
                 loading="lazy"
             />
-            <div className="absolute top-6 right-6 bg-brand-white/10 backdrop-blur-md text-brand-white px-4 py-2 rounded-full text-[8px] font-black uppercase tracking-widest border border-white/10">
+            <div className="absolute top-6 right-6 bg-brand-black text-brand-white dark:bg-brand-white dark:text-brand-black px-4 py-2 rounded-full text-[8px] font-black uppercase tracking-widest shadow-md border border-transparent">
                 {project.category}
             </div>
         </div>

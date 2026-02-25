@@ -93,20 +93,19 @@
     }
 }
 
-/* Custom scrollbar for premium feel */
+/* Hide complete scrollbar globally */
 ::-webkit-scrollbar {
-    width: 6px;
+    display: none;
+    width: 0;
+    background: transparent;
 }
 
-::-webkit-scrollbar-track {
-    @apply bg-transparent;
+html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-::-webkit-scrollbar-thumb {
-    @apply bg-brand-gray-300 dark:bg-brand-gray-800 rounded-full;
-}
-
-/* Hide scrollbar for horizontal snap-scroll containers */
+/* Retain utility class in case it is explicitly used somewhere without global effect */
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
@@ -321,6 +320,10 @@ html:not(.dark) select:focus {
     box-shadow: 0 0 0 2px #0F172A;
 }
 
+html:not(.dark) option {
+    color: #0F172A !important;
+}
+
 /* ── 10. PREMIUM LABEL — slightly more visible chip ───────────── */
 html:not(.dark) .premium-label {
     background-color: #EFF1F5;
@@ -351,10 +354,7 @@ html:not(.dark) .group:hover .group-hover\:text-brand-white {
     color: #FFFFFF !important;
 }
 
-/* ── 13. SCROLLBAR — slightly more visible track ──────────────── */
-html:not(.dark) ::-webkit-scrollbar-thumb {
-    background-color: #C1C8D4;
-}
+/* Removed scrollbar custom styles to hide scrollbar globally */
 
 /* ═══════════════════════════════════════════════════════════════════
    PHASE 2 FINISHING TOUCHES (High-End SaaS Polish)

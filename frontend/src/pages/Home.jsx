@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Zap, Brain, Bot, Wifi, Settings, Code2, ChevronRight, Rocket, Factory, Building2, FlaskConical, Landmark, Shield, Cog, GraduationCap, Award, ShieldCheck, Handshake, Cpu } from 'lucide-react';
+import { ArrowRight, Zap, Brain, Bot, Wifi, Settings, Code2, ChevronRight, Rocket, Factory, Building2, FlaskConical, Landmark, Shield, Cog, GraduationCap, Award, ShieldCheck, Handshake, Cpu, Target } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { projects } from '../data/projects';
-import { company, vision, services, targetAudience, credibility, differentiators } from '../data/companyData';
+import { company, vision, mission, services, targetAudience, credibility, differentiators } from '../data/companyData';
 
 const iconMap = {
     Brain, Bot, Wifi, Settings, Code2,
@@ -104,22 +104,6 @@ const Hero = () => (
             </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 1 }}
-            className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center gap-3 z-20 pointer-events-none"
-        >
-            <span className="text-[9px] uppercase tracking-[0.3em] text-brand-gray-700 dark:text-brand-gray-500 font-bold">Scroll</span>
-            <div className="w-px h-12 bg-gradient-to-b from-brand-gray-300 dark:from-brand-gray-700 to-transparent relative overflow-hidden">
-                <motion.div
-                    animate={{ y: [0, 48, 0] }}
-                    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                    className="absolute top-0 left-1/2 -translate-x-1/2 w-[3px] h-[3px] bg-brand-black dark:bg-brand-white rounded-full"
-                />
-            </div>
-        </motion.div>
     </section>
 );
 
@@ -224,7 +208,7 @@ const FeaturedProjects = () => {
                     className="w-full h-full object-cover transition-all duration-1000 contrast-[1.1] saturate-[0.9] group-hover:saturate-100 group-hover:scale-105 dark:opacity-70 dark:group-hover:opacity-100 dark:grayscale dark:group-hover:grayscale-0"
                     loading="lazy"
                 />
-                <div className="absolute top-6 right-6 bg-brand-white/10 backdrop-blur-md text-brand-white px-4 py-2 rounded-full text-[8px] font-black uppercase tracking-widest border border-white/10">
+                <div className="absolute top-6 right-6 bg-brand-black text-brand-white dark:bg-brand-white dark:text-brand-black px-4 py-2 rounded-full text-[8px] font-black uppercase tracking-widest shadow-md border border-transparent">
                     {project.category}
                 </div>
             </div>
@@ -361,35 +345,42 @@ const TargetAudienceSection = () => (
 
 // ─── VISION / MISSION STRIP ─────────────────────────
 const VisionMissionStrip = () => (
-    <section className="bg-brand-white dark:bg-brand-black py-16 sm:py-24 border-t border-brand-gray-100 dark:border-brand-gray-900 transition-colors duration-300" id="vision-mission">
+    <section className="bg-brand-gray-50 dark:bg-brand-black py-16 sm:py-24 border-t border-brand-gray-100 dark:border-brand-gray-900 transition-colors duration-300" id="vision-mission">
         <div className="section-container">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-                <FadeIn>
-                    <div>
-                        <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Our Vision</span>
-                        <h3 className="text-3xl md:text-4xl font-bold mb-8 leading-tight text-justify">{vision.statement}</h3>
-                        <div className="space-y-4">
-                            {differentiators.slice(0, 3).map((diff, idx) => (
-                                <div key={idx} className="flex items-start space-x-4 group">
-                                    <div className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-lg bg-brand-gray-100 dark:bg-brand-gray-800 flex items-center justify-center text-brand-black dark:text-brand-white text-[9px] font-black group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-sm">✓</div>
-                                    <p className="text-sm text-brand-gray-700 dark:text-brand-gray-400 font-light">{diff}</p>
-                                </div>
-                            ))}
-                        </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
+                {/* Vision Left */}
+                <FadeIn className="px-4 lg:px-8 py-8 flex flex-col justify-center">
+                    <div className="w-12 h-12 rounded-xl bg-brand-gray-200/50 dark:bg-brand-gray-800 flex items-center justify-center mb-8">
+                        <Target className="w-6 h-6 text-brand-black dark:text-brand-white" />
                     </div>
+
+                    <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-brand-black dark:text-brand-white mb-6">
+                        OUR VISION
+                    </h2>
+
+                    <p className="text-brand-gray-600 dark:text-brand-gray-400 text-sm md:text-base font-medium leading-relaxed max-w-sm">
+                        {vision.statement}
+                    </p>
+
+                    <div className="w-14 h-[3px] bg-brand-black dark:bg-brand-white mt-10 rounded-sm" />
                 </FadeIn>
 
-                <FadeIn delay={0.2}>
-                    <div className="p-10 lg:p-14 bg-brand-gray-50 dark:bg-brand-gray-900 rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800">
-                        <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Our Mission</span>
-                        <p className="text-xl text-brand-gray-700 dark:text-brand-gray-300 leading-relaxed font-light mb-8 text-justify">
-                            "{company.corePhilosophy}"
-                        </p>
-                        <div className="pt-8 border-t border-brand-gray-200 dark:border-brand-gray-800">
-                            <p className="text-sm text-brand-gray-700 dark:text-brand-gray-400 font-light italic leading-relaxed text-justify">
-                                At <span className="font-bold text-brand-black dark:text-brand-white">LEAGUE Consultancy</span>, we don't just build systems — we <span className="font-bold text-brand-black dark:text-brand-white">engineer impact</span>.
-                            </p>
+                {/* Mission Right */}
+                <FadeIn delay={0.2} className="h-full">
+                    <div className="h-full p-10 lg:p-14 bg-brand-white dark:bg-brand-dark rounded-[2.5rem] shadow-premium dark:shadow-none dark:border border-brand-gray-800 flex flex-col justify-center">
+                        <div className="w-12 h-12 rounded-xl bg-brand-gray-50 dark:bg-brand-gray-800 flex items-center justify-center mb-8 border border-brand-gray-100 dark:border-brand-gray-700 transition-colors">
+                            <ArrowRight className="w-5 h-5 text-brand-black dark:text-brand-white" />
                         </div>
+
+                        <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-brand-black dark:text-brand-white mb-6">
+                            OUR MISSION
+                        </h2>
+
+                        <p className="text-xl sm:text-2xl lg:text-3xl text-brand-gray-700 dark:text-brand-gray-200 leading-[1.3] font-black italic max-w-sm">
+                            At LEAGUE Consultancy,<br />
+                            we don't just build systems —<br />
+                            we engineer impact.
+                        </p>
                     </div>
                 </FadeIn>
             </div>

@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Brain, Bot, Wifi, Settings, Code2, ArrowRight, Layers } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { services as serviceData } from '../data/companyData';
 
@@ -26,117 +26,166 @@ const serviceImages = {
     5: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1400",
 };
 
-// ─── SERVICE SLIDE (Full-Bleed with centered content) ────────────
+// ─── SERVICE MODAL ──────────────────────────────────────────────
+const ServiceModal = ({ service, onClose }) => {
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') onClose();
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        document.body.style.overflow = 'hidden';
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = 'auto';
+        };
+    }, [onClose]);
 
-const ServiceSlide = ({ service, index, total }) => {
+    if (!service) return null;
+
     const IconComp = serviceIcons[service.icon] || Layers;
     const bgImage = serviceImages[service.id];
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: { staggerChildren: 0.1, delayChildren: 0.1 }
-        }
-    };
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
-    };
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-12 overflow-y-auto"
+        >
+            <div className="absolute inset-0 bg-brand-black/80 backdrop-blur-md" onClick={onClose} />
+            <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 50, scale: 0.95 }}
+                transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                className="relative w-full max-w-5xl bg-brand-black rounded-[2rem] border border-brand-gray-800 shadow-2xl overflow-hidden z-20 flex flex-col md:flex-row max-h-[90vh]"
+                onClick={(e) => e.stopPropagation()}
+            >
+                {/* Close Button */}
+                <button
+                    onClick={onClose}
+                    className="absolute top-4 right-4 sm:top-6 sm:right-6 z-30 p-2 bg-brand-black/50 text-white hover:bg-brand-black rounded-full backdrop-blur-md transition-colors"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+
+                {/* Left side: Image */}
+                <div className="w-full md:w-2/5 h-64 md:h-auto relative bg-brand-black">
+                    <img src={bgImage} alt={service.title} className="w-full h-full object-cover dark:opacity-70 dark:grayscale dark:hover:grayscale-0 dark:hover:opacity-100 transition-all duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-brand-black/60 to-transparent pointer-events-none" />
+
+                    <div className="absolute top-6 left-6 z-20">
+                        <div className="w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-2xl rounded-xl border border-white/20 shadow-xl text-brand-white">
+                            <IconComp className="w-6 h-6" />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right side: Content */}
+                <div className="w-full md:w-3/5 p-8 sm:p-12 overflow-y-auto bg-brand-black text-brand-white">
+                    <h3 className="text-3xl font-black uppercase tracking-tight leading-[1] mb-8 !text-brand-white">
+                        {service.title}
+                    </h3>
+
+                    <div className="space-y-8 mb-8">
+                        <div>
+                            <p className="text-white/70 text-sm leading-relaxed text-justify">{service.shortDescription}</p>
+                        </div>
+
+                        {service.detailedDescription && (
+                            <div>
+                                <p className="text-white/50 text-sm leading-relaxed text-justify">{service.detailedDescription}</p>
+                            </div>
+                        )}
+
+                        {service.deliverables && (
+                            <div>
+                                <h4 className="text-[10px] uppercase tracking-widest text-white/40 font-bold mb-3">Key Deliverables:</h4>
+                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                    {service.deliverables.map((item, id) => (
+                                        <li key={id} className="flex items-center text-xs text-white/80 font-medium">
+                                            <div className="w-1.5 h-1.5 bg-brand-white rounded-full mr-3 opacity-50" />
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        <div className="pt-4 border-t border-white/10">
+                            <div className="flex flex-wrap gap-2 md:gap-3 mb-6">
+                                {service.metrics && service.metrics.map((metric, mIdx) => (
+                                    <div key={mIdx} className="px-4 py-2.5 bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 shadow-lg">
+                                        <p className="text-base font-black text-brand-white mb-0.5">{metric.split(' ')[0]}</p>
+                                        <p className="text-[8px] uppercase tracking-[0.15em] text-white/50 font-bold">{metric.split(' ').slice(1).join(' ')}</p>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="flex flex-wrap gap-1.5">
+                                {service.technologies.map(tech => (
+                                    <span key={tech} className="px-3 py-1.5 bg-white/5 text-white/60 text-[9px] font-bold uppercase tracking-widest rounded-lg border border-white/5">{tech}</span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="pt-8 border-t border-white/10 flex justify-between items-center group">
+                        <span className="text-xs font-black uppercase tracking-widest">Inquire about {service.title}</span>
+                        <Link to="/contact" className="w-12 h-12 bg-brand-white text-brand-black rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                    </div>
+                </div>
+            </motion.div>
+        </motion.div>
+    );
+};
+
+// ─── SERVICE CARD ─────────────────────────────────────────────
+const ServiceCard = ({ service, onClick }) => {
+    const IconComp = serviceIcons[service.icon] || Layers;
+    const bgImage = serviceImages[service.id];
 
     return (
-        <div className="relative w-screen shrink-0 overflow-hidden group" style={{ height: 'calc(100dvh - 80px)' }}>
-            {/* Full-bleed Background Image */}
-            <div className="absolute inset-0 z-0">
+        <div
+            onClick={onClick}
+            className="group block w-full h-full relative p-6 sm:p-8 bg-brand-gray-50/50 dark:bg-brand-dark rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-premium dark:hover:shadow-none dark:hover:border-brand-gray-600 hover:-translate-y-2 flex flex-col"
+        >
+            {/* Image container */}
+            <div className="relative w-full aspect-[4/3] rounded-[1.5rem] overflow-hidden mb-6 bg-brand-black">
                 <img
                     src={bgImage}
                     alt={service.title}
-                    className="w-full h-full object-cover transition-transform duration-[3000ms] group-hover:scale-105"
+                    className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
                 />
-                {/* Overlay for readability */}
-                <div className="absolute inset-0 bg-brand-black/50" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-black/70 via-brand-black/20 to-brand-black/40" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-brand-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+
+                {/* Icon Badge */}
+                <div className="absolute top-4 left-4">
+                    <div className="w-10 h-10 flex items-center justify-center bg-brand-white dark:bg-brand-black/50 backdrop-blur-md rounded-xl text-brand-black dark:text-brand-white border border-brand-gray-100 dark:border-white/10 shadow-sm transition-colors group-hover:bg-brand-black group-hover:text-brand-white dark:group-hover:bg-brand-white dark:group-hover:text-brand-black">
+                        <IconComp className="w-5 h-5" />
+                    </div>
+                </div>
             </div>
 
-            {/* Content — full-height flex, vertically centered */}
-            <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ amount: 0.3 }}
-                variants={containerVariants}
-                className="relative z-10 h-full w-full flex flex-col justify-between px-6 sm:px-10 md:px-14 lg:px-16 py-6 sm:py-8 md:py-10 text-brand-white"
-            >
-                {/* Top Row: Icon + Counter */}
-                <div className="flex items-center justify-between">
-                    <motion.div variants={itemVariants} className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-white/10 backdrop-blur-2xl rounded-xl border border-white/20 shadow-xl group-hover:bg-brand-white group-hover:text-brand-black transition-all duration-500">
-                        <IconComp className="w-6 h-6 md:w-7 md:h-7" />
-                    </motion.div>
-                    <motion.span variants={itemVariants} className="text-sm md:text-base font-black uppercase tracking-[0.3em] text-white/40">
-                        {String(index + 1).padStart(2, '0')} <span className="text-white/20 mx-1.5">/</span> {String(total).padStart(2, '0')}
-                    </motion.span>
-                </div>
+            {/* Content */}
+            <div className="flex-1 flex flex-col">
+                <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight mb-3 text-brand-black dark:text-brand-white group-hover:text-brand-gray-800 dark:group-hover:text-brand-gray-200 transition-colors">
+                    {service.title}
+                </h3>
 
-                {/* Middle: Title + Description (vertically centered) */}
-                <div className="flex-1 flex flex-col justify-center max-w-4xl py-4 scrollbar-hide overflow-y-auto max-h-[50dvh] pb-8 pr-4">
-                    <motion.h3 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-4 leading-[0.9] text-brand-white">
-                        {service.title}
-                    </motion.h3>
-                    <motion.p variants={itemVariants} className="text-sm sm:text-base md:text-lg text-white/70 leading-relaxed font-light max-w-2xl mb-4">
-                        {service.shortDescription}
-                    </motion.p>
-                    {service.detailedDescription && (
-                        <motion.p variants={itemVariants} className="hidden md:block text-sm md:text-base text-white/50 leading-relaxed font-light max-w-2xl mb-6">
-                            {service.detailedDescription}
-                        </motion.p>
-                    )}
+                <p className="text-sm text-brand-gray-600 dark:text-brand-gray-400 font-medium leading-relaxed mb-6 line-clamp-3 flex-1 text-justify">
+                    {service.shortDescription}
+                </p>
 
-                    {/* Deliverables */}
-                    {service.deliverables && (
-                        <motion.div variants={itemVariants} className="mb-6">
-                            <p className="text-[10px] uppercase tracking-widest text-white/40 font-bold mb-3">Key Deliverables:</p>
-                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-w-2xl">
-                                {service.deliverables.map((item, id) => (
-                                    <li key={id} className="flex items-center text-xs sm:text-sm text-white/80 font-medium">
-                                        <div className="w-1.5 h-1.5 bg-brand-white rounded-full mr-3 opacity-50" />
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </motion.div>
-                    )}
-                </div>
-
-                {/* Bottom: Metrics + Tech Tags + CTA */}
-                <div className="max-w-4xl flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
-                    <div>
-                        {/* Impact Metrics */}
-                        <motion.div variants={itemVariants} className="flex flex-wrap gap-2 md:gap-3 mb-4">
-                            {service.metrics && service.metrics.map((metric, mIdx) => (
-                                <div key={mIdx} className="px-4 py-2.5 md:px-5 md:py-3 bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 shadow-lg">
-                                    <p className="text-base md:text-lg font-black text-brand-white mb-0.5">{metric.split(' ')[0]}</p>
-                                    <p className="text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/50 font-bold">{metric.split(' ').slice(1).join(' ')}</p>
-                                </div>
-                            ))}
-                        </motion.div>
-
-                        {/* Tech Tags */}
-                        <motion.div variants={itemVariants} className="pt-4 border-t border-white/10">
-                            <div className="flex flex-wrap gap-1.5 md:gap-2">
-                                {service.technologies.map(tech => (
-                                    <span key={tech} className="px-3 py-1.5 bg-white/5 text-white/60 text-[9px] md:text-[10px] font-bold uppercase tracking-widest rounded-lg border border-white/5 hover:border-brand-gray-700 transition-all cursor-default">{tech}</span>
-                                ))}
-                            </div>
-                        </motion.div>
+                <div className="flex items-center justify-between pt-4 border-t border-brand-gray-200 dark:border-brand-gray-800">
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gray-500 group-hover:text-brand-black dark:group-hover:text-brand-white transition-colors">Explore Service</span>
+                    <div className="w-8 h-8 rounded-full border border-brand-gray-200 dark:border-brand-gray-700 flex items-center justify-center group-hover:bg-brand-black group-hover:border-brand-black group-hover:text-brand-white dark:group-hover:bg-brand-white dark:group-hover:text-brand-black transition-all">
+                        <ArrowRight className="w-3" />
                     </div>
-
-                    <motion.div variants={itemVariants} className="shrink-0">
-                        <Link to="/contact" className="inline-flex items-center justify-center space-x-3 px-6 py-3 md:px-8 md:py-4 bg-brand-white text-brand-black rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                            <span>Inquire Now</span>
-                            <ArrowRight className="w-4 h-4" />
-                        </Link>
-                    </motion.div>
                 </div>
-            </motion.div>
+            </div>
         </div>
     );
 };
@@ -144,30 +193,17 @@ const ServiceSlide = ({ service, index, total }) => {
 // ─── MAIN SERVICES PAGE ─────────────────────────────────────────
 
 const Services = () => {
-    const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end end"],
-    });
-
-    const totalServices = serviceData.length;
-
-    const x = useTransform(scrollYProgress, (progress) => {
-        const vw = typeof window !== 'undefined' ? window.innerWidth : 1920;
-        return -(progress * (totalServices - 1) * vw);
-    });
+    const [selectedService, setSelectedService] = React.useState(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        document.documentElement.style.scrollBehavior = 'auto';
-        return () => { document.documentElement.style.scrollBehavior = 'smooth'; };
     }, []);
 
     return (
         <div className="w-full bg-brand-white dark:bg-brand-black">
             {/* Hero Header */}
-            <section className="relative w-full flex items-center justify-center bg-brand-gray-50 dark:bg-brand-dark overflow-hidden transition-colors duration-300" style={{ height: 'calc(100dvh - 80px)' }}>
-                <div className="max-w-7xl mx-auto px-6 w-full relative z-10 py-16">
+            <section className="relative w-full pt-32 pb-24 bg-brand-gray-50 dark:bg-brand-dark overflow-hidden transition-colors duration-300">
+                <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
                             <FadeIn><span className="premium-label">Our Expertise</span></FadeIn>
@@ -194,23 +230,25 @@ const Services = () => {
                 </div>
             </section>
 
-            {/* Horizontal Scroll Section */}
-            <section
-                ref={containerRef}
-                className="relative bg-brand-black"
-                style={{ height: `${totalServices * 100}vh` }}
-            >
-                <div className="sticky top-[80px] w-full overflow-hidden" style={{ height: 'calc(100dvh - 80px)' }}>
-                    <motion.div
-                        style={{ x, willChange: "transform" }}
-                        className="flex h-full"
-                    >
+            {/* Grid Section */}
+            <section className="py-24 px-6 relative bg-brand-white dark:bg-brand-black">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {serviceData.map((service, idx) => (
-                            <ServiceSlide key={service.id} service={service} index={idx} total={totalServices} />
+                            <FadeIn key={service.id} delay={idx * 0.1} className="h-full">
+                                <ServiceCard service={service} onClick={() => setSelectedService(service)} />
+                            </FadeIn>
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </section>
+
+            {/* Modal */}
+            <AnimatePresence>
+                {selectedService && (
+                    <ServiceModal service={selectedService} onClose={() => setSelectedService(null)} />
+                )}
+            </AnimatePresence>
 
             {/* After-Scroll Sections */}
             <div className="relative z-20 bg-brand-white dark:bg-brand-black border-t border-brand-gray-100 dark:border-brand-gray-900">
