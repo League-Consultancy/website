@@ -281,12 +281,12 @@ const FeaturedProjects = () => {
 
 // ─── CREDIBILITY SECTION ────────────────────────────
 const CredibilitySection = () => (
-    <section className="dark bg-brand-black dark:bg-brand-gray-900 py-16 sm:py-24 text-brand-white transition-colors duration-700" id="credibility">
+    <section className="bg-brand-white dark:bg-brand-black py-16 sm:py-24 border-t border-brand-gray-100 dark:border-brand-gray-900 transition-colors duration-300" id="credibility">
         <div className="section-container">
             <FadeIn>
                 <div className="text-center mb-20">
-                    <span className="text-brand-gray-600 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Why Trust Us</span>
-                    <h2 className="text-3xl md:text-4xl font-bold text-brand-white">Proof & Credibility</h2>
+                    <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Why Trust Us</span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-brand-black dark:text-brand-white">Proof & Credibility</h2>
                 </div>
             </FadeIn>
 
@@ -295,11 +295,11 @@ const CredibilitySection = () => (
                     const IconComp = iconMap[item.icon] || Award;
                     return (
                         <FadeIn key={idx} delay={idx * 0.1} className="h-full">
-                            <div className="text-center group p-8 lg:p-10 rounded-[2.5rem] border border-brand-gray-800 hover:border-brand-gray-600 transition-all duration-500 bg-brand-white/5 dark:bg-white/5 h-full flex flex-col justify-center">
-                                <div className="p-5 bg-white/5 rounded-2xl w-fit mx-auto mb-6 group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-sm">
+                            <div className="text-center group p-8 lg:p-10 rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 hover:border-brand-gray-300 dark:hover:border-brand-gray-600 transition-all duration-500 bg-brand-white dark:bg-brand-dark hover:-translate-y-2 shadow-soft hover:shadow-premium h-full flex flex-col justify-center">
+                                <div className="p-5 bg-brand-gray-50 dark:bg-brand-gray-800 rounded-2xl w-fit mx-auto mb-6 group-hover:bg-brand-black dark:group-hover:bg-brand-white text-brand-black dark:text-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-md">
                                     <IconComp className="w-8 h-8" />
                                 </div>
-                                <h3 className="text-lg font-bold uppercase tracking-tight mb-3 text-brand-white">{item.title}</h3>
+                                <h3 className="text-lg font-bold uppercase tracking-tight mb-3 text-brand-black dark:text-brand-white">{item.title}</h3>
                                 <p className="text-brand-gray-600 dark:text-brand-gray-400 text-sm font-light leading-relaxed">{item.description}</p>
                             </div>
                         </FadeIn>
@@ -351,11 +351,11 @@ const VisionMissionStrip = () => (
                 {/* Vision Left */}
                 <FadeIn className="h-full">
                     <div className="h-full p-10 lg:p-14 bg-brand-white dark:bg-brand-dark rounded-[2.5rem] shadow-premium dark:shadow-none dark:border border-brand-gray-800 flex flex-col justify-center">
-                        <div className="w-12 h-12 rounded-xl bg-brand-gray-50 dark:bg-brand-gray-800 flex items-center justify-center mb-8 border border-brand-gray-100 dark:border-brand-gray-700 transition-colors">
+                        <div className="w-12 h-12 mx-auto rounded-xl bg-brand-gray-50 dark:bg-brand-gray-800 flex items-center justify-center mb-8 border border-brand-gray-100 dark:border-brand-gray-700 transition-colors">
                             <Target className="w-5 h-5 text-brand-black dark:text-brand-white" />
                         </div>
 
-                        <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-brand-black dark:text-brand-white mb-6">
+                        <h2 className="text-2xl md:text-3xl text-center font-black uppercase tracking-tight text-brand-black dark:text-brand-white mb-6">
                             OUR VISION
                         </h2>
 
@@ -368,11 +368,11 @@ const VisionMissionStrip = () => (
                 {/* Mission Right */}
                 <FadeIn delay={0.2} className="h-full">
                     <div className="h-full p-10 lg:p-14 bg-brand-white dark:bg-brand-dark rounded-[2.5rem] shadow-premium dark:shadow-none dark:border border-brand-gray-800 flex flex-col justify-center">
-                        <div className="w-12 h-12 rounded-xl bg-brand-gray-50 dark:bg-brand-gray-800 flex items-center justify-center mb-8 border border-brand-gray-100 dark:border-brand-gray-700 transition-colors">
+                        <div className="w-12 h-12 mx-auto rounded-xl bg-brand-gray-50 dark:bg-brand-gray-800 flex items-center justify-center mb-8 border border-brand-gray-100 dark:border-brand-gray-700 transition-colors">
                             <ArrowRight className="w-5 h-5 text-brand-black dark:text-brand-white" />
                         </div>
 
-                        <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-brand-black dark:text-brand-white mb-6">
+                        <h2 className="text-2xl md:text-3xl text-center font-black uppercase tracking-tight text-brand-black dark:text-brand-white mb-6">
                             OUR MISSION
                         </h2>
 

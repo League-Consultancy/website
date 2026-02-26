@@ -2,7 +2,7 @@ import React from 'react';
 import { Target, Users, Landmark, Award, ArrowRight, GraduationCap, ShieldCheck, Handshake, User, Cpu, Wrench, Monitor, CircuitBoard, Code2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { company, vision, mission, founder, teamExpertise, differentiators, credibility, techStack } from '../data/companyData';
+import { company, vision, mission, teams, differentiators, credibility, techStack } from '../data/companyData';
 
 const FadeIn = ({ children, delay = 0, y = 20, className = "" }) => (
     <motion.div
@@ -120,10 +120,10 @@ const About = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
                         <FadeIn className="h-full">
                             <div className="h-full p-10 lg:p-14 bg-brand-white dark:bg-brand-dark rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 shadow-premium transition-transform duration-500 hover:-translate-y-2 group flex flex-col justify-center">
-                                <div className="inline-flex p-4 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-black dark:text-brand-white rounded-2xl mb-10 transition-colors duration-300 group-hover:bg-brand-black group-hover:text-brand-white dark:group-hover:bg-brand-white dark:group-hover:text-brand-black w-fit">
+                                <div className="inline-flex mx-auto p-4 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-black dark:text-brand-white rounded-2xl mb-10 transition-colors duration-300 group-hover:bg-brand-black group-hover:text-brand-white dark:group-hover:bg-brand-white dark:group-hover:text-brand-black w-fit">
                                     <Target className="w-8 h-8" />
                                 </div>
-                                <h2 className="text-4xl font-black uppercase mb-8 tracking-tighter text-brand-black dark:text-[#F3F4F6]">Our <strong>Vision</strong></h2>
+                                <h2 className="text-4xl text-center font-black uppercase mb-8 tracking-tighter text-brand-black dark:text-[#F3F4F6]">Our <strong>Vision</strong></h2>
                                 <p className="text-xl text-brand-gray-700 dark:text-brand-gray-400 leading-relaxed font-light mb-8 flex-grow">
                                     {vision.statement}
                                 </p>
@@ -132,10 +132,10 @@ const About = () => {
 
                         <FadeIn delay={0.2} className="h-full">
                             <div className="h-full p-10 lg:p-14 bg-brand-white dark:bg-brand-dark rounded-[2.5rem] border border-brand-gray-100 dark:border-brand-gray-800 shadow-premium transition-transform duration-500 hover:-translate-y-2 group flex flex-col justify-center">
-                                <div className="inline-flex p-4 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-black dark:text-brand-white rounded-2xl mb-10 transition-colors duration-300 group-hover:bg-brand-black group-hover:text-brand-white dark:group-hover:bg-brand-white dark:group-hover:text-brand-black w-fit">
+                                <div className="inline-flex mx-auto p-4 bg-brand-gray-50 dark:bg-brand-gray-800 text-brand-black dark:text-brand-white rounded-2xl mb-10 transition-colors duration-300 group-hover:bg-brand-black group-hover:text-brand-white dark:group-hover:bg-brand-white dark:group-hover:text-brand-black w-fit">
                                     <ArrowRight className="w-8 h-8" />
                                 </div>
-                                <h2 className="text-4xl font-black uppercase mb-8 tracking-tighter text-brand-black dark:text-[#F3F4F6]">Our <strong>Mission</strong></h2>
+                                <h2 className="text-4xl text-center font-black uppercase mb-8 tracking-tighter text-brand-black dark:text-[#F3F4F6]">Our <strong>Mission</strong></h2>
                                 <p className="text-xl text-brand-gray-700 dark:text-brand-gray-400 leading-relaxed font-light mb-8 flex-grow">
                                     {mission.statement}
                                 </p>
@@ -160,48 +160,57 @@ const About = () => {
                 </div>
             </section>
 
-            {/* ─── FOUNDER & TEAM ────────────────────────── */}
-            <section className="py-32">
+            {/* ─── OUR TEAM ─────────────────────────────── */}
+            <section className="py-32 bg-brand-white dark:bg-brand-black transition-colors duration-300">
                 <div className="section-container">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-                        <FadeIn>
-                            <div>
-                                <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Leadership</span>
-                                <h2 className="text-4xl font-black uppercase tracking-tighter mb-10">Meet Our Founder</h2>
-                                <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-6 sm:space-y-0 sm:space-x-8 mb-10">
-                                    <div className="relative w-32 h-32 rounded-3xl overflow-hidden border border-brand-gray-200 dark:border-brand-gray-800 shadow-premium group">
-                                        <div className="absolute inset-0 bg-brand-gray-100 dark:bg-brand-gray-900 flex items-center justify-center">
-                                            <User className="w-12 h-12 text-brand-gray-400 group-hover:scale-110 transition-transform duration-500" />
-                                        </div>
-                                        <div className="absolute inset-0 bg-gradient-to-tr from-brand-black/20 to-transparent pointer-events-none" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-3xl font-black tracking-tight mb-2">{founder.name}</h3>
-                                        <p className="inline-flex items-center space-x-2 bg-brand-gray-50 dark:bg-brand-gray-900 px-4 py-2 rounded-lg text-brand-gray-700 dark:text-brand-gray-400 text-xs font-bold uppercase tracking-widest border border-brand-gray-100 dark:border-brand-gray-800">{founder.title}</p>
-                                    </div>
-                                </div>
-                                <p className="text-lg text-brand-gray-700 dark:text-brand-gray-400 leading-relaxed font-light border-l-4 border-brand-gray-200 dark:border-brand-gray-800 pl-6 text-justify">
-                                    {founder.bio}
-                                </p>
-                            </div>
-                        </FadeIn>
+                    <FadeIn>
+                        <div className="text-center mb-20">
+                            <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">The People</span>
+                            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-brand-black dark:text-brand-white">Our Team</h2>
+                        </div>
+                    </FadeIn>
 
-                        <FadeIn delay={0.2}>
-                            <div>
-                                <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-6 block">Team Expertise</span>
-                                <h3 className="text-3xl font-black uppercase tracking-tighter mb-10">Collective Strengths</h3>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    {teamExpertise.map((area, idx) => (
-                                        <div key={idx} className="flex items-center space-x-4 p-6 bg-brand-gray-50/50 dark:bg-brand-dark rounded-[1.5rem] border border-brand-gray-100 dark:border-brand-gray-800 group hover:border-brand-gray-300 dark:hover:border-brand-gray-700 hover:shadow-premium transition-all duration-300">
-                                            <div className="w-10 h-10 bg-white dark:bg-brand-gray-800 rounded-xl flex items-center justify-center text-brand-black dark:text-brand-white text-[10px] font-black group-hover:bg-brand-black dark:group-hover:bg-brand-white group-hover:text-brand-white dark:group-hover:text-brand-black transition-all duration-500 shadow-md">
-                                                {String(idx + 1).padStart(2, '0')}
-                                            </div>
-                                            <span className="font-bold text-[10px] uppercase tracking-widest text-brand-gray-700 dark:text-brand-gray-300 group-hover:text-brand-black dark:group-hover:text-brand-white transition-colors">{area}</span>
+                    <div className="space-y-24">
+                        {teams.map((team, idx) => (
+                            <div key={idx} className="team-category">
+                                <FadeIn>
+                                    <h3 className="text-2xl font-black uppercase tracking-tight border-b border-brand-gray-100 dark:border-brand-gray-800 pb-4 mb-10 text-brand-black dark:text-brand-white">{team.name}</h3>
+                                </FadeIn>
+
+                                {team.members.length > 0 ? (
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                                        {team.members.map((member, mIdx) => (
+                                            <FadeIn key={mIdx} delay={mIdx * 0.1} className="h-full">
+                                                <div className="group h-full rounded-[2rem] border border-brand-gray-100 dark:border-brand-gray-800 bg-brand-gray-50 dark:bg-brand-dark p-8 transition-all duration-300 hover:shadow-premium hover:-translate-y-2 flex flex-col items-center text-center">
+                                                    <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-brand-white dark:border-brand-gray-700 mb-6 bg-brand-gray-200 dark:bg-brand-gray-800 flex items-center justify-center shadow-inner">
+                                                        {member.image ? (
+                                                            <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                                                        ) : (
+                                                            <User className="w-12 h-12 text-brand-gray-400 dark:text-brand-gray-500 group-hover:scale-110 transition-transform duration-500" />
+                                                        )}
+                                                    </div>
+                                                    <h4 className="text-xl font-bold text-brand-black dark:text-brand-white mb-2">{member.name}</h4>
+                                                    <span className="text-xs font-bold text-brand-gray-600 dark:text-brand-gray-400 uppercase tracking-widest mb-6 inline-block bg-brand-white dark:bg-brand-gray-800 px-3 py-1.5 rounded-lg border border-brand-gray-100 dark:border-brand-gray-700">{member.role}</span>
+                                                    {member.linkedin && (
+                                                        <div className="mt-auto w-full pt-4">
+                                                            <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="block w-full py-3 rounded-xl border border-brand-gray-200 dark:border-brand-gray-700 text-[10px] font-black uppercase tracking-widest hover:bg-brand-black hover:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-black transition-all">
+                                                                LinkedIn Profile
+                                                            </a>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </FadeIn>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <FadeIn>
+                                        <div className="p-10 border border-dashed border-brand-gray-200 dark:border-brand-gray-800 rounded-[2rem] text-center bg-brand-gray-50/50 dark:bg-brand-dark/50">
+                                            <p className="text-brand-gray-500 dark:text-brand-gray-400 font-medium text-sm">We are expanding this team. Member profiles will be updated soon.</p>
                                         </div>
-                                    ))}
-                                </div>
+                                    </FadeIn>
+                                )}
                             </div>
-                        </FadeIn>
+                        ))}
                     </div>
                 </div>
             </section>

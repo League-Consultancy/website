@@ -39,12 +39,12 @@ export const LoadingScreen = ({ onComplete }) => {
                         className="relative w-20 h-20 mb-8 flex items-center justify-center bg-white dark:bg-brand-gray-900 rounded-2xl shadow-premium border border-brand-gray-100 dark:border-brand-gray-800 overflow-hidden"
                     >
                         <motion.div
-                            initial={{ y: 50, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
                             transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
-                            className="text-4xl font-display font-black tracking-tighter text-brand-black dark:text-brand-white"
+                            className="w-12 h-12"
                         >
-                            L
+                            <img src="/assets/logo.png" alt="LEAGUE Consultancy Logo" className="w-full h-full object-contain dark:brightness-100 brightness-0" />
                         </motion.div>
 
                         {/* Shimmer effect over logo */}

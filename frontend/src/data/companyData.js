@@ -37,18 +37,40 @@ export const differentiators = [
     "Industry + academic collaboration mindset",
 ];
 
-export const founder = {
-    name: "Aman Verma",
-    title: "Founder & Lead Engineer",
-    bio: "Aman Verma is a technology entrepreneur and AI engineer specializing in robotics and intelligent automation systems. He has led multiple industry and research-driven projects focused on real-world AI deployment.",
-};
-
-export const teamExpertise = [
-    "Artificial Intelligence",
-    "Robotics Engineering",
-    "Embedded Systems",
-    "Full-Stack Development",
-    "Industrial Automation",
+export const teams = [
+    {
+        name: "Artificial Intelligence Solutions",
+        members: [
+            {
+                name: "Kartik",
+                role: "AI Engineer",
+                image: "",
+                linkedin: "#"
+            },
+            {
+                name: "Maitry",
+                role: "AI Engineer",
+                image: "",
+                linkedin: "#"
+            }
+        ]
+    },
+    {
+        name: "Robotics Engineering & Prototyping",
+        members: []
+    },
+    {
+        name: "IoT & Smart Systems",
+        members: []
+    },
+    {
+        name: "Industrial Automation",
+        members: []
+    },
+    {
+        name: "Custom Software Development",
+        members: []
+    }
 ];
 
 export const targetAudience = [
@@ -57,8 +79,9 @@ export const targetAudience = [
     { name: "Industrial Automation Companies", icon: "Cog" },
     { name: "Smart City Developers", icon: "Building2" },
     { name: "Research Labs", icon: "FlaskConical" },
-    { name: "Mid-to-Large Enterprises", icon: "Landmark" },
+    { name: "MSMEs", icon: "Landmark" },
     { name: "Government Technology Projects", icon: "Shield" },
+    { name: "Colleges & Institutes", icon: "GraduationCap" },
 ];
 
 export const credibility = [
