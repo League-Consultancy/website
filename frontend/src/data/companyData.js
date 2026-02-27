@@ -41,45 +41,45 @@ export const teams = [
     {
         name: "Artificial Intelligence & ML Team",
         members: [
-            { name: "Dharav", role: "AI/ML Engineer", image: "/assets/team/AI_ML/Dharav.jpeg", linkedin: "#" },
-            { name: "Ronak", role: "AI/ML Engineer", image: "/assets/team/AI_ML/Ronak.png", linkedin: "#" },
-            { name: "Rushi", role: "AI/ML Engineer", image: "/assets/team/AI_ML/Rushi.jpeg", linkedin: "#" },
-            { name: "Shrayansh", role: "AI/ML Engineer", image: "/assets/team/AI_ML/Shrayansh.jpeg", linkedin: "#" },
+            { name: "Dharav", role: "AI/ML Engineer", image: "/assets/team/AI_ML/Dharav.jpeg", linkedin: "https://www.linkedin.com/in/dharav-antani-32182528b" },
+            { name: "Ronak", role: "AI/ML Engineer", image: "/assets/team/AI_ML/Ronak.png", linkedin: "https://www.linkedin.com/in/ronak-javiya-335a28244/" },
+            { name: "Rushi", role: "AI/ML Engineer", image: "/assets/team/AI_ML/Rushi.jpeg", linkedin: "https://www.linkedin.com/in/parekh-rushi-742914284" },
+            { name: "Shrayansh", role: "AI/ML Engineer", image: "/assets/team/AI_ML/Shrayansh.jpeg", linkedin: "https://www.linkedin.com/in/shreyansh-joshi-280a41244/" },
         ]
     },
     {
         name: "Robotics Team",
         members: [
-            { name: "Dhrumil", role: "Robotics Engineer", image: "", linkedin: "#" }, // .HEIC fallback
-            { name: "Poorvi", role: "Robotics Engineer", image: "/assets/team/Robotics/Poorvi.jpeg", linkedin: "#" },
+            { name: "Dhrumil", role: "Robotics Engineer", image: "/assets/team/Robotics/Dhrumil.jpg", linkedin: "https://www.linkedin.com/in/dhrumil-vaghela-6b4031304" },
+            { name: "Poorvi", role: "Robotics Engineer", image: "/assets/team/Robotics/Poorvi.jpeg", linkedin: "https://www.linkedin.com/in/poorvi-gupta-121745319" },
         ]
     },
     {
         name: "Electronics & Communication Team",
         members: [
-            { name: "Dhananjay", role: "EC Engineer", image: "/assets/team/EC/Dhananjay.jpeg", linkedin: "#" },
-            { name: "Dhruvi", role: "EC Engineer", image: "/assets/team/EC/Dhruvi.jpeg", linkedin: "#" },
-            { name: "Huzaif", role: "EC Engineer", image: "/assets/team/EC/Huzaif.jpeg", linkedin: "#" },
-            { name: "Jaydev", role: "EC Engineer", image: "/assets/team/EC/Jaydev.jpeg", linkedin: "#" },
+            { name: "Dhananjay", role: "EC Engineer", image: "/assets/team/EC/Dhananjay.jpeg", linkedin: "https://www.linkedin.com/in/dhananjay-saini-19029b378" },
+            { name: "Dhruvi", role: "EC Engineer", image: "/assets/team/EC/Dhruvi.jpeg", linkedin: "https://www.linkedin.com/in/dhruvi-r-83a2b0329" },
+            { name: "Huzaif", role: "EC Engineer", image: "/assets/team/EC/Huzaif.jpeg", linkedin: "https://www.linkedin.com/in/huzaifravda" },
+            { name: "Jaydev", role: "EC Engineer", image: "/assets/team/EC/Jaydev.jpeg", linkedin: "https://www.linkedin.com/in/jaydev-arapada" },
         ]
     },
     {
         name: "Electrical Engineering Team",
         members: [
-            { name: "Bhautik", role: "Electrical Engineer", image: "/assets/team/Electrical/Bhautik.jpeg", linkedin: "#" },
-            { name: "Bhumi", role: "Electrical Engineer", image: "/assets/team/Electrical/Bhumi.jpeg", linkedin: "#" },
-            { name: "Dhwanit", role: "Electrical Engineer", image: "/assets/team/Electrical/Dhwanit.jpeg", linkedin: "#" },
-            { name: "Esha", role: "Electrical Engineer", image: "/assets/team/Electrical/Esha.jpeg", linkedin: "#" },
-            { name: "Harshil", role: "Electrical Engineer", image: "/assets/team/Electrical/Harshil.jpeg", linkedin: "#" },
-            { name: "Keny", role: "Electrical Engineer", image: "/assets/team/Electrical/Keny.jpeg", linkedin: "#" },
+            { name: "Bhautik", role: "Electrical Engineer", image: "/assets/team/Electrical/Bhautik.jpeg", linkedin: "https://www.linkedin.com/in/bhautik-salet-79545a378" },
+            { name: "Bhumi", role: "Electrical Engineer", image: "/assets/team/Electrical/Bhumi.jpeg", linkedin: "https://www.linkedin.com/in/bhumi-jindal-9b825b37b" },
+            { name: "Dhwanit", role: "Electrical Engineer", image: "/assets/team/Electrical/Dhwanit.jpeg", linkedin: "https://www.linkedin.com/in/dhwanit-chauhan-a17780373" },
+            { name: "Esha", role: "Electrical Engineer", image: "/assets/team/Electrical/Esha.jpeg", linkedin: "https://www.linkedin.com/in/esha-patel-5a4b56378" },
+            { name: "Harshil", role: "Electrical Engineer", image: "/assets/team/Electrical/Harshil.jpeg", linkedin: "https://www.linkedin.com/in/harshilkotadiya" },
+            { name: "Keny", role: "Electrical Engineer", image: "/assets/team/Electrical/Keny.jpeg", linkedin: "https://www.linkedin.com/in/keny-patel-3b1348318/" },
         ]
     },
     {
         name: "Mechanical Engineering Team",
         members: [
-            { name: "Nidhish", role: "Mechanical Engineer", image: "/assets/team/Mechanical/Nidhish.jpeg", linkedin: "#" },
-            { name: "Prince", role: "Mechanical Engineer", image: "/assets/team/Mechanical/Prince.jpeg", linkedin: "#" },
-            { name: "Vrudit", role: "Mechanical Engineer", image: "", linkedin: "#" }, // .pdf fallback
+            { name: "Nidhish", role: "Mechanical Engineer", image: "/assets/team/Mechanical/Nidhish.jpeg", linkedin: "https://www.linkedin.com/in/nidhish101" },
+            { name: "Prince", role: "Mechanical Engineer", image: "/assets/team/Mechanical/Prince.jpeg", linkedin: "https://www.linkedin.com/in/prince-khanwani-b9759b321" },
+            { name: "Vrudit", role: "Mechanical Engineer", image: "/assets/team/Mechanical/Vrudit.png", linkedin: "https://www.linkedin.com/in/vrudit-chavda-5855722a7" },
         ]
     }
 ];
