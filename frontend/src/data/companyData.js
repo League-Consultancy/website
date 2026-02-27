@@ -39,37 +39,48 @@ export const differentiators = [
 
 export const teams = [
     {
-        name: "Artificial Intelligence Solutions",
+        name: "Artificial Intelligence & ML Team",
         members: [
-            {
-                name: "Kartik",
-                role: "AI Engineer",
-                image: "",
-                linkedin: "#"
-            },
-            {
-                name: "Maitry",
-                role: "AI Engineer",
-                image: "",
-                linkedin: "#"
-            }
+            { name: "Dharav", role: "AI/ML Engineer", image: "/assets/team/AI_ML/Dharav.jpeg", linkedin: "#" },
+            { name: "Ronak", role: "AI/ML Engineer", image: "/assets/team/AI_ML/Ronak.png", linkedin: "#" },
+            { name: "Rushi", role: "AI/ML Engineer", image: "/assets/team/AI_ML/Rushi.jpeg", linkedin: "#" },
+            { name: "Shrayansh", role: "AI/ML Engineer", image: "/assets/team/AI_ML/Shrayansh.jpeg", linkedin: "#" },
         ]
     },
     {
-        name: "Robotics Engineering & Prototyping",
-        members: []
+        name: "Robotics Team",
+        members: [
+            { name: "Dhrumil", role: "Robotics Engineer", image: "", linkedin: "#" }, // .HEIC fallback
+            { name: "Poorvi", role: "Robotics Engineer", image: "/assets/team/Robotics/Poorvi.jpeg", linkedin: "#" },
+        ]
     },
     {
-        name: "IoT & Smart Systems",
-        members: []
+        name: "Electronics & Communication Team",
+        members: [
+            { name: "Dhananjay", role: "EC Engineer", image: "/assets/team/EC/Dhananjay.jpeg", linkedin: "#" },
+            { name: "Dhruvi", role: "EC Engineer", image: "/assets/team/EC/Dhruvi.jpeg", linkedin: "#" },
+            { name: "Huzaif", role: "EC Engineer", image: "/assets/team/EC/Huzaif.jpeg", linkedin: "#" },
+            { name: "Jaydev", role: "EC Engineer", image: "/assets/team/EC/Jaydev.jpeg", linkedin: "#" },
+        ]
     },
     {
-        name: "Industrial Automation",
-        members: []
+        name: "Electrical Engineering Team",
+        members: [
+            { name: "Bhautik", role: "Electrical Engineer", image: "/assets/team/Electrical/Bhautik.jpeg", linkedin: "#" },
+            { name: "Bhumi", role: "Electrical Engineer", image: "/assets/team/Electrical/Bhumi.jpeg", linkedin: "#" },
+            { name: "Dhwanit", role: "Electrical Engineer", image: "/assets/team/Electrical/Dhwanit.jpeg", linkedin: "#" },
+            { name: "Esha", role: "Electrical Engineer", image: "/assets/team/Electrical/Esha.jpeg", linkedin: "#" },
+            { name: "Harshil", role: "Electrical Engineer", image: "/assets/team/Electrical/Harshil.jpeg", linkedin: "#" },
+            { name: "Keny", role: "Electrical Engineer", image: "/assets/team/Electrical/Keny.jpeg", linkedin: "#" },
+        ]
     },
     {
-        name: "Custom Software Development",
-        members: []
+        name: "Mechanical Engineering Team",
+        members: [
+            { name: "Nidhish", role: "Mechanical Engineer", image: "/assets/team/Mechanical/Nidhish.jpeg", linkedin: "#" },
+            { name: "Prince", role: "Mechanical Engineer", image: "/assets/team/Mechanical/Prince.jpeg", linkedin: "#" },
+            { name: "Vrudit", role: "Mechanical Engineer", image: "", linkedin: "#" }, // .pdf fallback
+        ]
     }
 ];
 

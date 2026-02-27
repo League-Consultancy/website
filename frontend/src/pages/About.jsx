@@ -161,51 +161,74 @@ const About = () => {
             </section>
 
             {/* ─── OUR TEAM ─────────────────────────────── */}
-            <section className="py-32 bg-brand-white dark:bg-brand-black transition-colors duration-300">
+            <section className="py-32 bg-brand-gray-50 dark:bg-brand-dark/30 transition-colors duration-300">
                 <div className="section-container">
                     <FadeIn>
-                        <div className="text-center mb-20">
-                            <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">The People</span>
-                            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-brand-black dark:text-brand-white">Our Team</h2>
+                        <div className="text-center mb-24">
+                            <span className="text-brand-gray-600 dark:text-brand-gray-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">The People Behind LEAGUE</span>
+                            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-brand-black dark:text-brand-white">Our Experts</h2>
+                            <p className="mt-6 text-brand-gray-600 dark:text-brand-gray-400 max-w-2xl mx-auto font-light leading-relaxed">
+                                Meet the driven masterminds spanning across our specialized engineering and intelligence divisions.
+                            </p>
                         </div>
                     </FadeIn>
 
-                    <div className="space-y-24">
+                    <div className="space-y-32">
                         {teams.map((team, idx) => (
-                            <div key={idx} className="team-category">
+                            <div key={idx} className="team-category relative">
                                 <FadeIn>
-                                    <h3 className="text-2xl font-black uppercase tracking-tight border-b border-brand-gray-100 dark:border-brand-gray-800 pb-4 mb-10 text-brand-black dark:text-brand-white">{team.name}</h3>
+                                    <div className="flex items-center space-x-6 mb-12">
+                                        <h3 className="text-3xl font-black uppercase tracking-tight text-brand-black dark:text-brand-white">{team.name}</h3>
+                                        <div className="h-[1px] flex-grow bg-gradient-to-r from-brand-gray-300 to-transparent dark:from-brand-gray-700"></div>
+                                    </div>
                                 </FadeIn>
 
                                 {team.members.length > 0 ? (
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                                         {team.members.map((member, mIdx) => (
                                             <FadeIn key={mIdx} delay={mIdx * 0.1} className="h-full">
-                                                <div className="group h-full rounded-[2rem] border border-brand-gray-100 dark:border-brand-gray-800 bg-brand-gray-50 dark:bg-brand-dark p-8 transition-all duration-300 hover:shadow-premium hover:-translate-y-2 flex flex-col items-center text-center">
-                                                    <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-brand-white dark:border-brand-gray-700 mb-6 bg-brand-gray-200 dark:bg-brand-gray-800 flex items-center justify-center shadow-inner">
-                                                        {member.image ? (
-                                                            <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                                                        ) : (
-                                                            <User className="w-12 h-12 text-brand-gray-400 dark:text-brand-gray-500 group-hover:scale-110 transition-transform duration-500" />
-                                                        )}
-                                                    </div>
-                                                    <h4 className="text-xl font-bold text-brand-black dark:text-brand-white mb-2">{member.name}</h4>
-                                                    <span className="text-xs font-bold text-brand-gray-600 dark:text-brand-gray-400 uppercase tracking-widest mb-6 inline-block bg-brand-white dark:bg-brand-gray-800 px-3 py-1.5 rounded-lg border border-brand-gray-100 dark:border-brand-gray-700">{member.role}</span>
-                                                    {member.linkedin && (
+                                                <div className="group relative h-full rounded-[2.5rem] border border-brand-gray-200/50 dark:border-brand-gray-800/50 bg-white dark:bg-brand-gray-900/40 p-1 transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 flex flex-col items-center text-center overflow-hidden hover:border-brand-gray-300 dark:hover:border-brand-gray-700 backdrop-blur-xl">
+
+                                                    {/* Top Background Blob */}
+                                                    <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-br from-brand-gray-100 to-transparent dark:from-brand-gray-800/50 transition-colors duration-500 group-hover:from-brand-gray-200 dark:group-hover:from-brand-gray-700/50 z-0"></div>
+
+                                                    <div className="relative z-10 w-full h-full p-8 flex flex-col items-center">
+                                                        <div className="w-36 h-36 rounded-full overflow-hidden border-[6px] border-white dark:border-[#1a1a1a] mb-6 bg-brand-gray-50 dark:bg-brand-gray-800 flex items-center justify-center shadow-xl relative group-hover:border-brand-gray-50 dark:group-hover:border-brand-gray-800 transition-colors duration-500">
+                                                            {member.image ? (
+                                                                <img
+                                                                    src={member.image}
+                                                                    alt={member.name}
+                                                                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
+                                                                    onError={(e) => {
+                                                                        e.target.onerror = null;
+                                                                        e.target.style.display = 'none';
+                                                                        e.target.nextElementSibling.style.display = 'flex';
+                                                                    }}
+                                                                />
+                                                            ) : null}
+                                                            {/* Fallback image (shown if no image, or if image errors out) */}
+                                                            <div className={`${member.image ? 'hidden' : 'flex'} w-full h-full items-center justify-center bg-gradient-to-br from-brand-gray-100 to-brand-gray-200 dark:from-brand-gray-800 dark:to-brand-gray-900`}>
+                                                                <span className="text-4xl font-black text-brand-gray-400 dark:text-brand-gray-500 uppercase">{member.name.charAt(0)}</span>
+                                                            </div>
+                                                        </div>
+                                                        <h4 className="text-2xl font-black text-brand-black dark:text-brand-white mb-2 tracking-tight">{member.name}</h4>
+                                                        <span className="text-[11px] font-bold text-brand-gray-600 dark:text-brand-gray-400 uppercase tracking-widest mb-8 inline-block bg-brand-gray-50 dark:bg-brand-gray-800/80 px-4 py-2 rounded-xl border border-brand-gray-100 dark:border-brand-gray-700/50 shadow-sm">{member.role}</span>
+
                                                         <div className="mt-auto w-full pt-4">
-                                                            <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="block w-full py-3 rounded-xl border border-brand-gray-200 dark:border-brand-gray-700 text-[10px] font-black uppercase tracking-widest hover:bg-brand-black hover:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-black transition-all">
-                                                                LinkedIn Profile
+                                                            <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="relative overflow-hidden group/btn block w-full py-3.5 rounded-2xl border border-brand-gray-200 dark:border-brand-gray-700 text-[10px] font-black uppercase tracking-widest bg-white dark:bg-transparent text-brand-black dark:text-brand-white hover:border-transparent transition-all duration-300">
+                                                                <span className="relative z-10 transition-colors duration-300 group-hover/btn:text-white dark:group-hover/btn:text-brand-black">LinkedIn Profile</span>
+                                                                <div className="absolute inset-0 bg-brand-black dark:bg-brand-white transform scale-x-0 group-hover/btn:scale-x-100 transition-transform origin-left duration-500 ease-out"></div>
                                                             </a>
                                                         </div>
-                                                    )}
+                                                    </div>
                                                 </div>
                                             </FadeIn>
                                         ))}
                                     </div>
                                 ) : (
                                     <FadeIn>
-                                        <div className="p-10 border border-dashed border-brand-gray-200 dark:border-brand-gray-800 rounded-[2rem] text-center bg-brand-gray-50/50 dark:bg-brand-dark/50">
-                                            <p className="text-brand-gray-500 dark:text-brand-gray-400 font-medium text-sm">We are expanding this team. Member profiles will be updated soon.</p>
+                                        <div className="p-12 border border-dashed border-brand-gray-300 dark:border-brand-gray-700 rounded-[2.5rem] text-center bg-white/50 dark:bg-brand-gray-900/20 backdrop-blur-sm">
+                                            <p className="text-brand-gray-500 dark:text-brand-gray-400 font-medium text-sm lg:text-base">We are expanding this team. Member profiles will be updated soon.</p>
                                         </div>
                                     </FadeIn>
                                 )}
