@@ -238,35 +238,6 @@ const About = () => {
                 </div>
             </section>
 
-            {/* ─── CREDIBILITY ───────────────────────────── */}
-            <section className="bg-brand-black dark:bg-brand-gray-900 py-32 text-brand-white transition-colors duration-1000">
-                <div className="section-container">
-                    <FadeIn>
-                        <div className="text-center mb-20">
-                            <span className="text-brand-gray-600 font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Trust & Recognition</span>
-                            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none text-brand-white">Proof & Credibility</h2>
-                        </div>
-                    </FadeIn>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {credibility.map((item, idx) => {
-                            const IconComp = credIconMap[item.icon] || Award;
-                            return (
-                                <FadeIn key={idx} delay={idx * 0.1} className="h-full">
-                                    <div className="text-center group p-8 lg:p-10 rounded-[2.5rem] border border-brand-gray-800 hover:border-brand-gray-600 transition-all duration-500 bg-white/5 h-full flex flex-col justify-center">
-                                        <div className="p-5 bg-white/5 rounded-2xl w-fit mx-auto mb-6 group-hover:bg-brand-white group-hover:text-brand-black transition-all duration-500 shadow-md">
-                                            <IconComp className="w-8 h-8" />
-                                        </div>
-                                        <h3 className="text-lg font-bold uppercase tracking-tight mb-3 text-brand-white">{item.title}</h3>
-                                        <p className="text-brand-gray-700 dark:text-brand-gray-500 text-sm font-light leading-relaxed">{item.description}</p>
-                                    </div>
-                                </FadeIn>
-                            );
-                        })}
-                    </div>
-                </div>
-            </section>
-
             {/* ─── TECHNOLOGY STACK ──────────────────────── */}
             <section className="py-32" id="tech-stack">
                 <div className="section-container">
@@ -284,7 +255,7 @@ const About = () => {
                                     <h3 className="text-xs font-black uppercase tracking-[0.2em] text-brand-gray-600 dark:text-brand-gray-400 mb-8 border-b border-brand-gray-100 dark:border-brand-gray-800 pb-4">{category}</h3>
                                     <div className="flex flex-wrap gap-2 mt-auto">
                                         {techs.map(tech => (
-                                            <span key={tech} className="px-4 py-2 bg-brand-white dark:bg-brand-gray-800 border border-brand-gray-200 dark:border-brand-gray-700 rounded-xl text-[10px] font-bold uppercase tracking-wider text-brand-black dark:text-brand-gray-300 group-hover:bg-brand-gray-50 dark:group-hover:bg-brand-gray-900 group-hover:border-brand-gray-300 dark:group-hover:border-brand-gray-600 hover:!bg-brand-black hover:!text-brand-white dark:hover:!bg-brand-white dark:hover:!text-brand-black transition-all cursor-default">
+                                            <span key={tech} className="px-4 py-2 bg-white dark:bg-brand-gray-800 border border-brand-gray-200 dark:border-brand-gray-700 rounded-xl text-[10px] font-bold uppercase tracking-wider text-brand-black dark:text-brand-gray-300 hover:bg-brand-black hover:text-white dark:hover:bg-white dark:hover:text-brand-black transition-colors duration-300 cursor-default shadow-sm group-hover:border-brand-gray-300 dark:group-hover:border-brand-gray-600">
                                                 {tech}
                                             </span>
                                         ))}
